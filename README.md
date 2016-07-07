@@ -6,6 +6,11 @@ My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/do
 
 ## Installation
 
+**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. 
+
+This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). If you want to change your shell to zsh, install it and run ``chsh -s $(which zsh)``.
+
+
 ```bash
 git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
