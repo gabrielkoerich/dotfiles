@@ -11,13 +11,13 @@ My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/do
 This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). If you want to change your shell to zsh, [install it](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH) and run ``chsh -s $(which zsh)``.
 
 ```bash
-git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && source sync.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
 
 ```bash
-source bootstrap.sh
+source sync.sh
 ```
 
 ## License

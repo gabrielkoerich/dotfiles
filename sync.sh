@@ -12,10 +12,10 @@ function doIt() {
         --exclude "brew.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
-        --exclude "screenshot.png" \
+        --exclude "sublime-packages/" \
         -avh --no-perms . ~;
 
-    . ~/.zshrc;
+    source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
