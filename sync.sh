@@ -10,6 +10,7 @@ function doIt() {
         --exclude ".osx" \
         --exclude "bootstrap.sh" \
         --exclude "brew.sh" \
+        --exclude "sync.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
         --exclude "sublime-packages/" \
