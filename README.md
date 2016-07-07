@@ -1,6 +1,20 @@
 # Gabriel's dotfiles 
 
+My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).
+
 [![.dotfiles](https://cloud.githubusercontent.com/assets/1981726/16643374/6276bd6c-43ea-11e6-9b09-3bea66ead643.png)](https://cloud.githubusercontent.com/assets/1981726/16643374/6276bd6c-43ea-11e6-9b09-3bea66ead643.png)
+
+## Installation
+
+```bash
+git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && source bootstrap.sh
+```
+
+To update, `cd` into your local `dotfiles` repository and then:
+
+```bash
+source bootstrap.sh
+```
 
 ## License
 
