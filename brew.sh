@@ -34,9 +34,14 @@ brew install vim --override-system-vi
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
+
+# Install PHP
 brew install homebrew/php/php70
 brew install homebrew/php/php70-mcrypt
 brew install homebrew/php/php70-xdebug
+
+# Install Node
+brew install node
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -73,26 +78,25 @@ brew install xz
 # Install other useful binaries.
 brew install ack
 brew install dark-mode
-#brew install exiv2
 brew install git
-brew install git-lfs
+brew install git-extras
 brew install imagemagick --with-webp
-brew install lua
-brew install lynx
 brew install p7zip
-brew install pigz
-brew install pv
-brew install rename
-brew install rhino
 brew install speedtest_cli
 brew install ssh-copy-id
 brew install testssl
-brew install tree
-brew install vbindiff
-brew install webkit2png
-brew install zopfli
+# brew install git-lfs
+# brew install lua
+# brew install lynx
+# brew install pigz
+# brew install pv
+# brew install rename
+# brew install tree
+# brew install vbindiff
+# brew install webkit2png
+# brew install zopfli
 
-# Install brew cask and cask apps
+# Install brew cask and other apps
 brew install cask
 
 # Remove outdated versions from the cellar.
