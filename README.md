@@ -1,6 +1,6 @@
 # Gabriel's dotfiles 
 
-WIP.
+[![.dotfiles](https://cloud.githubusercontent.com/assets/1981726/16643374/6276bd6c-43ea-11e6-9b09-3bea66ead643.png)](https://cloud.githubusercontent.com/assets/1981726/16643374/6276bd6c-43ea-11e6-9b09-3bea66ead643.png)
 
 ## License
 
