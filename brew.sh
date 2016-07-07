@@ -100,14 +100,21 @@ brew install testssl
 brew tap phinze/homebrew-cask
 brew install brew-cask
 brew cask install alfred
+brew cask install iterm2
 brew cask install caffeine
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install google-drive
-
-# Install vox player
+brew cask install flux
+brew cask install franz
+brew cask install sequel-pro
+brew cask install polymail
 brew cask install vox
+brew cask install rescuetime
 brew cask install sublime-text
+# brew cask install 0ad
+# brew cask install virtualbox
+# brew cask install vagrant
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
