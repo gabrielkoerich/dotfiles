@@ -15,8 +15,6 @@ function doIt() {
         --exclude "LICENSE-MIT.txt" \
         --exclude "sublime-packages/" \
         -avh --no-perms . ~;
-
-    source ~/.zshrc;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
