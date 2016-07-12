@@ -102,18 +102,21 @@ brew install brew-cask
 brew cask install alfred
 brew cask install iterm2
 brew cask install caffeine
+brew cask install spectacle
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install google-drive
 brew cask install flux
 brew cask install franz
+brew cask install skype
 brew cask install sequel-pro
 brew cask install polymail
 brew cask install vox
 brew cask install rescuetime
 brew cask install sublime-text
 # brew cask install 0ad
-# brew cask install virtualbox
+brew cask install virtualbox
+brew cask install docker
 # brew cask install vagrant
 
 # Add sublime command
