@@ -103,6 +103,7 @@ brew cask install alfred
 brew cask install iterm2
 brew cask install caffeine
 brew cask install spectacle
+brew cask install imageoptim
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install google-drive
@@ -114,10 +115,11 @@ brew cask install polymail
 brew cask install vox
 brew cask install rescuetime
 brew cask install sublime-text
-# brew cask install 0ad
 brew cask install virtualbox
 brew cask install docker
+# brew cask install 0ad
 # brew cask install vagrant
+# brew cask install the-unarchiver
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
