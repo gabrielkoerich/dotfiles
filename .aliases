@@ -155,5 +155,3 @@ alias reload="exec $SHELL -l"
 
 # Call speedtest_cli
 alias speedtest="speedtest_cli"
-
-alias laradock-up="docker-compose up -d nginx mysql redis beanstalkd beanstalkd-console"
