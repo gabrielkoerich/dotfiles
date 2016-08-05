@@ -261,6 +261,12 @@ function get_page() {
     wget --adjust-extension --span-hosts --convert-links --backup-converted --page-requisites $@ --no-check-certificate;
 }
 
+function serve() {
+    mysql.server start
+    php artisan serve --host=127.0.0.1
+    mysql.server stop
+}
+
 function autotag() {
     # Get highest tag number
     VERSION=`git describe --abbrev=0 --tags`
@@ -292,3 +298,4 @@ function autotag() {
         echo "Already a tag on this commit"
     fi
 }
+
