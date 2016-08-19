@@ -263,8 +263,8 @@ function get_page() {
 
 function serve() {
     mysql.server start
+    /usr/bin/open -a "/Applications/Google Chrome.app" 'http://127.0.0.1:8000'
     php artisan serve --host=127.0.0.1
-    mysql.server stop
 }
 
 function autotag() {
