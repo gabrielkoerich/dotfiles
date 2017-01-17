@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE}")";
-
-echo $BASH_SOURCE;
+cd "~";
 
 git pull origin master;
 
@@ -14,6 +12,7 @@ function sync() {
         --exclude "sync.sh" \
         --exclude "README.md" \
         --exclude "fonts" \
+        --exclude "fonts.sh" \
         --exclude "sublime-packages/" \
         --exclude "Preferences.sublime-settings" \
         --exclude "com.googlecode.iterm2.plist" \
