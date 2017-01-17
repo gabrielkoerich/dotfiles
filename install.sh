@@ -42,6 +42,8 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+cd ~/.oh-my-zsh/themes && wget https://raw.github.com/jasonlewis/jcl-zsh-theme/master/jcl.zsh-theme
+
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
