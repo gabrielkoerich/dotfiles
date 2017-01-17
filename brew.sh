@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Install brew
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install composer 
+curl -sS https://getcomposer.org/installer | php
+
+sudo mv composer.phar /usr/local/bin/composer
+
 # Install command-line tools using Homebrew.
 
 # Make sure we’re using the latest Homebrew.
@@ -111,7 +119,7 @@ brew cask install flux
 brew cask install franz
 brew cask install skype
 brew cask install sequel-pro
-brew cask install polymail
+# brew cask install polymail
 brew cask install vox
 brew cask install rescuetime
 brew cask install sublime-text
