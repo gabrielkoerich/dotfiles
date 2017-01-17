@@ -9,7 +9,7 @@ function sync() {
         --exclude ".DS_Store" \
         --exclude ".osx" \
         --exclude "bootstrap.sh" \
-        --exclude "brew.sh" \
+        --exclude "install.sh" \
         --exclude "sync.sh" \
         --exclude "README.md" \
         --exclude "LICENSE-MIT.txt" \
