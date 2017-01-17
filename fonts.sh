@@ -1,0 +1,1 @@
+cp fonts/*.ttf /Library/Fonts/

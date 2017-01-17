@@ -142,3 +142,7 @@ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/loca
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+sh fonts.sh
+
+

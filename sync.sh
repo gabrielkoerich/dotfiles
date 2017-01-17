@@ -12,8 +12,8 @@ function sync() {
         --exclude "install.sh" \
         --exclude "sync.sh" \
         --exclude "README.md" \
-        --exclude "LICENSE-MIT.txt" \
         --exclude "sublime-packages/" \
+        --exclude "fonts" \
         -avh --no-perms . ~;
 }
 
