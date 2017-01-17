@@ -136,6 +136,7 @@ brew cask install sublime-text
 # brew cask install 0ad
 # brew cask install vagrant
 # brew cask install the-unarchiver
+brew cask install github-desktop
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
