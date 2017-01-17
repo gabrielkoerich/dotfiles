@@ -8,12 +8,13 @@ function sync() {
     rsync --exclude ".git/" \
         --exclude ".DS_Store" \
         --exclude ".osx" \
-        --exclude "bootstrap.sh" \
         --exclude "install.sh" \
         --exclude "sync.sh" \
         --exclude "README.md" \
-        --exclude "sublime-packages/" \
         --exclude "fonts" \
+        --exclude "sublime-packages/" \
+        --exclude "Preferences.sublime-settings" \
+        --exclude "com.googlecode.iterm2.plist" \
         -avh --no-perms . ~;
 }
 
