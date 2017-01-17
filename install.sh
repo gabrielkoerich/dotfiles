@@ -121,7 +121,7 @@ brew cask install dropbox
 brew cask install google-chrome
 brew cask install google-drive
 brew cask install flux
-brew cask install franz
+# brew cask install franz
 brew cask install skype
 brew cask install sequel-pro
 # brew cask install polymail
