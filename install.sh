@@ -10,6 +10,8 @@ composer global require laravel/installer
 composer global require phpunit/phpunit
 composer global require riendsofphp/php-cs-fixer
 
+~/.composer/vendor/bin/valet install
+
 # Install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
