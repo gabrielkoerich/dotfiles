@@ -1,17 +1,5 @@
 #!/usr/bin/env bash
 
-# Install composer 
-curl -sS https://getcomposer.org/installer | php
-
-sudo mv composer.phar /usr/local/bin/composer
-
-composer global require laravel/valet
-composer global require laravel/installer
-composer global require phpunit/phpunit
-composer global require riendsofphp/php-cs-fixer
-
-~/.composer/vendor/bin/valet install
-
 # Install brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
@@ -148,6 +136,16 @@ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/loca
 # Remove outdated versions from the cellar.
 brew cleanup
 
+# Install composer 
+curl -sS https://getcomposer.org/installer | php
+
+sudo mv composer.phar /usr/local/bin/composer
+
+composer global require laravel/valet
+composer global require laravel/installer
+composer global require phpunit/phpunit
+composer global require riendsofphp/php-cs-fixer
+
+~/.composer/vendor/bin/valet install
+
 sh fonts.sh
-
-
