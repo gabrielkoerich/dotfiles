@@ -39,6 +39,9 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 # Note: don’t forget to add `/usr/local/bin/zsh` to `/etc/shells` before
 # running `chsh`.
 
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Install `wget` with IRI support.
 brew install wget --with-iri
 
