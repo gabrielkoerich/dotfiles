@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "~";
+cd ~;
 
 git pull origin master;
 
