@@ -247,11 +247,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1280 778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>290 208 918 512 0 0 1280 778 </string>
+	<string>290 200 796 473 0 0 1280 778 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>80 194 592 584 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>6 286 1274 477 0 0 1280 778 </string>
+	<string>0 302 1274 476 0 0 1280 778 </string>
 	<key>NeverWarnAboutShortLivedSessions_604058E4-0D97-4025-A4DD-18D77F7344EB</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -1157,7 +1157,7 @@
 			<key>Background Image Location</key>
 			<string></string>
 			<key>Blend</key>
-			<real>0.30000001192092896</real>
+			<real>0.28724961127990334</real>
 			<key>Blink Allowed</key>
 			<false/>
 			<key>Blinking Cursor</key>
@@ -1700,7 +1700,7 @@
 			<key>Terminal Type</key>
 			<string>xterm</string>
 			<key>Transparency</key>
-			<real>0.17189116775989532</real>
+			<real>0.050737321606049178</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -3203,6 +3203,10 @@
 	<string>3C4DDD8D-0279-45BC-BA3C-35177DF5349E</string>
 	<key>NoSyncLastTipTime</key>
 	<real>487383648.562482</real>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -3296,7 +3300,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-15T12:57:27Z</date>
+	<date>2017-03-02T17:30:32Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -3348,6 +3352,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.14</string>
 </dict>
 </plist>
