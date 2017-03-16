@@ -44,9 +44,9 @@ brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
 # Install PHP
-brew install homebrew/php/php70
-brew install homebrew/php/php70-mcrypt
-brew install homebrew/php/php70-xdebug
+brew install homebrew/php/php71
+brew install homebrew/php/php71-mcrypt
+brew install homebrew/php/php71-xdebug
 
 # Install Node
 brew install node
