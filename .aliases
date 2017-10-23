@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# Example aliases
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias phpunit="vendor/bin/phpunit"
 alias phpspec="vendor/bin/phpspec run"
 alias phptest="phpunit && phpspec"
+alias artisan="php artisan"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
