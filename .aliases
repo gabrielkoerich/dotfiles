@@ -6,6 +6,8 @@ alias phpunit="vendor/bin/phpunit"
 alias phpspec="vendor/bin/phpspec run"
 alias phptest="phpunit && phpspec"
 alias artisan="php artisan"
+alias art="php artisan"
+alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -23,6 +25,8 @@ alias p="cd ~/Projects"
 alias g="git"
 alias h="history"
 alias j="jobs"
+alias c="clear"
+alias chrome="/usr/bin/open -a /Applications/Google Chrome.app"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
