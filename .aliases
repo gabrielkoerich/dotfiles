@@ -7,6 +7,8 @@ alias phpspec="vendor/bin/phpspec run"
 alias phptest="phpunit && phpspec"
 alias artisan="php artisan"
 alias art="php artisan"
+alias migrate="php artisan migrate"
+alias rollback="php artisan migrate:rollback"
 alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
