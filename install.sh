@@ -131,6 +131,7 @@ brew cask install sublime-text
 brew cask install github-desktop
 
 # Add sublime command
+ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
 
 # Remove outdated versions from the cellar.
