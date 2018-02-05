@@ -1,4 +1,4 @@
-# Gabriel's dotfiles 
+# Evald's dotfiles 
 
 My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).
 
