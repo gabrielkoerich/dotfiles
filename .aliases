@@ -161,3 +161,24 @@ alias speedtest="speedtest_cli --share"
 
 # List all docker ips
 alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; docker inspect $cid | grep IPAddress | cut -d \" -f 4; done'
+
+
+# Personal Alias
+
+alias fucking='sudo'
+alias upload='git push -u origin --all'
+alias umbler='ssh ssh-evaldofelipe-com@evaldofelipe-com.umbler.net -p 9922'
+alias magic='defaults write com.apple.finder AppleShowAllFiles YES'
+alias nomagic='defaults write com.apple.finder AppleShowAllFiles NO'
+alias flushdns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; say cache flushed'
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+alias iterm="/usr/libexec/PlistBuddy -c 'Add :LSUIElement bool true' /Applications/iTerm.app/Contents/Info.plist"
+alias t='clear; python ~/t/t.py --task-dir /Users/Evaldo/Dropbox/tasks --list tasks'
+alias psw-6="openssl rand -base64 6."
+alias psw-8="openssl rand -base64 8."
+alias psw-10="openssl rand -base64 10."
+alias psw-16="openssl rand -base64 16"
+alias psw-20="openssl rand -base64 20"
+alias psw-25="openssl rand -base64 25"
+alias myip="curl "http://myexternalip.com/raw""
+alias mynet-still-up="/Users/Evaldo/scripts/net-still-up.sh"
