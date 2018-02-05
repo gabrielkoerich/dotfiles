@@ -24,15 +24,15 @@ brew install findutils
 brew install gnu-sed --with-default-names
 
 # Install zsh and oh-my-zsh
-brew install zsh
+#brew install zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 # Note: don’t forget to add `/usr/local/bin/zsh` to `/etc/shells` before
 # running `chsh`.
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-cd ~/.oh-my-zsh/themes && wget https://raw.github.com/jasonlewis/jcl-zsh-theme/master/jcl.zsh-theme
+#cd ~/.oh-my-zsh/themes && wget https://raw.github.com/jasonlewis/jcl-zsh-theme/master/jcl.zsh-theme
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
