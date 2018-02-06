@@ -104,6 +104,7 @@ brew install testssl
 # brew install webkit2png
 # brew install zopfli
 brew install terraform
+brew install htop
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
