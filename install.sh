@@ -103,6 +103,7 @@ brew install testssl
 # brew install vbindiff
 # brew install webkit2png
 # brew install zopfli
+brew install terraform
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
@@ -130,6 +131,8 @@ brew cask install sublime-text
 # brew cask install vagrant
 # brew cask install the-unarchiver
 brew cask install github-desktop
+brew cask install appzapper
+
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
