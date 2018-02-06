@@ -25,7 +25,7 @@ brew install gnu-sed --with-default-names
 
 # Install zsh and oh-my-zsh
 #brew install zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+#sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 # Note: don’t forget to add `/usr/local/bin/zsh` to `/etc/shells` before
 # running `chsh`.
 
@@ -109,13 +109,14 @@ brew tap phinze/homebrew-cask
 brew install brew-cask
 brew cask install alfred
 brew cask install iterm2
-brew cask install caffeine
-brew cask install spectacle
-brew cask install imageoptim
+# brew cask install caffeine
+# brew cask install spectacle
+# brew cask install imageoptim
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install google-drive
 brew cask install flux
+brew cask install whatsapp
 # brew cask install franz
 brew cask install skype
 brew cask install sequel-pro
@@ -129,7 +130,6 @@ brew cask install sublime-text
 # brew cask install vagrant
 # brew cask install the-unarchiver
 brew cask install github-desktop
-
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime

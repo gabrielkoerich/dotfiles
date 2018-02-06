@@ -1,4 +1,4 @@
-# Evald's dotfiles 
+# Gabriel's dotfiles 
 
 My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).
 
@@ -24,7 +24,7 @@ source sync.sh
 
 #### The MIT License (MIT)
 
-Copyright (c)
+Copyright (c) Gabriel Koerich
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
