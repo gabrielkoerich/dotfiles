@@ -105,6 +105,8 @@ brew install testssl
 # brew install zopfli
 brew install terraform
 brew install htop
+brew isntall tree
+
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
