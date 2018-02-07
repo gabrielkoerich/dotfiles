@@ -126,6 +126,7 @@ brew cask install sequel-pro
 # brew cask install vox
 brew cask install rescuetime
 brew cask install sublime-text
+brew cask install atom
 # brew cask install virtualbox
 # brew cask install docker
 # brew cask install 0ad
