@@ -203,7 +203,7 @@
 	<key>NSColorPickerPageableNameListDefaults</key>
 	<string>1Apple</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Google Drive/Backup/dotfiles</string>
+	<string>~/Dropbox/dotfiles</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 459}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -216,6 +216,8 @@
 	<false/>
 	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
+	<key>NSStatusItem Preferred Position Item-0</key>
+	<real>514</real>
 	<key>NSTableView Columns v2 KeyBingingTable</key>
 	<data>
 	YnBsaXN0MDDUAQIDBAUGNjdYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
@@ -253,11 +255,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1280 778 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>428 60 796 473 0 0 1280 778 </string>
+	<string>25 87 796 473 0 0 1440 878 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>80 194 592 584 0 0 1280 778 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 324 1280 454 0 0 1280 778 </string>
+	<string>0 748 2560 670 0 0 2560 1418 </string>
 	<key>NeverWarnAboutShortLivedSessions_604058E4-0D97-4025-A4DD-18D77F7344EB</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -3282,7 +3284,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/gabriel/Google Drive/Backup/dotfiles</string>
+	<string>/Users/gabriel/Dropbox/dotfiles</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnClose</key>
@@ -3306,7 +3308,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-10-24T20:57:45Z</date>
+	<date>2018-03-08T01:02:56Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -3362,6 +3364,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.3</string>
+	<string>3.1.5</string>
 </dict>
 </plist>
