@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.sayzlim.toolbox</string>
+	<key>connections</key>
+	<dict>
+		<key>0422A479-2ED1-4ED7-B168-2CF834CA36F6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>56ED1360-5206-4036-AC98-8968AF6FB93A</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>0B3987DE-4C0B-4157-9873-BF5FB85EC4F8</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>0C0CD127-4059-4967-B458-FB977F4C1C5D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F9C877D1-CA2C-4FC3-AC11-DAB1C1F7FF23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>1EED6CBF-C7B0-4130-A4A9-AC7F7A68ABB1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0B3987DE-4C0B-4157-9873-BF5FB85EC4F8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>43EA49D0-9451-4278-848B-3E9556A8442E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E8DD0272-7EB5-4A83-88DD-8C0BE40E040E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>47651C5A-CF19-468A-9518-CE1BA41A23D0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>48FB05C1-8D4D-4157-86DD-653BC9464D99</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>56ED1360-5206-4036-AC98-8968AF6FB93A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>5801DEAF-41C4-4A3F-8D3F-8E8ABFBD55F5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>47651C5A-CF19-468A-9518-CE1BA41A23D0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>91385854-097D-4DD5-BFF7-D1E3A2729277</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9CD3D521-EDA4-4A9A-A859-9D1D0A51E5A1</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>9CD3D521-EDA4-4A9A-A859-9D1D0A51E5A1</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>B018B61E-E616-4282-898A-2E53C494B18F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>48FB05C1-8D4D-4157-86DD-653BC9464D99</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>DADFC39D-F0AC-41A2-AEE2-8C168F443341</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FE5F03EB-AF43-415B-ABD3-06ACF76F650B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>E8DD0272-7EB5-4A83-88DD-8C0BE40E040E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>F9C877D1-CA2C-4FC3-AC11-DAB1C1F7FF23</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>FE5F03EB-AF43-415B-ABD3-06ACF76F650B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Sayz Lim</string>
+	<key>description</key>
+	<string>Most used commands to fix OS X glitches. (1.2)</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>OS X Toolbox</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>password="{query}" 
+
+killall Finder &amp;&amp; echo "$password" | sudo -S killall -KILL appleeventsd
+
+echo "Finder has been relaunched"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F9C877D1-CA2C-4FC3-AC11-DAB1C1F7FF23</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>tb finder</string>
+				<key>subtext</key>
+				<string>Relaunch Finder and fixes “show in folder bug” (Use your password as argument)</string>
+				<key>text</key>
+				<string>Relaunch Finder</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>0C0CD127-4059-4967-B458-FB977F4C1C5D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>CURRENTLY=`defaults read com.apple.finder CreateDesktop`
+
+if [ $CURRENTLY == TRUE ]; then
+	defaults write com.apple.finder CreateDesktop FALSE
+	echo "Desktop is now hidden"
+else
+	defaults write com.apple.finder CreateDesktop TRUE
+	echo "Desktop is now visible"
+fi
+
+killall Finder</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>48FB05C1-8D4D-4157-86DD-653BC9464D99</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb desktop</string>
+				<key>subtext</key>
+				<string>Turn desktop visible/hidden</string>
+				<key>text</key>
+				<string>Toggle Desktop</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>B018B61E-E616-4282-898A-2E53C494B18F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb hidden</string>
+				<key>subtext</key>
+				<string>Turn system files visible/hidden</string>
+				<key>text</key>
+				<string>Toggle Hidden Files</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1EED6CBF-C7B0-4130-A4A9-AC7F7A68ABB1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string># Built by Don Southard
+# Website: http://www.dirtdon.com
+
+CURRENTLY=`defaults read com.apple.finder AppleShowAllFiles`
+
+if [ $CURRENTLY == TRUE ]; then
+	defaults write com.apple.finder AppleShowAllFiles FALSE
+	echo "System Files are now hidden"
+else
+	defaults write com.apple.finder AppleShowAllFiles TRUE
+	echo "System Files are now visible"
+fi
+
+killall Finder</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0B3987DE-4C0B-4157-9873-BF5FB85EC4F8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>purge
+echo "Restored Inactive Memory"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>9CD3D521-EDA4-4A9A-A859-9D1D0A51E5A1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb purge</string>
+				<key>subtext</key>
+				<string>Purge away inactive memory</string>
+				<key>text</key>
+				<string>Memory Purge</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>91385854-097D-4DD5-BFF7-D1E3A2729277</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>OS X Toolbox</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string>/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+echo 'Launch Services has been rebuilt'</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>47651C5A-CF19-468A-9518-CE1BA41A23D0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb reset</string>
+				<key>subtext</key>
+				<string>Fixing duplicate “Open with…” items</string>
+				<key>text</key>
+				<string>Reset Launch Services</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>5801DEAF-41C4-4A3F-8D3F-8E8ABFBD55F5</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb wifi</string>
+				<key>subtext</key>
+				<string>Turn Wi-Fi On/Off</string>
+				<key>text</key>
+				<string>Toggle Wi-Fi Connection</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>DADFC39D-F0AC-41A2-AEE2-8C168F443341</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>63</integer>
+				<key>script</key>
+				<string># Built by: Jonas Eriksen
+# www.aiyo.dk/alfredapp
+
+#Function to search keychain for the network password
+get_pw () {
+ if [ "$1" ]
+ then
+  security 2&gt;&amp;1 &gt;/dev/null  find-generic-password -ga AirPort -l "$1" | cut -d '"' -f 2 | grep -v security:
+ fi
+}
+#Find the device name
+DEVICE=$(networksetup -listallhardwareports | grep -A 2 -E "AirPort|Wi-Fi" | grep -m 1 -o -e en[0-9]);
+#Toggle or change network?
+case "{query}" in
+"")
+ #Toggle the power of the Wi-Fi/Airport
+ if [ $(networksetup -getairportpower $DEVICE | grep -c On) == 0 ]
+ then
+  networksetup -setairportpower $DEVICE On
+  echo "Wi-Fi enabled.";
+ else
+  networksetup -setairportpower $DEVICE Off
+  echo "Wi-Fi disabled.";
+ fi
+;;
+"?")
+  echo $(networksetup -getairportnetwork $DEVICE)
+  echo
+  networksetup -getinfo Wi-Fi
+;;
+*)
+ #Change network - Make sure that the Airport is on
+ if [ $(networksetup -getairportpower $DEVICE | grep -c On) == 0 ]
+ then
+  networksetup -setairportpower $DEVICE On
+ fi
+ #Fuzzy match to known networks
+ NETWORK=$(networksetup -listpreferredwirelessnetworks en1 | egrep -im 1 "[[:alnum:]]*{query}[[:alnum:]]*$");
+ #If a match is found - try to connect to Network
+ if [ -z "$NETWORK" ]
+ then
+  echo "Unable to match \"{query}\" to a know network.";
+ else
+  ERROR=$(networksetup -setairportnetwork en1 "$(echo $NETWORK)" $(get_pw "$(echo $NETWORK)") );
+  if [ -z "$ERROR" ]
+  then
+   echo "Successfully connected to network $NETWORK.";
+  else
+   echo $ERROR;
+  fi
+ fi
+;;
+esac
+</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FE5F03EB-AF43-415B-ABD3-06ACF76F650B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb launchpad</string>
+				<key>subtext</key>
+				<string>Reset applications ordering in Launchpad</string>
+				<key>text</key>
+				<string>Reset Launchpad</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>0422A479-2ED1-4ED7-B168-2CF834CA36F6</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>rm ~/Library/Application\ Support/Dock/*.db; defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock
+
+echo "Applications in Launchpad have been reordered"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>56ED1360-5206-4036-AC98-8968AF6FB93A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tb dock</string>
+				<key>subtext</key>
+				<string>Reintroducing the mesmerizing icons on your Dock</string>
+				<key>text</key>
+				<string>Relaunch Dock</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>43EA49D0-9451-4278-848B-3E9556A8442E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>killall Dock
+
+echo "Dock has been relaunched"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E8DD0272-7EB5-4A83-88DD-8C0BE40E040E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Credits:
+Toggle System Files by http://www.dirtdon.com/
+Toggle Wi-Fi by http://www.aiyo.dk/alfredapp
+Icon by Taras Brizitsky: https://dribbble.com/shots/1702836-OS-X-app-icon
+
+2014-10-18  Version 1.2 Release Notes
+• Adjusted the reset Launchpad command to support Yosemite.
+• Changed all the icons to match Yosemite flatter looks.</string>
+	<key>uidata</key>
+	<dict>
+		<key>0422A479-2ED1-4ED7-B168-2CF834CA36F6</key>
+		<dict>
+			<key>ypos</key>
+			<real>730</real>
+		</dict>
+		<key>0B3987DE-4C0B-4157-9873-BF5FB85EC4F8</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>0C0CD127-4059-4967-B458-FB977F4C1C5D</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>1EED6CBF-C7B0-4130-A4A9-AC7F7A68ABB1</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>43EA49D0-9451-4278-848B-3E9556A8442E</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
+		<key>47651C5A-CF19-468A-9518-CE1BA41A23D0</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+		<key>48FB05C1-8D4D-4157-86DD-653BC9464D99</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>56ED1360-5206-4036-AC98-8968AF6FB93A</key>
+		<dict>
+			<key>ypos</key>
+			<real>730</real>
+		</dict>
+		<key>5801DEAF-41C4-4A3F-8D3F-8E8ABFBD55F5</key>
+		<dict>
+			<key>ypos</key>
+			<real>490</real>
+		</dict>
+		<key>91385854-097D-4DD5-BFF7-D1E3A2729277</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>9CD3D521-EDA4-4A9A-A859-9D1D0A51E5A1</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>AD01F996-0A85-47D5-8B1C-C1FAF11507AA</key>
+		<dict>
+			<key>ypos</key>
+			<real>430</real>
+		</dict>
+		<key>B018B61E-E616-4282-898A-2E53C494B18F</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>DADFC39D-F0AC-41A2-AEE2-8C168F443341</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
+		<key>E8DD0272-7EB5-4A83-88DD-8C0BE40E040E</key>
+		<dict>
+			<key>ypos</key>
+			<real>850</real>
+		</dict>
+		<key>F9C877D1-CA2C-4FC3-AC11-DAB1C1F7FF23</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>FE5F03EB-AF43-415B-ABD3-06ACF76F650B</key>
+		<dict>
+			<key>ypos</key>
+			<real>610</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://sayzlim.net/extension</string>
+</dict>
+</plist>

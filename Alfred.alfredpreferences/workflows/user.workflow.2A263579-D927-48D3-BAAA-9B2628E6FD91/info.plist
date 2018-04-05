@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.jmjeong.alfredv2.ealfred</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>2D3DE63E-8538-4829-A8C4-6BD3D5CFD8DC</key>
+		<array/>
+		<key>72C0E636-C427-4039-A22B-257320B6540F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4AECB193-6099-4F38-8590-FF0ACF69BA4C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D26D1F18-0D3F-457B-86D4-EEA05FC75FC1</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>Browse Data Directory</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>2D3DE63E-8538-4829-A8C4-6BD3D5CFD8DC</string>
+				<key>modifiers</key>
+				<integer>262144</integer>
+				<key>modifiersubtext</key>
+				<string>Open in iTerm</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>908E8C04-F73D-4B45-A9E9-14AFE5E7EA70</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Open in Sublime Text</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>B3581A8D-8C84-4E0D-9DAA-21348D4DA88F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>72C0E636-C427-4039-A22B-257320B6540F</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Copy Path</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>B5338C09-9349-4854-8115-B77CE546946A</string>
+				<key>modifiers</key>
+				<integer>8388608</integer>
+				<key>modifiersubtext</key>
+				<string>Export extension (~/Downloads, you can customize by export.json)</string>
+			</dict>
+		</array>
+		<key>B5338C09-9349-4854-8115-B77CE546946A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>33F588E7-C7A1-429E-9EC0-3B9434B9042C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>D26D1F18-0D3F-457B-86D4-EEA05FC75FC1</key>
+		<array/>
+		<key>F72A0346-1F5D-4D2A-BEC1-5FAB10D82C98</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>54DACDC3-F262-4FF4-8CC9-0414E84CF7D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Jaemok Jeong. Extended by. AleXander</string>
+	<key>description</key>
+	<string>List and view details about installed Alfred extensions</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Manage Alfred Extension</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>$query = "{query}";
+include("open_data.php");
+
+/* DEBUGGIN -- needs some logic fixed.  not perfectly matching the data directories to the right folders
+
+echo ' data_subdir:  ' . $data_subdir . "\n\n";
+echo ' bundle_id:  ' . $bundle_id . "\n\n";
+
+if ( $match !== 1 )
+{
+	$query = 'Sorry! No Data Folder :(';
+	// echo $query;
+} else {
+    // echo 'hello world';
+}*/</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D26D1F18-0D3F-457B-86D4-EEA05FC75FC1</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>3F103C76-6DE9-4C87-9F42-FF17317A1DA7</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>keyword</key>
+				<string>alf</string>
+				<key>runningsubtext</key>
+				<string>loading...</string>
+				<key>script</key>
+				<string>python main.py {query}</string>
+				<key>subtext</key>
+				<string>List and view details about installed Alfred Workflows</string>
+				<key>title</key>
+				<string>Manage Alfred Extension</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.output.largetype</string>
+			<key>uid</key>
+			<string>EC045C26-D11F-4B6C-AB24-1BF2AA6D5AD3</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>$dir = "{query}";
+
+// This is hacky
+// $dir = str_replace(' ', '\ ', $dir);
+
+// echo "$dir";
+
+$cmd = "open -a iTerm $dir";
+
+exec("$cmd");</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>2D3DE63E-8538-4829-A8C4-6BD3D5CFD8DC</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>open -a Sublime\ Text/ {query}</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>908E8C04-F73D-4B45-A9E9-14AFE5E7EA70</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>type</key>
+			<string>alfred.workflow.action.revealfile</string>
+			<key>uid</key>
+			<string>B3581A8D-8C84-4E0D-9DAA-21348D4DA88F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>$dir = "{query}";
+
+// This is hacky
+// $dir = str_replace(' ', '\ ', $dir);
+
+echo "$dir";</string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>72C0E636-C427-4039-A22B-257320B6540F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>4AECB193-6099-4F38-8590-FF0ACF69BA4C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Export</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>33F588E7-C7A1-429E-9EC0-3B9434B9042C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>python export.py "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B5338C09-9349-4854-8115-B77CE546946A</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Toggle visibility</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>54DACDC3-F262-4FF4-8CC9-0414E84CF7D8</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>python toggle.py "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F72A0346-1F5D-4D2A-BEC1-5FAB10D82C98</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>E977DF7A-D616-4961-914B-747E7B8DFB87</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>alf                :: display the installed extensions
+ alf search-term    :: search extension by title, author name, and keyword
+
+ enter              :: Browse the installed folder in Alfred
+ ctrl               :: Reveal the installed folder in Finder
+ shift              :: Execute extension with the first keyword
+ cmd                :: Open terminal in the installed folder
+ shift              :: Export the extension for distribution 
+                       (Default: ~/Downloads, you can customize it with export.json file)
+ fn                 :: Enable or Disable an extension</string>
+	<key>uidata</key>
+	<dict>
+		<key>2D3DE63E-8538-4829-A8C4-6BD3D5CFD8DC</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>33F588E7-C7A1-429E-9EC0-3B9434B9042C</key>
+		<dict>
+			<key>ypos</key>
+			<real>530</real>
+		</dict>
+		<key>3F103C76-6DE9-4C87-9F42-FF17317A1DA7</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>4AECB193-6099-4F38-8590-FF0ACF69BA4C</key>
+		<dict>
+			<key>ypos</key>
+			<real>430</real>
+		</dict>
+		<key>54DACDC3-F262-4FF4-8CC9-0414E84CF7D8</key>
+		<dict>
+			<key>ypos</key>
+			<real>650</real>
+		</dict>
+		<key>72C0E636-C427-4039-A22B-257320B6540F</key>
+		<dict>
+			<key>ypos</key>
+			<real>430</real>
+		</dict>
+		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
+		<dict>
+			<key>ypos</key>
+			<real>70</real>
+		</dict>
+		<key>908E8C04-F73D-4B45-A9E9-14AFE5E7EA70</key>
+		<dict>
+			<key>ypos</key>
+			<real>230</real>
+		</dict>
+		<key>B3581A8D-8C84-4E0D-9DAA-21348D4DA88F</key>
+		<dict>
+			<key>ypos</key>
+			<real>330</real>
+		</dict>
+		<key>B5338C09-9349-4854-8115-B77CE546946A</key>
+		<dict>
+			<key>ypos</key>
+			<real>530</real>
+		</dict>
+		<key>D26D1F18-0D3F-457B-86D4-EEA05FC75FC1</key>
+		<dict>
+			<key>ypos</key>
+			<real>10</real>
+		</dict>
+		<key>E977DF7A-D616-4961-914B-747E7B8DFB87</key>
+		<dict>
+			<key>ypos</key>
+			<real>770</real>
+		</dict>
+		<key>EC045C26-D11F-4B6C-AB24-1BF2AA6D5AD3</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
+		</dict>
+		<key>F72A0346-1F5D-4D2A-BEC1-5FAB10D82C98</key>
+		<dict>
+			<key>ypos</key>
+			<real>650</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>http://jmjeong.com</string>
+</dict>
+</plist>

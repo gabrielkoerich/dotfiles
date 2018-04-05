@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>me.justinyan.justfocus</string>
+	<key>connections</key>
+	<dict>
+		<key>1F765A47-C44B-438A-9C5F-399955E2ABB4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>9605A5D5-D04C-4A95-AA3E-31D033F1DC19</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>ClimStudio</string>
+	<key>description</key>
+	<string>Focus on What's Important.</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>JustFocus</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>jf</string>
+				<key>subtext</key>
+				<string>Keyword: jf po/sb/lb/stop</string>
+				<key>text</key>
+				<string>JustFocus Workflow</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>1F765A47-C44B-438A-9C5F-399955E2ABB4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+	if ((q as string) is equal to "po") then
+		tell application "JustFocus"
+			launch
+			start pomodoro
+		end tell
+	else if ((q as string) is equal to "sb") then
+		tell application "JustFocus"
+			launch
+			short break
+		end tell
+	else if ((q as string) is equal to "lb") then
+		tell application "JustFocus"
+			launch
+			long break
+		end tell
+	else if ((q as string) is equal to "st") then
+		tell application "JustFocus"
+			stop
+		end tell
+	end if
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>9605A5D5-D04C-4A95-AA3E-31D033F1DC19</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>JustFocus for Mac
+Focus on What's Important.
+
+Official website:
+https://getjustfocus.com</string>
+	<key>uidata</key>
+	<dict>
+		<key>1F765A47-C44B-438A-9C5F-399955E2ABB4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>190</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+		<key>9605A5D5-D04C-4A95-AA3E-31D033F1DC19</key>
+		<dict>
+			<key>xpos</key>
+			<integer>420</integer>
+			<key>ypos</key>
+			<integer>180</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.0</string>
+	<key>webaddress</key>
+	<string>https://getjustfocus.com/</string>
+</dict>
+</plist>
