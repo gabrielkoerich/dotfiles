@@ -43,12 +43,9 @@ brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
-# Install PHP
-brew install homebrew/php/php72
-brew install homebrew/php/php72-mcrypt
-brew install homebrew/php/php72-xdebug
-
-# Install Node
+# Install PHP, MySQL, node
+brew install php72
+brew install mysql
 brew install node
 
 # Install font tools.
@@ -112,6 +109,7 @@ brew cask install iterm2
 brew cask install caffeine
 brew cask install spectacle
 brew cask install imageoptim
+brew cask install slack
 brew cask install dropbox
 brew cask install google-chrome
 #brew cask install google-drive
@@ -145,7 +143,7 @@ sudo mv composer.phar /usr/local/bin/composer
 composer global require laravel/valet
 composer global require laravel/installer
 composer global require phpunit/phpunit
-composer global require riendsofphp/php-cs-fixer
+composer global require friendsofphp/php-cs-fixer
 
 ~/.composer/vendor/bin/valet install
 
