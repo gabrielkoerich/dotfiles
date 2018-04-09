@@ -136,6 +136,7 @@ brew cask install atom
 # brew cask install the-unarchiver
 brew cask install github-desktop
 brew cask install appzapper
+brew cask install flycut
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
