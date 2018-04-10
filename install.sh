@@ -45,10 +45,11 @@ brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
-# Install PHP, MySQL, node
+# Install PHP, node, MySQL and redis
 brew install php72
-brew install mysql
 brew install node
+brew install mysql
+brew install redis
 
 # Install font tools.
 brew tap bramstein/webfonttools
