@@ -115,6 +115,7 @@ brew cask install imageoptim
 brew cask install slack
 brew cask install dropbox
 brew cask install google-chrome
+brew cask install java
 #brew cask install google-drive
 #brew cask install flux
 # brew cask install franz
