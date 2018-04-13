@@ -1,6 +1,0 @@
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/gabriel/.composer/vendor/bin"
-export PATH="/Users/gabriel/.gem/bin:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="$HOME/.node/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:$HOME/.yarn/bin"
