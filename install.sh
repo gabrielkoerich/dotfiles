@@ -114,23 +114,16 @@ brew cask install spectacle
 brew cask install imageoptim
 brew cask install slack
 brew cask install dropbox
-brew cask install google-chrome
-brew cask install java
-#brew cask install google-drive
-#brew cask install flux
-# brew cask install franz
-#brew cask install skype
+brew cask install skype
 brew cask install sequel-pro
-# brew cask install polymail
-# brew cask install vox
 brew cask install rescuetime
 brew cask install sublime-text
-# brew cask install virtualbox
-# brew cask install docker
-# brew cask install 0ad
-# brew cask install vagrant
-# brew cask install the-unarchiver
-brew cask install github-desktop
+brew cask install the-unarchiver
+brew cask install java
+#brew cask install 0ad
+#brew cask install docker
+#brew cask install google-chrome
+#brew cask install google-drive
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
