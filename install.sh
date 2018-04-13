@@ -90,7 +90,7 @@ brew install git
 brew install git-extras
 brew install imagemagick --with-webp
 brew install p7zip
-brew install speedtest_cli
+brew install speedtest-cli
 brew install ssh-copy-id
 brew install testssl
 # brew install git-lfs
