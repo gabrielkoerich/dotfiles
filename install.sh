@@ -93,6 +93,7 @@ brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
 brew install testssl
+brew install tmux
 # brew install git-lfs
 # brew install lua
 # brew install lynx
