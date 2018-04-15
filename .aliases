@@ -161,3 +161,6 @@ alias speedtest="speedtest-cli --share"
 
 # List all docker ips
 alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; docker inspect $cid | grep IPAddress | cut -d \" -f 4; done'
+
+alias battery="pmset -g batt"
+alias batterycycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
