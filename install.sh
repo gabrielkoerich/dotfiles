@@ -51,6 +51,9 @@ brew install node
 brew install mysql
 brew install redis
 
+# Launch Redis on mac starts
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+
 # Install font tools.
 brew tap bramstein/webfonttools
 brew install sfnt2woff
@@ -92,8 +95,10 @@ brew install imagemagick --with-webp
 brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
-brew install testssl
+# brew install testssl
 brew install tmux
+# convert doc files
+brew install pandoc 
 # brew install git-lfs
 # brew install lua
 # brew install lynx
@@ -113,7 +118,6 @@ brew cask install iterm2
 brew cask install caffeine
 brew cask install spectacle
 brew cask install imageoptim
-brew cask install slack
 brew cask install dropbox
 brew cask install skype
 brew cask install sequel-pro
@@ -121,7 +125,10 @@ brew cask install rescuetime
 brew cask install sublime-text
 brew cask install the-unarchiver
 brew cask install java
+brew cask install flux
+brew cask install qlmarkdown # Add quicklook view for markdown files
 #brew cask install 0ad
+#brew cask install slack
 #brew cask install docker
 #brew cask install google-chrome
 #brew cask install google-drive
