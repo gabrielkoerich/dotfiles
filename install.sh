@@ -95,10 +95,11 @@ brew install imagemagick --with-webp
 brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
-# brew install testssl
 brew install tmux
-# convert doc files
-brew install pandoc 
+brew install pandoc # convert doc files
+brew install ghi
+brew install hub
+# brew install testssl
 # brew install git-lfs
 # brew install lua
 # brew install lynx

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+alias git="hub"
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias phpunit="vendor/bin/phpunit"
