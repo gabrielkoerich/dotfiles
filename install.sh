@@ -45,11 +45,17 @@ brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
-# Install PHP, node, MySQL and redis
+# Install PHP, MySQL and redis
 brew install php72
-brew install node
 brew install mysql
 brew install redis
+
+# Install node, npm, yarn, gulp and grunt
+brew install node
+brew postinstall node
+npm -g install yarn
+npm -g install gulp
+npm -g install grunt-cli
 
 # Launch Redis on mac starts
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
