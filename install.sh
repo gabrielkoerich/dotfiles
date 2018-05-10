@@ -99,6 +99,8 @@ brew install tmux
 brew install pandoc # convert doc files
 brew install ghi
 brew install hub
+brew tap git-time-metric/gtm
+brew install gtm
 # brew install testssl
 # brew install git-lfs
 # brew install lua
