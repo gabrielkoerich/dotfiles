@@ -47,6 +47,7 @@ brew install homebrew/dupes/screen
 
 # Install PHP, MySQL and redis
 brew install php72
+brew install php-cs-fixer
 brew install mysql
 brew install redis
 
@@ -161,7 +162,6 @@ sudo mv composer.phar /usr/local/bin/composer
 composer global require laravel/valet
 composer global require laravel/installer
 composer global require phpunit/phpunit
-composer global require friendsofphp/php-cs-fixer
 
 ~/.composer/vendor/bin/valet install
 
