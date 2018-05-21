@@ -2,4 +2,6 @@
 
 #this file copying other sh file where i've stored a sensitive file paths and sync via iclod
 
-cp $HOME/Documents/sync_configs/configs.sh
+cp $HOME/Documents/sync_configs/configs.sh .
+chmod +x configs.sh
+./configs.sh
