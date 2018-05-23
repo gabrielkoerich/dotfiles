@@ -108,6 +108,9 @@ brew install htop
 brew isntall tree
 brew install vault
 brew install docker
+brew install jq
+brew install az
+brew install ansible
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
@@ -147,7 +150,7 @@ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/loca
 # Remove outdated versions from the cellar.
 brew cleanup
 
-# Install composer 
+# Install composer
 curl -sS https://getcomposer.org/installer | php
 
 sudo mv composer.phar /usr/local/bin/composer
