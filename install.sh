@@ -160,6 +160,10 @@ composer global require laravel/installer
 composer global require phpunit/phpunit
 composer global require riendsofphp/php-cs-fixer
 
+#another utils
+
+npm install --global git-open
+
 ~/.composer/vendor/bin/valet install
 
 sh fonts.sh
