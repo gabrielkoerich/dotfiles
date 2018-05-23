@@ -107,6 +107,7 @@ brew install terraform
 brew install htop
 brew isntall tree
 brew install vault
+brew install docker
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
