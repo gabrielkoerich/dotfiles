@@ -125,6 +125,7 @@ brew cask install google-chrome
 brew cask install google-drive
 brew cask install flux
 brew cask install whatsapp
+brew cask install slack
 # brew cask install franz
 brew cask install skype
 brew cask install sequel-pro
