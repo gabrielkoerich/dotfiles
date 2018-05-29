@@ -111,6 +111,7 @@ brew install docker
 brew install jq
 brew install az
 brew install ansible
+brew install unrar
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
