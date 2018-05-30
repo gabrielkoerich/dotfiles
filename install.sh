@@ -45,11 +45,12 @@ brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
-# Install PHP, MySQL and redis
+# Install PHP, MySQL, redis and beanstalkd
 brew install php72
 brew install php-cs-fixer
 brew install mysql
 brew install redis
+brew install beanstalkd
 
 # Install Python and usefull stuff
 brew install pkg-config libffi openssl python
@@ -133,26 +134,26 @@ brew cask install caffeine
 brew cask install spectacle
 brew cask install imageoptim
 brew cask install dropbox
-brew cask install skype
+# brew cask install skype
 brew cask install sequel-pro
 brew cask install rescuetime
 brew cask install sublime-text
 brew cask install the-unarchiver
 brew cask install java
 brew cask install flux
+brew cask install flycut
 brew cask install qlmarkdown # Add quicklook view for markdown files
 #brew cask install 0ad
 #brew cask install slack
-#brew cask install docker
+brew cask install docker
 #brew cask install google-chrome
-#brew cask install google-drive
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
 
 # Remove outdated versions from the cellar.
-brew cleanup
+brew cleanup & brew prune
 
 # Install composer 
 curl -sS https://getcomposer.org/installer | php
@@ -166,3 +167,13 @@ composer global require phpunit/phpunit
 ~/.composer/vendor/bin/valet install
 
 sh fonts.sh
+
+# Xdebug -> https://xdebug.org/wizard.php
+# cd ~
+# wget http://xdebug.org/files/xdebug-2.6.0.tgz
+# tar -xvzf xdebug-2.6.0.tgz
+# cd xdebug-2.6.0
+# phpize 
+# ./configure
+# make
+# cp modules/xdebug.so /usr/local/lib/php/pecl/20170718
