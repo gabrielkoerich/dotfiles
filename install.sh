@@ -144,6 +144,7 @@ brew cask install github-desktop
 brew cask install appzapper
 brew cask install flycut
 brew cask install keybase
+brew cask install vlc
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
@@ -165,6 +166,7 @@ composer global require riendsofphp/php-cs-fixer
 #another utils
 
 npm install --global git-open
+npm install -g peerflix
 
 ~/.composer/vendor/bin/valet install
 
