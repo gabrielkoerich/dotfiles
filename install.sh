@@ -168,6 +168,10 @@ composer global require riendsofphp/php-cs-fixer
 npm install --global git-open
 npm install -g peerflix
 
+#atom packages
+apm install language-terraform
+
+
 ~/.composer/vendor/bin/valet install
 
 sh fonts.sh
