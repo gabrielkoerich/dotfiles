@@ -170,7 +170,7 @@ npm install -g peerflix
 
 #atom packages
 apm install language-terraform
-
+apm install language-ansible
 
 ~/.composer/vendor/bin/valet install
 
