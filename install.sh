@@ -147,6 +147,7 @@ brew cask install flycut
 brew cask install keybase
 brew cask install vlc
 brew cask install steam
+brew cask install deckset
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
