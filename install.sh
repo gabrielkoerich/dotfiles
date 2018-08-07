@@ -113,6 +113,7 @@ brew install jq
 brew install az
 brew install ansible
 brew install unrar
+brew install bfg
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
@@ -148,6 +149,7 @@ brew cask install keybase
 brew cask install vlc
 brew cask install steam
 brew cask install deckset
+brew cask install java
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
