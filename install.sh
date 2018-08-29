@@ -169,7 +169,6 @@ composer global require phpunit/phpunit
 composer global require riendsofphp/php-cs-fixer
 
 #another utils
-
 npm install --global git-open
 npm install -g peerflix
 
@@ -177,6 +176,9 @@ npm install -g peerflix
 apm install language-terraform
 apm install language-ansible
 apm install language-docker
+
+#go programs
+go get -u rsc.io/2fa
 
 ~/.composer/vendor/bin/valet install
 
