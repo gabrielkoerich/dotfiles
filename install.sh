@@ -111,8 +111,8 @@ brew install tmux
 brew install pandoc # convert doc files
 brew install ghi
 brew install hub
-brew tap git-time-metric/gtm
-brew install gtm
+#brew tap git-time-metric/gtm
+#brew install gtm
 # brew install testssl
 # brew install git-lfs
 # brew install lua
@@ -141,7 +141,7 @@ brew cask install sublime-text
 brew cask install the-unarchiver
 brew cask install java
 brew cask install flux
-brew cask install flycut
+# brew cask install flycut
 brew cask install qlmarkdown # Add quicklook view for markdown files
 #brew cask install 0ad
 #brew cask install slack
@@ -176,4 +176,5 @@ sh fonts.sh
 # phpize 
 # ./configure
 # make
-# cp modules/xdebug.so /usr/local/lib/php/pecl/20170718
+# cp modules/xdebug.so /usr/local/lib/php/pecl/20170718/xdebug.so
+# cp modules/xdebug.so /usr/local/lib/php/20170718/xdebug.so
