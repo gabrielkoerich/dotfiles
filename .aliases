@@ -165,3 +165,5 @@ alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; 
 
 alias battery="pmset -g batt"
 alias batterycycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
+
+alias weather="curl -4 https://wttr.in/Florianopolis?2" 
