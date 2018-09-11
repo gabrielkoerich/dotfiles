@@ -1,3 +1,3 @@
-cp ~Dropbox/Backup/Extra/* ~/
+cp -r ~/Dropbox/Backup/Extra/. ~/
 
 echo "Extra files copied.";
