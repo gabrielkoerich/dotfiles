@@ -136,7 +136,7 @@ brew cask install imageoptim
 brew cask install dropbox
 # brew cask install skype
 brew cask install sequel-pro
-brew cask install rescuetime
+# brew cask install rescuetime
 brew cask install sublime-text
 brew cask install the-unarchiver
 brew cask install java
@@ -145,7 +145,7 @@ brew cask install flux
 brew cask install qlmarkdown # Add quicklook view for markdown files
 #brew cask install 0ad
 #brew cask install slack
-brew cask install docker
+# brew cask install docker
 #brew cask install google-chrome
 
 # Add sublime command
@@ -168,13 +168,13 @@ composer global require phpunit/phpunit
 
 sh fonts.sh
 
-# Xdebug -> https://xdebug.org/wizard.php
-# cd ~
-# wget http://xdebug.org/files/xdebug-2.6.0.tgz
-# tar -xvzf xdebug-2.6.0.tgz
-# cd xdebug-2.6.0
-# phpize 
-# ./configure
-# make
-# cp modules/xdebug.so /usr/local/lib/php/pecl/20170718/xdebug.so
-# cp modules/xdebug.so /usr/local/lib/php/20170718/xdebug.so
+# Install Xdebug -> https://xdebug.org/wizard.php
+cd ~/Projects
+wget http://xdebug.org/files/xdebug-2.6.0.tgz
+tar -xvzf xdebug-2.6.0.tgz
+cd xdebug-2.6.0
+phpize 
+./configure
+make
+cp modules/xdebug.so /usr/local/lib/php/pecl/20170718/xdebug.so
+cp modules/xdebug.so /usr/local/lib/php/20170718/xdebug.so
