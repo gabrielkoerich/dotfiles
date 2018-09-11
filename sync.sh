@@ -7,15 +7,15 @@ git pull origin master;
 function sync() {
     rsync --exclude ".git/" \
         --exclude ".DS_Store" \
-        --exclude ".osx" \
-        --exclude "install.sh" \
-        --exclude "sync.sh" \
-        --exclude "README.md" \
+        --exclude ".gitignore" \
         --exclude "fonts" \
-        --exclude "fonts.sh" \
-        --exclude "sublime-packages/" \
-        --exclude "Preferences.sublime-settings" \
         --exclude "com.googlecode.iterm2.plist" \
+        --exclude "fonts.sh" \
+        --exclude "install.sh" \
+        --exclude "macos.sh" \
+        --exclude "Preferences.sublime-settings" \
+        --exclude "README.md" \
+        --exclude "sync.sh" \
         -avh --no-perms . ~;
 }
 
