@@ -17,6 +17,9 @@ git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && sh sy
 To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`:
 
 # Instructions
+
+**Warning:** Read all scripts *before* executing them.
+
 1. Install Dropbox to load extra files (optional)
 2. `sh sync.sh`
 3. `sh macos.sh`
