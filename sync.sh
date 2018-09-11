@@ -9,7 +9,6 @@ function sync() {
         --exclude ".DS_Store" \
         --exclude ".gitignore" \
         --exclude "fonts" \
-        --exclude "com.googlecode.iterm2.plist" \
         --exclude "extra.sh" \
         --exclude "fonts.sh" \
         --exclude "install.sh" \
