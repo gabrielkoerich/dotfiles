@@ -11,7 +11,7 @@ This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/ro
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. 
 
 ```bash
-git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && source sync.sh
+git clone https://github.com/gabrielkoerich/dotfiles.git && cd dotfiles && sh sync.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`:
