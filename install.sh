@@ -172,11 +172,7 @@ sh extra.sh
 
 # Install Xdebug -> https://xdebug.org/wizard.php
 cd ~/Projects
-wget http://xdebug.org/files/xdebug-2.6.0.tgz
-tar -xvzf xdebug-2.6.0.tgz
-cd xdebug-2.6.0
-phpize 
-./configure
-make
+wget -qO- http://xdebug.org/files/xdebug-2.6.0.tgz | tar -xvz
+cd xdebug-2.6.0 && phpize && ./configure && make
 cp modules/xdebug.so /usr/local/lib/php/pecl/20170718/xdebug.so
 cp modules/xdebug.so /usr/local/lib/php/20170718/xdebug.so
