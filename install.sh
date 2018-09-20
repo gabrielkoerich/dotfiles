@@ -114,6 +114,7 @@ brew install az
 brew install ansible
 brew install unrar
 brew install bfg
+brew install kubernetes-cli
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
