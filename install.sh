@@ -116,6 +116,7 @@ brew install unrar
 brew install bfg
 brew install kubernetes-cli
 brew install yamllint
+brew install mackup
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask

@@ -5,3 +5,6 @@
 cp $HOME/Documents/sync_configs/configs.sh .
 chmod +x configs.sh
 ./configs.sh
+
+cp .mackup.cfg $HOME
+mackup restore
