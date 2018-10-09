@@ -145,7 +145,8 @@ brew cask install atom
 # brew cask install 0ad
 # brew cask install vagrant
 # brew cask install the-unarchiver
-brew cask install github-desktop
+# brew cask install github-desktop
+brew cask install github
 brew cask install appzapper
 brew cask install flycut
 brew cask install keybase
