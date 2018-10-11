@@ -83,6 +83,7 @@ brew install ucspi-tcp # `tcpserver` etc.
 brew install xpdf
 brew install xz
 brew install go
+brew install ngrep
 
 # Install other useful binaries.
 brew install ack
