@@ -24,6 +24,7 @@ To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`:
 2. `sh sync.sh`
 3. `sh macos.sh`
 4. `sh install.sh`
+5. `mackup restore` 
 
 ## License
 
