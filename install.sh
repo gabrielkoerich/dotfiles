@@ -111,6 +111,8 @@ brew install tmux
 brew install pandoc # convert doc files
 brew install ghi
 brew install hub
+brew install mackup
+brew install innotop #innodb top cmd
 #brew tap git-time-metric/gtm
 #brew install gtm
 # brew install testssl
