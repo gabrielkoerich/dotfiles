@@ -40,8 +40,6 @@ mv jcl.zsh-theme ~/.oh-my-zsh/themes/jcl.zsh-theme
 brew install wget --with-iri
 
 # Install more recent versions of some macOS tools.
-brew install vim --override-system-vi
-brew install homebrew/dupes/openssh
 brew install vim --with-override-system-vi
 brew install grep
 brew install openssh
