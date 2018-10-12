@@ -9,7 +9,7 @@ function sync() {
         --exclude ".DS_Store" \
         --exclude ".gitignore" \
         --exclude "fonts" \
-        --exclude "extra.sh" \
+        --exclude "private.sh" \
         --exclude "fonts.sh" \
         --exclude "install.sh" \
         --exclude "macos.sh" \
