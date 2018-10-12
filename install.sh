@@ -144,9 +144,11 @@ composer global require phpunit/phpunit
 
 ~/.composer/vendor/bin/valet install
 
-# Other stuff
+# Install Fonts
 sh fonts.sh
-sh extra.sh
+
+# Copy private Files
+sh private.sh
 
 # Install Xdebug -> https://xdebug.org/wizard.php
 cd ~/Projects
