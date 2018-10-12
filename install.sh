@@ -144,6 +144,10 @@ composer global require phpunit/phpunit
 
 ~/.composer/vendor/bin/valet install
 
+# Park valet in ~/Projects
+mkdir -p ~/Projects && cd ~/Projects
+~/.composer/vendor/bin/valet park
+
 # Install Fonts
 sh fonts.sh
 
