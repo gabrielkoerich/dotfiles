@@ -175,9 +175,6 @@ mkdir -p ~/Projects && cd ~/Projects
 # Install Fonts
 sh fonts.sh
 
-# Copy private Files
-sh private.sh
-
 # Install Xdebug -> https://xdebug.org/wizard.php
 cd ~/Projects
 wget -qO- http://xdebug.org/files/xdebug-2.6.0.tgz | tar -xvz
