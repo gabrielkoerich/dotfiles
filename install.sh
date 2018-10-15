@@ -47,7 +47,6 @@ brew install screen
 
 # Install PHP, MySQL, redis and beanstalkd
 brew install php72
-brew install php-cs-fixer
 brew install mysql
 brew install redis
 brew install beanstalkd
@@ -183,6 +182,7 @@ sudo mv composer.phar /usr/local/bin/composer
 composer global require laravel/valet
 composer global require laravel/installer
 composer global require phpunit/phpunit
+composer global require friendsofphp/php-cs-fixer
 
 ~/.composer/vendor/bin/valet install
 
