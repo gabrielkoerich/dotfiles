@@ -113,6 +113,7 @@ brew install ghi
 brew install hub
 brew install mackup
 brew install innotop #innodb top cmd
+brew install mas
 #brew tap git-time-metric/gtm
 #brew install gtm
 # brew install testssl
@@ -149,6 +150,9 @@ brew cask install qlmarkdown # Add quicklook view for markdown files
 #brew cask install 0ad
 #brew cask install docker
 #brew cask install google-chrome
+mas lucky Things3
+mas lucky Bear
+mas lucky Wallcat
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
