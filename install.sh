@@ -55,6 +55,7 @@ brew install beanstalkd
 # Install Python and usefull stuff
 brew install pkg-config libffi openssl python
 env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
+pip install stronghold
 
 # Install node, npm, yarn, gulp and grunt
 brew install node
@@ -73,6 +74,7 @@ brew install sfnt2woff-zopfli
 brew install woff2
 
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
+sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/sbin/airport
 brew install aircrack-ng
 brew install bfg
 brew install binutils
@@ -83,11 +85,14 @@ brew install dns2tcp
 brew install fcrackzip
 brew install foremost
 brew install hashpump
+brew install hashcat
+brew install hashcat-utils
 brew install hydra
 brew install john
 brew install knock
 brew install netpbm
 brew install nmap
+brew install ngrep
 brew install pngcheck
 brew install socat
 brew install sqlmap
@@ -110,9 +115,11 @@ brew install ssh-copy-id
 brew install tmux
 brew install pandoc # convert doc files
 brew install ghi
+brew install git-town
 brew install hub
 brew install mackup
 brew install innotop #innodb top cmd
+brew install mycli  
 brew install mas
 #brew tap git-time-metric/gtm
 #brew install gtm
@@ -146,10 +153,17 @@ brew cask install java
 brew cask install flux
 brew cask install flycut
 brew cask install qlmarkdown # Add quicklook view for markdown files
+brew cask install cakebrew
+brew cask install vlc
+brew cask install steam
 #brew cask install slack
 #brew cask install 0ad
 #brew cask install docker
-#brew cask install google-chrome
+brew cask install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
+brew cask install kap
+brew cask install sandman
+
+# Install apps from App Store
 mas lucky Things3
 mas lucky Bear
 mas lucky Wallcat
