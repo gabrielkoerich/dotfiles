@@ -18,7 +18,7 @@ Read all scripts *before* executing them.
 4. `sh install.sh` to install applications
 5. `mackup restore` to restore app settings
 
-To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`:
+To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`.
 
 ## License
 
