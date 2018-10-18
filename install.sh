@@ -52,6 +52,8 @@ brew install mysql
 brew install redis
 brew install beanstalkd
 
+cp ./config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
+
 # Install Python and usefull stuff
 brew install pkg-config libffi openssl python
 env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
