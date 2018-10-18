@@ -119,6 +119,7 @@ brew install bfg
 brew install kubernetes-cli
 brew install yamllint
 brew install mackup
+brew install bfg
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
