@@ -119,7 +119,9 @@ brew install pandoc # convert doc files
 brew install ghi
 brew install git-town
 brew install hub
+brew install htop
 brew install mackup
+brew install homeshick
 brew install innotop #innodb top cmd
 brew install mycli  
 brew install mas
@@ -158,12 +160,13 @@ brew cask install qlmarkdown # Add quicklook view for markdown files
 brew cask install cakebrew
 brew cask install vlc
 brew cask install steam
+brew cask install keybase
+brew cask install kap
 #brew cask install slack
 #brew cask install 0ad
 #brew cask install docker
-brew cask install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
-brew cask install kap
-brew cask install sandman
+#brew cask install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
+#brew cask install sandman
 
 # Install apps from App Store
 mas lucky Things3

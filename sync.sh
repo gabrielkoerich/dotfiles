@@ -5,17 +5,18 @@ cd "$(dirname "${BASH_SOURCE}")";
 # git pull origin master;
 
 function sync() {
-    rsync --exclude ".git/" \
+    rsync home/. ~ --exclude ".git/" \
         --exclude ".DS_Store" \
         --exclude ".gitignore" \
+        --exclude "config" \
         --exclude "fonts" \
         --exclude "fonts.sh" \
         --exclude "install.sh" \
         --exclude "macos.sh" \
-        --exclude "Preferences.sublime-settings" \
         --exclude "README.md" \
+        --exclude "ssh.sh" \
         --exclude "sync.sh" \
-        -avh --no-perms . ~;
+        -avh --no-perms;
 }
 
 read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
