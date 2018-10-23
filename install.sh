@@ -121,7 +121,6 @@ brew install git-town
 brew install hub
 brew install htop
 brew install mackup
-brew install homeshick
 brew install innotop #innodb top cmd
 brew install mycli  
 brew install mas
