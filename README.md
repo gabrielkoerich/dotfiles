@@ -20,6 +20,14 @@ Read all scripts *before* executing them.
 
 To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`.
 
+You can also sync the dotfiles using homeshick:
+
+```bash
+git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
+source $HOME/.homesick/repos/homeshick/homeshick.sh
+homeshick clone gabrielkoerich/dotfiles
+```
+
 ## License
 
 #### The MIT License (MIT)
