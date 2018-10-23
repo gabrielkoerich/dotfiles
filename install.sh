@@ -48,7 +48,7 @@ brew install screen
 
 # Install PHP, MySQL, redis and beanstalkd
 brew install php72
-brew install mysql
+brew install mysql@5.7 && brew link mysql@5.7 --force
 brew install redis
 brew install beanstalkd
 
