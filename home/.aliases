@@ -164,10 +164,7 @@ alias speedtest="speedtest-cli --share"
 alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; docker inspect $cid | grep IPAddress | cut -d \" -f 4; done'
 
 alias battery="pmset -g batt"
-alias batterycycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
+alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
 
-alias weather="curl -4 https://wttr.in/Florianopolis?2" 
-
-alias stop-full-dark-mode="defaults write -g NSRequiresAquaSystemAppearance -bool Yes && echo 'Full dark mode stopped. Log out of your user account and then log back in.'"
-alias allow-full-dark-mode="defaults write -g NSRequiresAquaSystemAppearance -bool No && echo 'Full dark mode allowed. Log out of your user account and then log back in.'"
-alias fix-dark-mode="defaults delete -g NSRequiresAquaSystemAppearance"
+alias weather="curl https://wttr.in/Florianopolis?2" 
+alias safari="open /Applications/Safari.app" 
