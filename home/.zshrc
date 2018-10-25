@@ -48,14 +48,9 @@ ZSH_THEME="jcl"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     git
-    zsh-autosuggestions
     macports
     node
     osx
-    sudo
-    zsh-syntax-highlighting
-    mouse
-    iterm2
 )
 
 source $ZSH/oh-my-zsh.sh

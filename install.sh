@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
-# Install brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+set -o pipefail
+
+echo 'Starting...';
+
+# Check to see if Homebrew is installed, and install it if it is not
+command -v brew >/dev/null 2>&1 || { 
+    echo >&2 "Installing Homebrew"; \
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; 
+}
 
 # Install command-line tools using Homebrew.
 
@@ -114,7 +121,6 @@ brew install imagemagick --with-webp
 brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
-brew install tmux
 brew install pandoc # convert doc files
 brew install ghi
 brew install git-town
@@ -138,6 +144,20 @@ brew install mas
 # brew install webkit2png
 # brew install zopfli
 # brew install xpdf
+
+# Install and configure Tmux
+brew install tmux
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Install TPM plugins.
+# TPM requires running tmux server, as soon as `tmux start-server` does not work
+# create dump __noop session in detached mode, and kill it when plugins are installed
+printf "Install TPM plugins\n"
+tmux new -d -s __noop >/dev/null 2>&1 || true 
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
+"$HOME"/.tmux/plugins/tpm/bin/install_plugins || true
+tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
