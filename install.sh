@@ -102,7 +102,7 @@ brew install testssl
 # brew install pigz
 # brew install pv
 # brew install rename
-# brew install tree
+brew install tree
 # brew install vbindiff
 # brew install webkit2png
 # brew install zopfli
