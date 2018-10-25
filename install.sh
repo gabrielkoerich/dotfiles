@@ -53,28 +53,10 @@ brew install grep
 brew install openssh
 brew install screen
 
-# Install PHP, MySQL, redis and beanstalkd
-brew install php72
-brew install mysql@5.7 && brew link mysql@5.7 --force
-brew install redis
-brew install beanstalkd
-
-cp ./../config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
-
 # Install Python and usefull stuff
 brew install pkg-config libffi openssl python
 env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
 pip install stronghold
-
-# Install node, npm, yarn, gulp and grunt
-brew install node
-brew postinstall node
-npm -g install yarn
-# npm -g install gulp
-# npm -g install grunt-cli
-
-# Launch Redis on mac starts
-ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -160,6 +142,7 @@ tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # Install brew cask and other apps
+# Hit Ctrl+C to stop anytime
 brew tap phinze/homebrew-cask
 brew install brew-cask
 brew cask install alfred
@@ -177,10 +160,10 @@ brew cask install flux
 brew cask install flycut
 brew cask install qlmarkdown # Add quicklook view for markdown files
 brew cask install cakebrew
-brew cask install vlc
 brew cask install steam
 brew cask install keybase
 brew cask install kap
+brew cask install vlc
 #brew cask install slack
 #brew cask install 0ad
 #brew cask install docker
@@ -196,8 +179,33 @@ mas lucky Wallcat
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
 
-# Remove outdated versions from the cellar.
-brew cleanup & brew prune
+# Install Fonts
+cp fonts/*.ttf /Library/Fonts/ && echo "Fonts installed.";
+
+# Install PHP, MySQL, redis and beanstalkd
+brew install mysql@5.7 && brew link mysql@5.7 --force
+brew install beanstalkd
+brew install redis
+brew install php72
+
+# Install Xdebug -> https://xdebug.org/wizard.php
+mkdir -p ~/Projects && cd ~/Projects
+wget -qO- http://xdebug.org/files/xdebug-2.6.0.tgz | tar -xvz
+cd xdebug-2.6.0 && phpize && ./configure && make
+cp modules/xdebug.so "$(php-config --extension-dir)"/xdebug.so
+rm -Rf ~/Projects/xdebug-2.6.0
+
+# Launch Redis on mac starts
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+
+cp ./../config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
+
+# Install node, npm, yarn, gulp and grunt
+brew install node
+brew postinstall node
+npm -g install yarn
+# npm -g install gulp
+# npm -g install grunt-cli
 
 # Install composer 
 curl -sS https://getcomposer.org/installer | php
@@ -215,15 +223,10 @@ composer global require friendsofphp/php-cs-fixer
 mkdir -p ~/Projects && cd ~/Projects
 ~/.composer/vendor/bin/valet park
 
-# Install Fonts
-sh fonts.sh
-
-# Install Xdebug -> https://xdebug.org/wizard.php
-cd ~/Projects
-wget -qO- http://xdebug.org/files/xdebug-2.6.0.tgz | tar -xvz
-cd xdebug-2.6.0 && phpize && ./configure && make
-cp modules/xdebug.so "$(php-config --extension-dir)"/xdebug.so
-rm -Rf ~/Projects/xdebug-2.6.0
+# Remove outdated versions from the cellar.
+brew cleanup & brew prune
 
 # List services to check them
 brew services list
+
+sh cron.sh
