@@ -197,7 +197,7 @@ ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 cp ./../config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
 
 # Install node, npm, yarn, gulp and grunt
-brew install node && brew postinstall node
+brew install node@10 && brew postinstall node@10
 # Run it node postinstall fails:
 # sudo chown -R $(whoami) $(brew --prefix)/*
 # npm -g install yarn
