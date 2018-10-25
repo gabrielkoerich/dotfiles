@@ -197,9 +197,11 @@ ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 cp ./../config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
 
 # Install node, npm, yarn, gulp and grunt
-brew install node
-brew postinstall node
-npm -g install yarn
+brew install node && brew postinstall node
+# Run it node postinstall fails:
+# sudo chown -R $(whoami) $(brew --prefix)/*
+# npm -g install yarn
+# npm -g install@angular/cli
 # npm -g install gulp
 # npm -g install grunt-cli
 
