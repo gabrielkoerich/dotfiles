@@ -36,10 +36,6 @@ brew install zsh
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# jcl theme
-wget https://raw.github.com/jasonlewis/jcl-zsh-theme/master/jcl.zsh-theme
-mv jcl.zsh-theme ~/.oh-my-zsh/themes/jcl.zsh-theme
-
 # Note: don’t forget to add `/usr/local/bin/zsh` to `/etc/shells` before
 # running `chsh`.
 chsh -s $(which zsh)
