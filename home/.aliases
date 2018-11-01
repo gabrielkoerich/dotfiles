@@ -8,6 +8,7 @@ alias phpspec="vendor/bin/phpspec run"
 alias phptest="phpunit && phpspec"
 alias artisan="php artisan"
 alias art="php artisan"
+alias tinker="php artisan tinker"
 alias migrate="php artisan migrate"
 alias rollback="php artisan migrate:rollback"
 alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
@@ -30,6 +31,7 @@ alias h="history"
 alias j="jobs"
 alias c="clear"
 alias chrome="/usr/bin/open -a /Applications/Google Chrome.app"
+alias safari="open /Applications/Safari.app" 
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -167,4 +169,3 @@ alias battery="pmset -g batt"
 alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
 
 alias weather="curl https://wttr.in/Florianopolis?2" 
-alias safari="open /Applications/Safari.app" 
