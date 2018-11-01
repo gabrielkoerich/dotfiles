@@ -194,7 +194,7 @@ rm -Rf ~/Projects/xdebug-2.6.0
 # Launch Redis on mac starts
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
-cp ./../config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
+cp ./config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
 
 # Install node, npm, yarn, gulp and grunt
 brew install node@10 && brew postinstall node@10
