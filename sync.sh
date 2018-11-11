@@ -17,3 +17,5 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi;
 
 unset sync;
+
+reload;
