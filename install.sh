@@ -182,14 +182,10 @@ cp fonts/*.ttf /Library/Fonts/ && echo "Fonts installed.";
 brew install mysql@5.7 && brew link mysql@5.7 --force
 brew install beanstalkd
 brew install redis
-brew install php72
+brew install php@7.2
 
-# Install Xdebug -> https://xdebug.org/wizard.php
-mkdir -p ~/Projects && cd ~/Projects
-wget -qO- http://xdebug.org/files/xdebug-2.6.0.tgz | tar -xvz
-cd xdebug-2.6.0 && phpize && ./configure && make
-cp modules/xdebug.so "$(php-config --extension-dir)"/xdebug.so
-rm -Rf ~/Projects/xdebug-2.6.0
+# Install Xdebug 
+sh xdebug.sh
 
 # Launch Redis on mac starts
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
