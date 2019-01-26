@@ -170,5 +170,5 @@ alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk 
 
 alias weather="curl https://wttr.in/Florianopolis?2" 
 
-alias pr="git pull-request -b master -m 'Go'"
+alias pr="git pull-request -b master -m 'Develop'"
 alias wtf="git add -A && git commit -m '$(curl --silent --fail https://whatthecommit.com/index.txt)'"
