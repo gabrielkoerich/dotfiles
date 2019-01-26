@@ -184,8 +184,8 @@ brew install beanstalkd
 brew install redis
 brew install php@7.2
 
-# Install Xdebug 
-sh xdebug.sh
+# Install Xdebug via pecl
+pecl install xdebug
 
 # Launch Redis on mac starts
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
