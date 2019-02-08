@@ -156,6 +156,7 @@ brew cask install vlc
 brew cask install steam
 brew cask install deckset
 brew cask install java
+brew cask install discord
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
