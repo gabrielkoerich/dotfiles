@@ -123,6 +123,46 @@ brew install mas
 # brew install zopfli
 # brew install xpdf
 
+# Install PHP, MySQL, redis and beanstalkd
+brew install mysql@5.7 && brew link mysql@5.7 --force
+brew install beanstalkd
+brew install redis
+brew install php@7.2
+
+# Install Xdebug + Mongo via pecl
+pecl install xdebug
+pecl install mongodb
+
+# Launch Redis on mac starts
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+
+cp ./config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
+
+# Install node, npm, yarn, gulp and grunt
+brew install node@10 && brew postinstall node@10
+# Run it node postinstall fails:
+# sudo chown -R $(whoami) $(brew --prefix)/*
+# npm -g install yarn
+# npm -g install@angular/cli
+# npm -g install gulp
+# npm -g install grunt-cli
+
+# Install composer 
+curl -sS https://getcomposer.org/installer | php
+
+sudo mv composer.phar /usr/local/bin/composer
+
+composer global require laravel/valet
+composer global require laravel/installer
+composer global require phpunit/phpunit
+composer global require friendsofphp/php-cs-fixer
+
+~/.composer/vendor/bin/valet install
+
+# Park valet in ~/Projects
+mkdir -p ~/Projects && cd ~/Projects
+~/.composer/vendor/bin/valet park
+
 # Install and configure Tmux
 brew install tmux
 
@@ -138,7 +178,6 @@ tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 tmux kill-session -t __noop >/dev/null 2>&1 || true
 
 # Install brew cask and other apps
-# Hit Ctrl+C to stop anytime
 brew tap phinze/homebrew-cask
 brew install brew-cask
 brew cask install alfred
@@ -178,47 +217,9 @@ ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/loca
 # Install Fonts
 cp fonts/*.ttf /Library/Fonts/ && echo "Fonts installed.";
 
-# Install PHP, MySQL, redis and beanstalkd
-brew install mysql@5.7 && brew link mysql@5.7 --force
-brew install beanstalkd
-brew install redis
-brew install php@7.2
-
-# Install Xdebug via pecl
-pecl install xdebug
-
-# Launch Redis on mac starts
-ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-
-cp ./config/php-memory-limits.ini /usr/local/etc/php/7.2/conf.d/php-memory-limits.ini
-
-# Install node, npm, yarn, gulp and grunt
-brew install node@10 && brew postinstall node@10
-# Run it node postinstall fails:
-# sudo chown -R $(whoami) $(brew --prefix)/*
-# npm -g install yarn
-# npm -g install@angular/cli
-# npm -g install gulp
-# npm -g install grunt-cli
-
-# Install composer 
-curl -sS https://getcomposer.org/installer | php
-
-sudo mv composer.phar /usr/local/bin/composer
-
-composer global require laravel/valet
-composer global require laravel/installer
-composer global require phpunit/phpunit
-composer global require friendsofphp/php-cs-fixer
-
-~/.composer/vendor/bin/valet install
-
-# Park valet in ~/Projects
-mkdir -p ~/Projects && cd ~/Projects
-~/.composer/vendor/bin/valet park
-
 # Remove outdated versions from the cellar.
-brew cleanup & brew prune
+brew cleanup
+brew doctor
 
 # List services to check them
 brew services list
