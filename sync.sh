@@ -18,4 +18,4 @@ fi;
 
 unset sync;
 
-source ~/.zshrc
+# source ~/.zshrc

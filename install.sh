@@ -5,16 +5,16 @@ set -o pipefail
 echo 'Starting...';
 
 # Check to see if Homebrew is installed, and install it if it is not
-command -v brew >/dev/null 2>&1 || { 
+command -v brew >/dev/null 2>&1 || {
     echo >&2 "Installing Homebrew"; \
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; 
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)";
 }
 
 # Make sure we’re using the latest Homebrew.
 brew update
 
 # Upgrade any already-installed formulae.
-brew upgrade --all
+brew upgrade
 
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -26,7 +26,7 @@ brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 
 # Install zsh
 brew install zsh
@@ -39,10 +39,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 chsh -s $(which zsh)
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew install wget
 
 # Install more recent versions of some macOS tools.
-brew install vim --with-override-system-vi
+brew install vim
 brew install grep
 brew install openssh
 brew install screen
@@ -104,7 +104,7 @@ brew install hub
 brew install htop
 brew install mackup
 brew install innotop #innodb top cmd
-brew install mycli  
+brew install mycli
 brew install mas
 #brew tap git-time-metric/gtm
 #brew install gtm
@@ -145,7 +145,7 @@ brew install node@10 && brew postinstall node@10
 # npm -g install gulp
 # npm -g install grunt-cli
 
-# Install composer 
+# Install composer
 curl -sS https://getcomposer.org/installer | php
 
 sudo mv composer.phar /usr/local/bin/composer
@@ -170,7 +170,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # TPM requires running tmux server, as soon as `tmux start-server` does not work
 # create dump __noop session in detached mode, and kill it when plugins are installed
 printf "Install TPM plugins\n"
-tmux new -d -s __noop >/dev/null 2>&1 || true 
+tmux new -d -s __noop >/dev/null 2>&1 || true
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 "$HOME"/.tmux/plugins/tpm/bin/install_plugins || true
 tmux kill-session -t __noop >/dev/null 2>&1 || true
