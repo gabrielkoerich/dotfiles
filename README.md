@@ -1,4 +1,4 @@
-# Gabriel's dotfiles 
+# Gabriel's dotfiles
 
 My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).
 
@@ -6,7 +6,7 @@ My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/do
 
 This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). If you want to change your shell to zsh, [install it](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH) and run ``chsh -s $(which zsh)``.
 
-**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. 
+**Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need.
 
 ## Instructions
 
@@ -15,7 +15,8 @@ Read all scripts *before* executing them.
 1. `git clone https://github.com/gabrielkoerich/dotfiles.git`
 2. `sh sync.sh` to sync the dotfiles
 3. `sh macos.sh` to configure macos
-4. `sh install.sh` to install applications
+4. `sh install.sh` to install dependencies and console apps
+4. `sh cask.sh` to install cask apps
 5. `mackup restore` to restore app settings
 
 To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`.
