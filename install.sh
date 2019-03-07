@@ -102,7 +102,7 @@ brew install testssl
 # brew install pigz
 # brew install pv
 # brew install rename
-# brew install tree
+brew install tree
 # brew install vbindiff
 # brew install webkit2png
 # brew install zopfli
@@ -119,6 +119,7 @@ brew install bfg
 brew install kubernetes-cli
 brew install yamllint
 brew install mackup
+brew install bfg
 
 # Install brew cask and other apps
 brew tap phinze/homebrew-cask
@@ -156,7 +157,9 @@ brew cask install vlc
 brew cask install steam
 brew cask install deckset
 brew cask install java
+brew cask install firefox
 brew cask install discord
+brew cask install google-cloud-sdk
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
