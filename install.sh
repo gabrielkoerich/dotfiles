@@ -157,6 +157,7 @@ brew cask install vlc
 brew cask install steam
 brew cask install deckset
 brew cask install java
+brew cask install java8
 brew cask install firefox
 brew cask install discord
 brew cask install google-cloud-sdk
