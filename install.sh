@@ -165,6 +165,7 @@ brew cask install java8
 brew cask install firefox
 brew cask install discord
 brew cask install google-cloud-sdk
+brew cask install tor-browser
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
