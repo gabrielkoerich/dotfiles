@@ -85,6 +85,7 @@ brew install xz
 brew install go
 brew install ngrep
 brew install iftop
+brew install ipcalc
 
 # Install other useful binaries.
 brew install ack
