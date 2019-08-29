@@ -168,8 +168,8 @@ composer global require laravel/installer
 composer global require phpunit/phpunit
 composer global require friendsofphp/php-cs-fixer
 
+~/.composer/vendor/bin/valet use php
 ~/.composer/vendor/bin/valet install
-~/.composer/vendor/bin/valet use php@7.2
 
 # Park valet in ~/Projects
 mkdir -p ~/Projects && cd ~/Projects
