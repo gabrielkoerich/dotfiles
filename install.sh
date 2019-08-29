@@ -51,6 +51,17 @@ brew install screen
 brew install pkg-config libffi openssl python
 env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
 pip install stronghold
+pip install jupyterlab
+pip install qgrid
+pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
+jupyter nbextension enable --py --sys-prefix qgrid
+jupyter nbextension enable --py --sys-prefix widgetsnbextension
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install qgrid
+
+# Install R and stuff
+brew install r
+Rscript -e 'install.packages("reticulate")'
 
 # Install font tools.
 brew tap bramstein/webfonttools
