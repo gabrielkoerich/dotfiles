@@ -135,10 +135,10 @@ brew install watch #watcher
 # brew install xpdf
 
 # Install PHP, MySQL, redis and beanstalkd
-brew install mysql@5.7 && brew link mysql@5.7 --force
+brew install mysql
 brew install beanstalkd
 brew install redis
-brew install php@7.2
+brew install php
 
 # Install Xdebug + Mongo via pecl
 pecl install xdebug
