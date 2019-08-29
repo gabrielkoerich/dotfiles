@@ -31,7 +31,7 @@ alias h="history"
 alias j="jobs"
 alias c="clear"
 alias chrome="/usr/bin/open -a /Applications/Google Chrome.app"
-alias safari="open /Applications/Safari.app" 
+alias safari="open /Applications/Safari.app"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -168,7 +168,9 @@ alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; 
 alias battery="pmset -g batt"
 alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
 
-alias weather="curl https://wttr.in/Florianopolis?2" 
+alias weather="curl https://wttr.in/Florianopolis?2"
 
 alias pr="git pull-request -b master -m 'Develop'"
 alias wtf="git add -A && git commit -m '$(curl --silent --fail https://whatthecommit.com/index.txt)'"
+
+alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
