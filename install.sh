@@ -117,6 +117,8 @@ brew install mackup
 brew install innotop #innodb top cmd
 brew install mycli
 brew install mas
+brew install pv #pipeviewer
+brew install watch #watcher
 #brew tap git-time-metric/gtm
 #brew install gtm
 # brew install testssl
