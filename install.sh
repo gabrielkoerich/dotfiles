@@ -38,6 +38,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # running `chsh`.
 chsh -s $(which zsh)
 
+## Add command-time plugin
+git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
+
 # Install `wget` with IRI support.
 brew install wget
 

@@ -38,7 +38,7 @@ ZSH_THEME="jcl"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment following line if you want to  shown in the command execution time stamp 
+# Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
@@ -51,6 +51,7 @@ plugins=(
     macports
     node
     osx
+    command-time
 )
 
 source $ZSH/oh-my-zsh.sh
