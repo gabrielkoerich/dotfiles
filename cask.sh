@@ -22,6 +22,7 @@ brew cask install kap
 brew cask install vlc
 brew cask install tunnelblick
 brew caks install rstudio
+brew caks install angry-ip-scanner
 #brew cask install slack
 #brew cask install 0ad
 #brew cask install docker
