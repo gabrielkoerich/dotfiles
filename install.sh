@@ -143,14 +143,16 @@ brew install beanstalkd
 brew install redis
 brew install php
 
+# PHP Configs
+cp ./config/php-memory-limits.ini /usr/local/etc/php/7.3/conf.d/php-memory-limits.ini
+# cp ./config/psysh.php ~/.config/psysh/config.php
+
 # Install Xdebug + Mongo via pecl
 pecl install xdebug
 pecl install mongodb
 
 # Launch Redis on mac starts
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
-
-cp ./config/php-memory-limits.ini /usr/local/etc/php/7.3/conf.d/php-memory-limits.ini
 
 # Install node, npm, yarn, gulp and grunt
 brew install node@10 && brew postinstall node@10
