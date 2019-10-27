@@ -172,6 +172,9 @@ brew cask install tor-browser
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
 
+# Vim stuffs
+curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh | sh
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
