@@ -97,7 +97,7 @@ brew install p7zip
 brew install speedtest_cli
 brew install ssh-copy-id
 brew install testssl
-# brew install git-lfs
+brew install git-lfs
 # brew install lua
 # brew install lynx
 # brew install pigz
@@ -111,7 +111,6 @@ brew install terraform
 brew install htop
 brew isntall tree
 brew install vault
-brew install docker
 brew install jq
 brew install az
 brew install ansible
@@ -148,12 +147,12 @@ brew cask install sequel-pro
 brew cask install rescuetime
 brew cask install sublime-text
 brew cask install atom
-# brew cask install virtualbox
-# brew cask install docker
-# brew cask install 0ad
-# brew cask install vagrant
+brew cask install virtualbox
+brew cask install docker
+brew cask install 0ad
+brew cask install vagrant
 # brew cask install the-unarchiver
-# brew cask install github-desktop
+brew cask install github-desktop
 brew cask install github
 brew cask install appzapper
 brew cask install flycut
