@@ -122,6 +122,8 @@ brew install mycli
 brew install mas
 brew install pv #pipeviewer
 brew install watch #watcher
+brew tap AlexanderWillner/tap
+brew install things.sh
 #brew tap git-time-metric/gtm
 #brew install gtm
 # brew install testssl
