@@ -122,6 +122,7 @@ brew install mycli
 brew install mas
 brew install pv #pipeviewer
 brew install watch #watcher
+brew install fastlane #build ios apps
 brew tap AlexanderWillner/tap
 brew install things.sh
 #brew tap git-time-metric/gtm
@@ -146,7 +147,7 @@ brew install redis
 brew install php
 
 # PHP Configs
-cp ./config/php-memory-limits.ini /usr/local/etc/php/7.3/conf.d/php-memory-limits.ini
+cp ./config/php-memory-limits.ini /usr/local/etc/php/7.4/conf.d/php-memory-limits.ini
 # cp ./config/psysh.php ~/.config/psysh/config.php
 
 # Install Xdebug + Mongo via pecl
