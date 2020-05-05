@@ -158,7 +158,7 @@ pecl install mongodb
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
 # Install node, npm, yarn, gulp and grunt
-brew install node@10 && brew postinstall node@10
+brew install node@12 && brew postinstall node@12
 # Run it node postinstall fails:
 # sudo chown -R $(whoami) $(brew --prefix)/*
 # npm -g install yarn
