@@ -157,14 +157,13 @@ pecl install mongodb
 # Launch Redis on mac starts
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
-# Install node, npm, yarn, gulp and grunt
+# Install node, npm, yarn
 brew install node@12 && brew postinstall node@12
+
 # Run it node postinstall fails:
 # sudo chown -R $(whoami) $(brew --prefix)/*
 # npm -g install yarn
-# npm -g install@angular/cli
-# npm -g install gulp
-# npm -g install grunt-cli
+# npm -g install expo-cli
 
 # Install composer
 curl -sS https://getcomposer.org/installer | php
