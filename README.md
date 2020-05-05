@@ -17,7 +17,7 @@ Read all scripts *before* executing them.
 3. `sh macos.sh` to configure macos
 4. `sh install.sh` to install dependencies and console apps
 4. `sh cask.sh` to install cask apps
-5. `mackup restore` to restore app settings
+5. Install Dropbox & run `mackup restore` to restore app settings
 
 To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`.
 
