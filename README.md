@@ -13,13 +13,14 @@ This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/ro
 Read all scripts *before* executing them.
 
 1. `git clone https://github.com/gabrielkoerich/dotfiles.git`
-2. `sh sync.sh` to sync the dotfiles
-3. `sh macos.sh` to configure macos
-4. `sh install.sh` to install dependencies and console apps
+2. `sh macos.sh` to configure macos
+3. `sh install.sh` to install dependencies and console apps
 4. `sh cask.sh` to install cask apps
-5. Install Dropbox & run `mackup restore` to restore app settings
+5. `sh cron.sh` to install the schedule tasks
+6. `sh sync.sh` to sync the dotfiles
+7. Install Dropbox & run `mackup restore` to restore app settings
 
-To update, `cd` into your local `dotfiles` repository and then `sh sync.sh`.
+To update the dotfiles, run step 6 again.
 
 You can also sync the dotfiles using homeshick:
 
