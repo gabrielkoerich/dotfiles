@@ -123,6 +123,7 @@ brew install mas
 brew install pv #pipeviewer
 brew install watch #watcher
 brew install fastlane #build ios apps
+brew install cocoapods #ios dependencies
 brew tap AlexanderWillner/tap
 brew install things.sh
 #brew tap git-time-metric/gtm
@@ -158,12 +159,17 @@ pecl install mongodb
 ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
 # Install node, npm, yarn
-brew install node@12 && brew postinstall node@12
+brew install nvm
+# brew install node@12 && brew postinstall node@12
+# ln -s $(which node) /usr/local/bin/node # symlink to default location
 
 # Run it node postinstall fails:
 # sudo chown -R $(whoami) $(brew --prefix)/*
 # npm -g install yarn
+
+# React Native:
 # npm -g install expo-cli
+# npm -g install ios-deploy
 
 # Install composer
 curl -sS https://getcomposer.org/installer | php
