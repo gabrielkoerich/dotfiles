@@ -174,3 +174,5 @@ alias pr="git pull-request -b master -m 'Develop'"
 alias wtf="git add -A && git commit -m '$(curl --silent --fail https://whatthecommit.com/index.txt)'"
 
 alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
+
+alias pg="pg_ctl -D /usr/local/var/postgres"
