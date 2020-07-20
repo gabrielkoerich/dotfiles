@@ -147,6 +147,10 @@ brew install beanstalkd
 brew install redis
 brew install php
 
+brew tap mongodb/brew
+brew install
+brew install mongodb-community
+
 # PHP Configs
 cp ./config/php-memory-limits.ini /usr/local/etc/php/7.4/conf.d/php-memory-limits.ini
 # cp ./config/psysh.php ~/.config/psysh/config.php
