@@ -18,4 +18,6 @@ fi;
 
 unset sync;
 
+exec $SHELL -l
+
 # source ~/.zshrc
