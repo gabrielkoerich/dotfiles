@@ -176,3 +176,8 @@ alias wtf="git add -A && git commit -m '$(curl --silent --fail https://whattheco
 alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
 
 alias pg="pg_ctl -D /usr/local/var/postgres"
+
+alias 7.1='brew-php-switcher 7.1 -s=apache && reload && php -v'
+alias 7.2='brew-php-switcher 7.2 -s=apache && reload && php -v'
+alias 7.3='brew-php-switcher 7.3 -s=apache && reload && php -v'
+alias 7.4='brew-php-switcher 7.4 -s=apache && reload && php -v'

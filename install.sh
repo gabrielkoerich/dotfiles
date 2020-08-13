@@ -146,6 +146,7 @@ brew install mysql
 brew install beanstalkd
 brew install redis
 brew install php
+brew install brew-php-switcher
 
 brew tap mongodb/brew
 brew install
