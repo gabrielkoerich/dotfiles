@@ -3,6 +3,7 @@
 alias git="hub"
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
+alias cs="vendor/bin/php-cs-fixer fix"
 alias phpunit="vendor/bin/phpunit"
 alias phpspec="vendor/bin/phpspec run"
 alias phptest="phpunit && phpspec"
