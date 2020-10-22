@@ -12,17 +12,17 @@ brew cask install sequel-pro
 brew cask install sublime-text
 brew cask install the-unarchiver
 brew cask install java
-brew cask install flux
-brew cask install flycut
+#brew cask install flux
+#brew cask install flycut
 brew cask install qlmarkdown # Add quicklook view for markdown files
 brew cask install cakebrew
-brew cask install steam
-brew cask install keybase
-brew cask install kap
+#brew cask install steam
+#brew cask install keybase
+#brew cask install kap
 brew cask install vlc
-brew cask install tunnelblick
-brew caks install rstudio
-brew caks install angry-ip-scanner
+#brew cask install tunnelblick
+#brew caks install rstudio
+#brew caks install angry-ip-scanner
 #brew cask install slack
 #brew cask install 0ad
 #brew cask install docker
