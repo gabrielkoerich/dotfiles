@@ -216,5 +216,3 @@ brew doctor
 
 # List services to check them
 brew services list
-
-sh cron.sh
