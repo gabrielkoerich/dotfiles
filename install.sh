@@ -52,15 +52,15 @@ brew install screen
 
 # Install Python and usefull stuff
 brew install pkg-config libffi openssl python
-env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
-pip install stronghold
-pip install jupyterlab
-pip install qgrid
-pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
-jupyter nbextension enable --py --sys-prefix qgrid
-jupyter nbextension enable --py --sys-prefix widgetsnbextension
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install qgrid
+# env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
+# pip install stronghold
+# pip install jupyterlab
+# pip install qgrid
+# pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
+# jupyter nbextension enable --py --sys-prefix qgrid
+# jupyter nbextension enable --py --sys-prefix widgetsnbextension
+# jupyter labextension install @jupyter-widgets/jupyterlab-manager
+# jupyter labextension install qgrid
 
 # Install R and stuff
 brew install r
@@ -143,6 +143,7 @@ brew install things.sh
 
 # Install PHP, MySQL, redis and beanstalkd
 brew install mysql
+brew install postgresql
 brew install beanstalkd
 brew install redis
 brew install php
@@ -206,9 +207,6 @@ tmux new -d -s __noop >/dev/null 2>&1 || true
 tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "~/.tmux/plugins"
 "$HOME"/.tmux/plugins/tpm/bin/install_plugins || true
 tmux kill-session -t __noop >/dev/null 2>&1 || true
-
-# Install Fonts
-cp fonts/*.ttf /Library/Fonts/ && echo "Fonts installed.";
 
 # Remove outdated versions from the cellar.
 brew cleanup
