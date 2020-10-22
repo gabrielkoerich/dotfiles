@@ -12,23 +12,16 @@ This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/ro
 
 Read all scripts *before* executing them.
 
-1. `git clone https://github.com/gabrielkoerich/dotfiles.git`
-2. `sh macos.sh` to configure macos
-3. `sh install.sh` to install dependencies and console apps
-4. `sh cask.sh` to install cask apps
-5. `sh cron.sh` to install the schedule tasks
-6. `sh sync.sh` to sync the dotfiles
-7. Install Dropbox & run `mackup restore` to restore app settings
+1. Configure iCloud
+2. `git clone https://github.com/gabrielkoerich/dotfiles.git`
+3. `sh macos.sh` to configure macos
+4. `sh install.sh` to install dependencies and console apps
+5. `sh cask.sh` to install cask apps
+6. `sh cron.sh` to install the schedule tasks
+7. `sh sync.sh` to sync the dotfiles
+8. Install Dropbox & run `mackup restore` to restore app settings
 
-To update the dotfiles, run step 6 again.
-
-You can also sync the dotfiles using homeshick:
-
-```bash
-git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
-source $HOME/.homesick/repos/homeshick/homeshick.sh
-homeshick clone gabrielkoerich/dotfiles
-```
+To update the dotfiles, run step 7 again.
 
 ## License
 
