@@ -1,6 +1,6 @@
 # Install brew cask and apps
-brew tap phinze/homebrew-cask
-brew install brew-cask
+#brew tap phinze/homebrew-cask
+#brew install brew-cask
 brew cask install alfred
 brew cask install iterm2
 brew cask install caffeine
