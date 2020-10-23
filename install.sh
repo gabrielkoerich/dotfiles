@@ -161,6 +161,7 @@ cp ./config/php-memory-limits.ini /usr/local/etc/php/7.4/conf.d/php-memory-limit
 # Install Xdebug + Mongo via pecl
 pecl install xdebug
 pecl install mongodb
+pecl install redis
 
 # Launch Redis on mac starts
 # ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/*
