@@ -162,7 +162,7 @@ pecl install xdebug
 pecl install mongodb
 
 # Launch Redis on mac starts
-ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+# ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/*
 
 # Install node, npm, yarn
 brew install nvm
