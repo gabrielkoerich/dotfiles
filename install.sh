@@ -141,7 +141,8 @@ brew install things.sh
 # brew install zopfli
 # brew install xpdf
 
-# Install PHP, MySQL, redis and beanstalkd
+# Install dev tools
+brew install gh
 brew install mysql
 brew install postgresql
 brew install beanstalkd
