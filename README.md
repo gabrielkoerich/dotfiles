@@ -16,7 +16,7 @@ Read all scripts *before* executing them.
 2. `git clone https://github.com/gabrielkoerich/dotfiles.git`
 3. `sh macos.sh` to configure macos
 4. `sh install.sh` to install dependencies and console apps
-5. `sh fonts.sh` to install dependencies and console apps
+5. `sh fonts.sh` to install fonts
 6. `sh cask.sh` to install cask apps
 7. `sh cron.sh` to install the schedule tasks
 8. `sh sync.sh` to sync the dotfiles
