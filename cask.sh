@@ -36,6 +36,7 @@ mas lucky Wallcat
 mas lucky Dato
 mas lucky Whatsapp
 mas lucky Slack
+mas lucky Banktivity
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
