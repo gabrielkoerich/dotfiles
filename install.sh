@@ -168,13 +168,9 @@ pecl install redis
 
 # Install node, npm, yarn
 brew install nvm
-# brew install node@12 && brew postinstall node@12
-# ln -s $(which node) /usr/local/bin/node # symlink to default location
-
-# Run it node postinstall fails:
-# sudo chown -R $(whoami) $(brew --prefix)/*
+nvm install --tls
+nvm use --tls
 # npm -g install yarn
-
 # React Native:
 # npm -g install expo-cli
 # npm -g install ios-deploy
