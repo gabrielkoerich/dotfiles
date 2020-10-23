@@ -12,7 +12,7 @@ This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/ro
 
 Read all scripts *before* executing them.
 
-1. Configure iCloud, SSH, Setapp, etc.
+1. Configure iCloud, Dropbox, SSH, Setapp, etc.
 2. `git clone https://github.com/gabrielkoerich/dotfiles.git`
 3. `sh macos.sh` to configure macos
 4. `sh install.sh` to install dependencies and console apps
@@ -20,7 +20,7 @@ Read all scripts *before* executing them.
 6. `sh cask.sh` to install cask apps
 7. `sh cron.sh` to install the schedule tasks
 8. `sh sync.sh` to sync the dotfiles
-9. Install Dropbox & run `mackup restore` to restore app settings
+9. Run `mackup restore` to restore app settings
 
 To update the dotfiles, run step 7 again.
 
