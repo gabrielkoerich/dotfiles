@@ -23,7 +23,6 @@ brew cask install vlc
 #brew cask install tunnelblick
 #brew caks install rstudio
 #brew caks install angry-ip-scanner
-#brew cask install slack
 #brew cask install 0ad
 #brew cask install docker
 #brew cask install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
@@ -33,6 +32,9 @@ brew cask install vlc
 mas lucky Things3
 mas lucky Bear
 mas lucky Wallcat
+mas lucky Dato
+mas lucky Whatsapp
+mas lucky Slack
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
