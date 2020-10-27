@@ -8,13 +8,14 @@ brew cask install cakebrew
 brew cask install dropbox
 brew cask install github
 brew cask install google-chrome
-brew cask install java
-brew cask install spectacle
 brew cask install imageoptim
+brew cask install java
+brew cask install postman
+brew cask install qlmarkdown # Add quicklook view for markdown files
+brew cask install spectacle
 brew cask install sequel-pro
 brew cask install sublime-text
 brew cask install the-unarchiver
-brew cask install qlmarkdown # Add quicklook view for markdown files
 brew cask install vlc
 #brew cask install flux
 #brew cask install flycut
