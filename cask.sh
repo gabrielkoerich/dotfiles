@@ -1,11 +1,13 @@
 # Install brew cask and apps
 #brew tap phinze/homebrew-cask
 #brew install brew-cask
+brew cask install authy
 brew cask install alfred
 brew cask install iterm2
 brew cask install caffeine
 brew cask install cakebrew
 brew cask install dropbox
+# brew cask install discord
 brew cask install github
 brew cask install google-chrome
 brew cask install imageoptim
