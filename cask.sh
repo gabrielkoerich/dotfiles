@@ -11,11 +11,11 @@ brew cask install dropbox
 brew cask install github
 brew cask install google-chrome
 brew cask install imageoptim
-brew cask install java
+#brew cask install java
 brew cask install postman
 brew cask install qlmarkdown # Add quicklook view for markdown files
 brew cask install spectacle
-brew cask install sequel-pro
+#brew cask install sequel-pro
 brew cask install sublime-text
 brew cask install the-unarchiver
 brew cask install vlc
