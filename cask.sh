@@ -1,36 +1,36 @@
 # Install brew cask and apps
 #brew tap phinze/homebrew-cask
 #brew install brew-cask
-brew cask install authy
-brew cask install alfred
-brew cask install iterm2
-brew cask install caffeine
-brew cask install cakebrew
-brew cask install dropbox
-# brew cask install discord
-brew cask install github
-brew cask install google-chrome
-brew cask install imageoptim
-#brew cask install java
-brew cask install postman
-brew cask install qlmarkdown # Add quicklook view for markdown files
-brew cask install spectacle
-#brew cask install sequel-pro
-brew cask install sublime-text
-brew cask install the-unarchiver
-brew cask install vlc
-#brew cask install flux
-#brew cask install flycut
-#brew cask install steam
-#brew cask install keybase
-#brew cask install kap
-#brew cask install tunnelblick
-#brew caks install rstudio
-#brew caks install angry-ip-scanner
-#brew cask install 0ad
-#brew cask install docker
-#brew cask install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
-#brew cask install sandman
+brew install authy
+brew install alfred
+brew install iterm2
+brew install caffeine
+brew install cakebrew
+brew install dropbox
+# brew install discord
+brew install github
+brew install google-chrome
+brew install imageoptim
+#brew install java
+brew install postman
+brew install qlmarkdown # Add quicklook view for markdown files
+brew install spectacle
+#brew install sequel-pro
+brew install sublime-text
+brew install the-unarchiver
+brew install vlc
+#brew install flux
+#brew install flycut
+#brew install steam
+#brew install keybase
+#brew install kap
+#brew install tunnelblick
+#brew install rstudio
+#brew install angry-ip-scanner
+#brew install 0ad
+#brew install docker
+#brew install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
+#brew install sandman
 
 # Install apps from App Store
 mas lucky Things3
