@@ -34,12 +34,7 @@ alias c="clear"
 alias chrome="/usr/bin/open -a /Applications/Google Chrome.app"
 alias safari="open /Applications/Safari.app"
 
-# Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-    colorflag="--color"
-else # macOS `ls`
-    colorflag="-G"
-fi
+colorflag="-G"
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
