@@ -7,7 +7,7 @@ echo 'Starting...';
 # Check to see if Homebrew is installed, and install it if it is not
 command -v brew >/dev/null 2>&1 || {
     echo >&2 "Installing Homebrew"; \
-    
+
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
@@ -156,7 +156,8 @@ brew install
 brew install mongodb-community
 
 # PHP Configs
-cp ./config/php-memory-limits.ini /usr/local/etc/php/7.4/conf.d/php-memory-limits.ini
+# cp ./config/php-memory-limits.ini /usr/local/etc/php/7.4/conf.d/php-memory-limits.ini
+cp ./config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini
 # cp ./config/psysh.php ~/.config/psysh/config.php
 
 # Install Xdebug + Mongo via pecl
@@ -164,13 +165,16 @@ pecl install xdebug
 pecl install mongodb
 pecl install redis
 
+brew tap kabel/php-ext
+brew install php-imap
+
 # Launch Redis on mac starts
 # ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/*
 
 # Install node, npm, yarn
 brew install nvm
-nvm install --tls
-nvm use --tls
+nvm install 15
+nvm use 15
 # npm -g install yarn
 # React Native:
 # npm -g install expo-cli
