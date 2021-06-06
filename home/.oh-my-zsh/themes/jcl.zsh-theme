@@ -23,4 +23,5 @@ PROMPT="%{$terminfo[bold]$fg[blue]%}%n\
 ${git_info}
 %{$terminfo[bold]$fg[white]%}$ %{$reset_color%}"
 
-RPROMPT="%D{%b %f} %T"
+#RPROMPT="%D{%b %f} %T"
+RPROMPT="%T"
