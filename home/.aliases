@@ -173,10 +173,10 @@ alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
 
 alias pg="pg_ctl -D /usr/local/var/postgres"
 
-alias 7.2='brew-php-switcher 7.2 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.2/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
-alias 7.3='brew-php-switcher 7.3 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.3/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
-alias 7.4='brew-php-switcher 7.4 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
-alias 8.0='brew-php-switcher 8.0 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/8.0/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
+alias 7.2='brew-php-switcher 7.2 -s=apache && valet use php@7.2 --force && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.2/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
+alias 7.3='brew-php-switcher 7.3 -s=apache && valet use php@7.3 --force && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.3/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
+alias 7.4='brew-php-switcher 7.4 -s=apache && valet use php@7.4 --force && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
+alias 8.0='brew-php-switcher 8.0 -s=apache && valet use php@8.0 --force && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/8.0/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit'
 
 # kill postgress stuck pid
 #alias restart-postgres="rm -f /usr/local/var/postgres/postmaster.pid && brew services stop postgresql && brew services start postgresql"
