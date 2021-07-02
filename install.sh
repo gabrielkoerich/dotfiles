@@ -113,9 +113,9 @@ brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
 brew install pandoc # convert doc files
-brew install ghi
+# brew install ghi
+brew install gh
 brew install git-town
-brew install hub
 brew install htop
 brew install mackup
 brew install innotop #innodb top cmd

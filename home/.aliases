@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-alias git="hub"
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias cs="vendor/bin/php-cs-fixer fix"
