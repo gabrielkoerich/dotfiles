@@ -22,7 +22,7 @@ Read all scripts *before* executing them.
 8. `sh sync.sh` to sync the dotfiles
 9. Run `mackup restore` to restore app settings
 
-To update the dotfiles, run step 7 again.
+To update the dotfiles, run step 8 again.
 
 ## License
 
