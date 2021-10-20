@@ -178,6 +178,9 @@ alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 alias 8.0-cli="brew-php-switcher 8.0 -s=apache"
 alias 7.4-cli="brew-php-switcher 7.4 -s=apache"
 
+alias python="python3"
+alias pip="pip3"
+
 alias 7.2='brew-php-switcher 7.2 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.2/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.2 --force '
 alias 7.3='brew-php-switcher 7.3 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.3/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.3 --force '
 alias 7.4='brew-php-switcher 7.4 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.4 --force '
