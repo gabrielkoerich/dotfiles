@@ -3,16 +3,16 @@
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias cs="vendor/bin/php-cs-fixer fix"
-alias phpunit="vendor/bin/phpunit --stop-on-failure"
 alias test="php artisan test --stop-on-failure"
-alias phpspec="vendor/bin/phpspec run"
-alias phptest="phpunit && phpspec"
 alias artisan="php artisan"
 alias art="php artisan"
 alias tinker="php artisan tinker"
 alias migrate="php artisan migrate"
 alias rollback="php artisan migrate:rollback"
 alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
+alias phpunit="[ -e laravel ] && laravel/vendor/bin/phpunit --stop-on-failure || vendor/bin/phpunit --stop-on-failure"
+alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
+alias vapor="[ -e laravel ] && php laravel/vendor/bin/vapor || php vendor/bin/vapor"
 alias nah="git reset --hard; git clean -df;"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
@@ -172,8 +172,6 @@ alias wtf="git add -A && git commit -m '$(curl --silent --fail https://whattheco
 alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
 
 alias pg="pg_ctl -D /usr/local/var/postgres"
-
-alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
 
 alias 8.0-cli="brew-php-switcher 8.0 -s=apache"
 alias 7.4-cli="brew-php-switcher 7.4 -s=apache"
