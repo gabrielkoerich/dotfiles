@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Klikk for å velge hurtigtast";
+
+"Command + " = "Kommando +";
+
+"Control + " = "Kontroll +";
+
+"Option + " = "Tilvalg +";
+
+"Pad %@" = "Numerisk tastatur %@";
+
+"Shift + " = "Skift +";
+
+"Space" = "Mellomrom";
+
+"The key combination %@ can't be used!" = "Tastekombinasjonen \"%@\" kan ikke brukes!";
+
+"The key combination \"%@\" can't be used because %@." = "Tastekombinasjonen \"%@\" kan ikke brukes fordi %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "Tastekombinasjonen \"%@\" kan ikke brukes fordi den allerede er brukt som en tastatursnarvei i Systemvalg. Hvis du ønsker å bruke denne tastekombinasjonen må du først endre den i Tastatur-panelet i Systemvalg. ";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "Tastekombinasjonen \"%@\" kan ikke brukes fordi den allerede er i bruk av menyvalget \"%@\".";
+
+"Type shortcut" = "Trykk hurtigtast";
+
+"Use old shortcut" = "Bruk forrige hurtigtast";

@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Κλίκ για εισαγωγή συντόμευσης";
+
+"Command + " = "Command + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Option + ";
+
+"Pad %@" = "Numpad %@";
+
+"Shift + " = "Shift + ";
+
+"Space" = "Κενό";
+
+"The key combination %@ can't be used!" = "Ο συνδιασμός πλήκτρων \"%@\" δεν μπορεί να χρησιμοποιηθεί!";
+
+"The key combination \"%@\" can't be used because %@." = "Ο συνδιασμός πλήκτρων \"%@\" δεν μπορεί να χρησιμοποιηθεί λόγω %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "Ο συνδιασμός πλήκτρων \"%@\" δεν μπορεί να χρησιμοποιηθεί γιατί χρησιμοποιείται ήδη από μια συντόμευση συστήματος. (Αν θέλετε οπωσδήποτε να χρησιμοποιήσετε αυτό τον συνδιασμό, οι περισσότερες συντομεύσεις μπορούν να αλλαχθούν στο πάνελ Keyboard & Mouse στο System Preferences.)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "Ο συνδιασμός πλήκτρων \"%@\" δεν μπορεί να χρησιμοποιηθεί γιατί χρησιμοποιείται ήδη από το μενού \"%@\".";
+
+"Type shortcut" = "Εισαγωγή συντόμευσης";
+
+"Use old shortcut" = "Χρήση παλιάς συντόμευσης";

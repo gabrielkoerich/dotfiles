@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Нажмите для записи сокращения";
+
+"Command + " = "Command + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Option + ";
+
+"Pad %@" = "Отступ %@";
+
+"Shift + " = "Shift + ";
+
+"Space" = "Пробел";
+
+"The key combination %@ can't be used!" = "Комбинация %@ не может быть использована!";
+
+"The key combination \"%@\" can't be used because %@." = "Комбинация \"%@\" не может быть использована по причине %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "Комбинация \"%@\" не может быть использована, потому что она используется в системе глобально. (Если вы хотите использовать эту комбинацию клавиш, измените ее в Системных настройках.)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "Комбинация \"%@\" не может быть использована, так как она используется в меню \"%@\".";
+
+"Type shortcut" = "Введите сокращение";
+
+"Use old shortcut" = "Использовать старое сокращение";

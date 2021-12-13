@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "点击记录快捷键";
+
+"Command + " = "Command + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Option + ";
+
+"Pad %@" = "数字键盘%@";
+
+"Shift + " = "Shift + ";
+
+"Space" = "空格";
+
+"The key combination %@ can't be used!" = "无法使用快捷键组合%@！";
+
+"The key combination \"%@\" can't be used because %@." = "无法使用快捷键组合%@，因为%@。";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "无法使用快捷键组合%@，因为已用作系统级快捷键。(如果您确定要使用该快捷键，大部分快捷键可以在系统偏好设置的键盘和鼠标面板)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "无法使用快捷键组合%@，因为已用于菜单项%@。";
+
+"Type shortcut" = "输入快捷键";
+
+"Use old shortcut" = "使用原来的快捷键";

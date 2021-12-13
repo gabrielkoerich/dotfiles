@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "클릭해서 단축키 기록";
+
+"Command + " = "커맨드 + ";
+
+"Control + " = "컨트롤 + ";
+
+"Option + " = "옵션 + ";
+
+"Pad %@" = "숫자 패드 %@";
+
+"Shift + " = "시프트 + ";
+
+"Space" = "스페이스";
+
+"The key combination %@ can't be used!" = "%@ 키 조합은 사용할 수 없습니다.";
+
+"The key combination \"%@\" can't be used because %@." = "\"%@\" 키 조합은 다음 이유로 사용이 불가능합니다: %@ ";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "\"%@\" 키 조합은 이미 시스템 단축키에서 사용중이므로 사용이 불가능합니다. (만약 지금 이 키 조합을 반드시 사용하고싶다면, 시스템 환경설정에서 키보드 & 마우스 항목에서 기존 단축키가 변경 가능한지 확인 해 보세요.)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "\"%@\" 키 조합은 이미 \"%@\" 메뉴 항목에서 사용중이므로 사용이 불가능합니다.";
+
+"Type shortcut" = "단축키 입력";
+
+"Use old shortcut" = "예전 단축키 사용";

@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Kliknite pre nahratie skratky";
+
+"Command + " = "Command + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Option + ";
+
+"Pad %@" = "Pad %@";
+
+"Shift + " = "Shift + ";
+
+"Space" = "Medzera";
+
+"The key combination %@ can't be used!" = "Kombináciu kláves \"%@\" nie je možné použiť!";
+
+"The key combination \"%@\" can't be used because %@." = "Kombináciu kláves \"%@\" nie je možné použiť z dôvodu: %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "Kombináciu kláves \"%@\" nie je možné použiť pretože sa používa ako systémová skratka. (Ak chcete použiť túto kombináciu kláves, je možné väčšinu klávesových skratiek zmeniť v Systémových nastaveniach v panely Klávesnica)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "Kombináciu kláves \"%@\" nie je možné použiť pretože je používaná pre položku menu \"%@\".";
+
+"Type shortcut" = "Napísať skratku";
+
+"Use old shortcut" = "Použiť pôvodnú skratku";

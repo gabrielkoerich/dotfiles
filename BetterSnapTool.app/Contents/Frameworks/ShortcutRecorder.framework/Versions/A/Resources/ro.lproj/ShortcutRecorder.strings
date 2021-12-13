@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Apasă pentru a înregistra comanda rapidă";
+
+"Command + " = "Comandă + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Opțiune + ";
+
+"Pad %@" = "Tableta %@";
+
+"Shift + " = "Schimb + ";
+
+"Space" = "Spațiu";
+
+"The key combination %@ can't be used!" = "Combinația de taste %@ nu poate fi utilizată!";
+
+"The key combination \"%@\" can't be used because %@." = "Combinația de taste \"%@\" nu poate fi utilizată din cauza %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "Combinaţia de taste \"% @\" nu poate fi utilizată, deoarece aceasta este deja utilizată de către sistem de operare. (Dacă chiar vrei să utilizezi această combinaţie de taste, cele mai multe comenzi rapide pot fi schimbate în panoul - Tastatură şi Maus - în Preferințe Sistem.)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "Combinaţie de taste \"% @\" nu poate fi utilizată, deoarece este deja utilizată de meniul \"% @\".";
+
+"Type shortcut" = "Tastează comanda rapidă";
+
+"Use old shortcut" = "Folosește vechea comandă rapidă";

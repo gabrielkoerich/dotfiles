@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Kliknij aby zarejestrować skrót";
+
+"Command + " = "Command + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Opcja + ";
+
+"Pad %@" = "Num. %@";
+
+"Shift + " = "Shift + ";
+
+"Space" = "Spacja";
+
+"The key combination %@ can't be used!" = "Kombinacja klawiszy %@ nie może zostać użyta!";
+
+"The key combination \"%@\" can't be used because %@." = "Kombinacja klawiszy\"%@\" nie może zostać użyta, ponieważ %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "Kombinacja klawiszy \"%@\" nie może zostać użyta, ponieważ jest już wykorzystywana jako systemowy skrót klawiszowy. (Jeśli naprawdę chcesz korzystać z tej kombinacji klawiszy, większość skrótów można zmienić w panelu Klawiatura w Preferencjach systemowych.)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "Kombinacja klawiszy \"%@\" nie może zostać użyta, ponieważ jest już wykorzystywana przez element menu \"%@\".";
+
+"Type shortcut" = "Podaj skrót";
+
+"Use old shortcut" = "Użyj starego skrótu";

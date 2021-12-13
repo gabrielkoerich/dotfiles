@@ -1,0 +1,26 @@
+
+"Click to record shortcut" = "Click to record shortcut";
+
+"Command + " = "Command + ";
+
+"Control + " = "Control + ";
+
+"Option + " = "Option + ";
+
+"Pad %@" = "Pad %@";
+
+"Shift + " = "Shift + ";
+
+"Space" = "Space";
+
+"The key combination %@ can't be used!" = "The key combination %@ can't be used!";
+
+"The key combination \"%@\" can't be used because %@." = "The key combination \"%@\" can't be used because %@.";
+
+"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)" = "The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)";
+
+"The key combination \"%@\" can't be used because it's already used by the menu item \"%@\"." = "The key combination \"%@\" can't be used because it's already used by the menu item \"%@\".";
+
+"Type shortcut" = "Type shortcut";
+
+"Use old shortcut" = "Use old shortcut";
