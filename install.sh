@@ -123,8 +123,8 @@ brew install mycli
 brew install mas
 brew install pv #pipeviewer
 brew install watch #watcher
-brew install fastlane #build ios apps
-brew install cocoapods #ios dependencies
+# brew install fastlane #build ios apps
+# brew install cocoapods #ios dependencies
 brew tap AlexanderWillner/tap
 brew install things.sh
 #brew tap git-time-metric/gtm

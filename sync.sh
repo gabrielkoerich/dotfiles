@@ -2,8 +2,6 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
-# git pull origin master;
-
 function sync() {
     rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
 }
