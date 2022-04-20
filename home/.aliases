@@ -1,19 +1,42 @@
 #!/usr/bin/env bash
 
-alias zshconfig="nano ~/.zshrc"
-alias ohmyzsh="nano ~/.oh-my-zsh"
-alias cs="vendor/bin/php-cs-fixer fix"
+# PHP/Laravel stuff
 alias test="php artisan test --stop-on-failure"
 alias artisan="php artisan"
 alias art="php artisan"
 alias tinker="php artisan tinker"
 alias migrate="php artisan migrate"
 alias rollback="php artisan migrate:rollback"
-alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
-alias phpunit="[ -e laravel ] && laravel/vendor/bin/phpunit --stop-on-failure || vendor/bin/phpunit --stop-on-failure"
-alias sail="[ -f sail ] && bash sail || bash vendor/bin/sail"
-alias vapor="[ -e laravel ] && php laravel/vendor/bin/vapor || php vendor/bin/vapor"
+
+# Run commands in vendor directory, checking if /laravel exists
+function vendorr() {
+    if [ $# -eq 0 ]; then
+        echo "No command provided";
+
+        return 1;
+    fi
+
+    if [ -d laravel ]; then
+        if [[ $1 == "--subshell" ]]; then
+            (cd laravel && vendor/bin/"$2" "${@:3}")
+        else
+            laravel/vendor/bin/"$1" "${@:2}"
+        fi
+    else
+        vendor/bin/"$1" "${@:2}"
+    fi
+}
+
+alias sail="vendorr sail"
+alias phpstan="vendorr phpstan"
+alias phpunit="vendorr phpunit"
+alias cs="vendorr php-cs-fixer fix"
+alias vapor="vendorr --subshell vapor"
+
+alias zshconfig="nano ~/.zshrc"
+alias ohmyzsh="nano ~/.oh-my-zsh"
 alias nah="git reset --hard; git clean -df;"
+alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
