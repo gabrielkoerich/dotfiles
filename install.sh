@@ -113,7 +113,7 @@ brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
 brew install pandoc # convert doc files
-# brew install ghi
+brew install bat #better cat
 brew install gh
 brew install git-town
 brew install htop
