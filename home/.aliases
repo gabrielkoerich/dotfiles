@@ -183,6 +183,7 @@ alias 7.2='brew-php-switcher 7.2 -s=apache && cp ~/Projects/dotfiles/config/php-
 alias 7.3='brew-php-switcher 7.3 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.3/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.3 --force '
 alias 7.4='brew-php-switcher 7.4 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.4 --force '
 alias 8.0='brew-php-switcher 8.0 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/8.0/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@8.0 --force '
+alias 8.1='brew-php-switcher 8.1 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/8.1/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@8.1 --force '
 
 
 # kill postgress stuck pid
