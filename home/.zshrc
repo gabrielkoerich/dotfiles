@@ -50,7 +50,7 @@ plugins=(
     git
     macports
     node
-    osx
+    macos
     command-time
 )
 
@@ -63,7 +63,6 @@ for file in ~/.{path,exports,aliases,functions,extra,private}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm

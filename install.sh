@@ -163,6 +163,7 @@ cp ./config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-li
 # Fix pecl builds on mac m1
 brew install pcre2
 ln -s /opt/homebrew/Cellar/pcre2/10.37/include/pcre2.h /opt/homebrew/Cellar/php/"$(php -v | grep ^PHP | cut -d' ' -f2)"/include/php/ext/pcre/pcre2.h
+#brew install icu4c
 
 # Install Xdebug + Mongo via pecl
 pecl install xdebug
