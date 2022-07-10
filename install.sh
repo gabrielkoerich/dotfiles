@@ -123,10 +123,12 @@ brew install mycli
 brew install mas
 brew install pv #pipeviewer
 brew install watch #watcher
+brew install jq #json bash processor
 # brew install fastlane #build ios apps
 # brew install cocoapods #ios dependencies
 brew tap AlexanderWillner/tap
 brew install things.sh
+brew install just
 #brew tap git-time-metric/gtm
 #brew install gtm
 # brew install testssl
@@ -144,9 +146,9 @@ brew install things.sh
 
 # Install dev tools
 brew install gh
-brew install mysql
-brew install postgresql
-brew install beanstalkd
+# brew install mysql
+# brew install postgresql
+# brew install beanstalkd
 brew install redis
 brew install php
 brew install brew-php-switcher
@@ -178,8 +180,8 @@ brew install php-imap
 
 # Install node, npm, yarn
 brew install nvm
-nvm install 15
-nvm use 15
+nvm install 16
+nvm use 16
 # npm -g install yarn
 # React Native:
 # npm -g install expo-cli

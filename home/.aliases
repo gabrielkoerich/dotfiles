@@ -30,7 +30,7 @@ function vendorr() {
 alias sail="vendorr sail"
 alias phpstan="vendorr phpstan"
 alias phpunit="vendorr phpunit"
-alias cs="vendorr php-cs-fixer fix"
+alias cs="vendorr php-cs-fixer fix --allow-risky=yes"
 alias vapor="vendorr --subshell vapor"
 
 alias zshconfig="nano ~/.zshrc"
