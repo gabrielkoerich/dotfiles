@@ -16,9 +16,10 @@ brew install postman
 brew install qlmarkdown # Add quicklook view for markdown files
 brew install spectacle
 #brew install sequel-pro
+brew install vlc
+brew install anaconda
 brew install sublime-text
 brew install the-unarchiver
-brew install vlc
 #brew install flux
 #brew install flycut
 #brew install steam
