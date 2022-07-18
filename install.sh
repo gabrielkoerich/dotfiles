@@ -55,11 +55,14 @@ brew install screen
 brew install pkg-config libffi openssl python
 # env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
 # pip install stronghold
-# pip install jupyterlab
+pip install jupyterlab
+pip install bt
 # pip install qgrid
-# pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
+pip install jupyterlab_materialdarker
+pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
 # jupyter nbextension enable --py --sys-prefix qgrid
 # jupyter nbextension enable --py --sys-prefix widgetsnbextension
+# jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
 # jupyter labextension install @jupyter-widgets/jupyterlab-manager
 # jupyter labextension install qgrid
 
