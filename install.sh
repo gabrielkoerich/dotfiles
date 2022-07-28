@@ -57,6 +57,7 @@ brew install pkg-config libffi openssl python
 # pip install stronghold
 pip install jupyterlab
 pip install bt
+pip install sanpy
 # pip install qgrid
 pip install jupyterlab_materialdarker
 pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
