@@ -36,12 +36,12 @@ brew install tribler # Download and watch videos
 
 # Install apps from App Store
 mas lucky Things3
-mas lucky Bear
-mas lucky Wallcat
+# mas lucky Bear
+# mas lucky Wallcat
 mas lucky Dato
 mas lucky Whatsapp
-mas lucky Slack
-mas lucky Banktivity
+# mas lucky Slack
+# mas lucky Banktivity
 
 # Add sublime command
 ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl

@@ -153,7 +153,6 @@ brew install cryptomator
 # brew install noisy
 
 # Install dev tools
-brew install gh
 # brew install mysql
 # brew install postgresql
 # brew install beanstalkd
