@@ -117,21 +117,21 @@ brew install p7zip
 brew install speedtest-cli
 brew install ssh-copy-id
 brew install pandoc # convert doc files
-brew install bat #better cat
+brew install bat # better cat
 brew install gh
 brew install git-town
 brew install htop
 brew install mackup
-brew install innotop #innodb top cmd
+brew install innotop # innodb top cmd
 brew install mycli
 brew install mas
-brew install pv #pipeviewer
-brew install watch #watcher
-brew install jq #json bash processor
+brew install pv # pipeviewer
+brew install watch # watcher
+brew install jq # json bash processor
 # brew install fastlane #build ios apps
 # brew install cocoapods #ios dependencies
-brew tap AlexanderWillner/tap
-brew install things.sh
+# brew tap AlexanderWillner/tap
+# brew install things.sh
 brew install just
 #brew tap git-time-metric/gtm
 #brew install gtm
@@ -147,6 +147,10 @@ brew install just
 # brew install webkit2png
 # brew install zopfli
 # brew install xpdf
+
+# Install privacy utils
+brew install cryptomator
+# brew install noisy
 
 # Install dev tools
 brew install gh

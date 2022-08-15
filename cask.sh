@@ -17,7 +17,7 @@ brew install qlmarkdown # Add quicklook view for markdown files
 brew install spectacle
 #brew install sequel-pro
 brew install vlc
-brew install anaconda
+# brew install anaconda
 brew install sublime-text
 brew install the-unarchiver
 #brew install flux
@@ -32,6 +32,7 @@ brew install the-unarchiver
 #brew install docker
 #brew install https://raw.githubusercontent.com/Mortennn/Dozer/master/dozer.rb
 #brew install sandman
+brew install tribler # Download and watch videos
 
 # Install apps from App Store
 mas lucky Things3
