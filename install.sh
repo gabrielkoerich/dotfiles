@@ -128,6 +128,8 @@ brew install mas
 brew install pv # pipeviewer
 brew install watch # watcher
 brew install jq # json bash processor
+brew install neofetch # Awesome system info
+brew install utm # VM for M1
 # brew install fastlane #build ios apps
 # brew install cocoapods #ios dependencies
 # brew tap AlexanderWillner/tap
@@ -149,8 +151,13 @@ brew install just
 # brew install xpdf
 
 # Install privacy utils
-brew install cryptomator
-# brew install noisy
+brew install cryptomator # Encrypt iCloud/Dropbox folders
+brew install maclaunch # Check launch agents
+brew install knockknock # See what's persistently installed on your Mac.
+brew install blockblock # Block/notify launch agents
+brew install security-growler # Notify security events
+brew install lulu # Block outgoing connections, little-snitch alternative
+brew install do-not-disturb # https://objective-see.org/products/dnd.html
 
 # Install dev tools
 # brew install mysql

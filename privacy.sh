@@ -1198,6 +1198,11 @@ echo '--- Disable using extended quarantine attribute on downloaded files (disab
 sudo defaults write com.apple.LaunchServices 'LSQuarantine' -bool NO
 # ----------------------------------------------------------
 
+# https://github.com/el1t/uBlock-Safari/wiki/Disable-hyperlink-auditing-beacon
+echo '--- Disable hyperlink auditing beacon'
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled -bool false
+defaults write com.apple.SafariTechnologyPreview com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled -bool false
+# ----------------------------------------------------------
 
 echo 'Your privacy and security is now hardened 🎉💪'
 echo 'Press any key to exit.'
