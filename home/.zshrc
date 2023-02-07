@@ -48,7 +48,6 @@ ZSH_THEME="jcl"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     git
-    macports
     node
     macos
     command-time
