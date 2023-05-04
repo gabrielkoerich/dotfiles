@@ -7,6 +7,15 @@ brew install brew-php-switcher
 #brew install
 #brew install mongodb-community
 
+# Install dev tools
+# brew install mysql
+# brew install postgresql
+# brew install beanstalkd
+brew install redis
+
+# Launch Redis on mac starts
+# ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/*
+
 # PHP Configs
 # cp ./config/php-memory-limits.ini /usr/local/etc/php/7.4/conf.d/php-memory-limits.ini
 # cp ./config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini
@@ -24,7 +33,7 @@ brew install brew-php-switcher
 
 # brew tap kabel/php-ext
 # brew install php-imap
-#
+
 # Install composer
 curl -sS https://getcomposer.org/installer | php
 

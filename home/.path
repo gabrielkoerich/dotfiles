@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Loading .path"
+
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/anaconda3/bin:$PATH"
@@ -9,5 +11,6 @@ export PATH="/usr/local/opt/mysql/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
-export PATH="$HOME/.nvm:$PATH"
+# export PATH="$HOME/.nvm:$PATH"

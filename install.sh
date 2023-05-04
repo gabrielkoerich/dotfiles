@@ -51,25 +51,9 @@ brew install grep
 brew install openssh
 brew install screen
 
-# Install Python and usefull stuff
-brew install pkg-config libffi openssl python
-# env LDFLAGS="-L$(brew --prefix openssl)/lib" CFLAGS="-I$(brew --prefix openssl)/include" pip install cryptography==1.9
-# pip install stronghold
-pip install jupyterlab
-pip install bt
-pip install sanpy
-# pip install qgrid
-pip install jupyterlab_materialdarker
-pip install -U quandl numpy pandas fbprophet matplotlib pytrends pystan
-# jupyter nbextension enable --py --sys-prefix qgrid
-# jupyter nbextension enable --py --sys-prefix widgetsnbextension
-# jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
-# jupyter labextension install @jupyter-widgets/jupyterlab-manager
-# jupyter labextension install qgrid
-
 # Install R and stuff
-brew install r
-Rscript -e 'install.packages("reticulate")'
+# brew install r
+# Rscript -e 'install.packages("reticulate")'
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -119,11 +103,11 @@ brew install ssh-copy-id
 brew install pandoc # convert doc files
 brew install bat # better cat
 brew install gh
-brew install git-town
+brew install git-town # git workflows
 brew install htop
 brew install mackup # app backups to cloud
 brew install innotop # innodb top cmd
-brew install mycli
+# brew install mycli #mysql client
 brew install mas
 brew install pv # pipeviewer
 brew install watch # watcher
@@ -146,26 +130,7 @@ brew install just # Just command runner
 # brew install vbindiff
 # brew install webkit2png
 # brew install zopfli
-# brew install xpdf
 brew install maclaunch # Check launch agents
-
-# Install dev tools
-# brew install mysql
-# brew install postgresql
-# brew install beanstalkd
-brew install redis
-
-# Launch Redis on mac starts
-# ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents/*
-
-# Install node, npm, yarn
-brew install nvm
-nvm install 16
-nvm use 16
-# npm -g install yarn
-# React Native:
-# npm -g install expo-cli
-# npm -g install ios-deploy
 
 # Install and configure Tmux
 brew install tmux
