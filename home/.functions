@@ -284,3 +284,7 @@ function autotag() {
     fi
 }
 
+function info() {
+    neofetch
+    curl https://am.i.mullvad.net/json | jq
+}
