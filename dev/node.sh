@@ -8,3 +8,5 @@ nvm use node # Use the latest version
 # React Native:
 # npm -g install expo-cli
 # npm -g install ios-deploy
+#
+curl -fsSL https://bun.sh/install | bash

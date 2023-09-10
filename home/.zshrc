@@ -72,3 +72,10 @@ unset file;
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+# set +H
+# set +o histexpand
+# set histchars = ''
+# histchars=""
+# unsetopt banghist
+
