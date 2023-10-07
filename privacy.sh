@@ -608,8 +608,8 @@ defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
 # ----------------------------------------------------------
 # ----------------Disable Spotlight indexing----------------
 # ----------------------------------------------------------
-echo '--- Disable Spotlight indexing'
-sudo mdutil -i off -d /
+# echo '--- Disable Spotlight indexing'
+# sudo mdutil -i on -d /
 # ----------------------------------------------------------
 
 
