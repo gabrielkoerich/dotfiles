@@ -1,4 +1,4 @@
-echo "Loading .zprofile"
+# echo "Loading .zprofile"
 
 export NVM_DIR="$HOME/.nvm"
 
