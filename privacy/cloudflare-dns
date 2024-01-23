@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-https://blog.smittytone.net/2022/05/07/how-to-do-dns-over-https-on-macos/
+# https://blog.smittytone.net/2022/05/07/how-to-do-dns-over-https-on-macos/
 
 mkdir /usr/local/etc/cloudflared
 
@@ -8,3 +8,5 @@ echo "proxy-dns: true
 proxy-dns-upstream:
   - https://1.1.1.1/dns-query
   - https://8.8.8.8/dns-query" > /usr/local/etc/cloudflared/config.yaml
+
+sudo cloudflared service install
