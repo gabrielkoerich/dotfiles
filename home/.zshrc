@@ -43,6 +43,12 @@ ZSH_THEME="jcl"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Load Justfile auto complete
+# Init Homebrew, which adds environment variables
+eval "$(brew shellenv)"
+
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
