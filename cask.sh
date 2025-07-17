@@ -12,7 +12,7 @@ brew install imageoptim
 #brew install java
 # brew install postman
 brew install qlmarkdown # Add quicklook view for markdown files
-brew install spectacle # Window shortcuts
+# brew install spectacle # Window shortcuts
 brew install vlc
 brew install the-unarchiver
 # brew install sublime-text
