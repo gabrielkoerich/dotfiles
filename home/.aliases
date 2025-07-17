@@ -54,9 +54,6 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 alias c="clear"
-alias chrome="/usr/bin/open -a /Applications/Google Chrome.app"
-alias safari="open /Applications/Safari.app"
-alias jup="jupyter lab ~/Projects/quant"
 
 colorflag="-G"
 

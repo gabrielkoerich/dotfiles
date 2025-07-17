@@ -93,7 +93,6 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
-brew install dark-mode
 brew install git
 brew install git-extras
 brew install imagemagick --with-webp
@@ -103,12 +102,12 @@ brew install ssh-copy-id
 brew install pandoc # convert doc files
 brew install bat # better cat
 brew install gh
-brew install git-town # git workflows
+# brew install git-town # git workflows
 brew install htop
 brew install mackup # app backups to cloud
 brew install innotop # innodb top cmd
 # brew install mycli #mysql client
-brew install mas
+# brew install mas
 brew install pv # pipeviewer
 brew install watch # watcher
 brew install jq # json bash processor

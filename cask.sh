@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
 # Install brew cask and apps
-brew install authy
+# brew install authy
 brew install alfred
 brew install iterm2
-brew install caffeine
+# brew install caffeine
 # brew install cakebrew
-brew install dropbox
 brew install discord
 brew install github
-brew install google-chrome
 brew install imageoptim
 #brew install java
 # brew install postman
@@ -17,7 +15,10 @@ brew install qlmarkdown # Add quicklook view for markdown files
 brew install spectacle # Window shortcuts
 brew install vlc
 brew install the-unarchiver
-brew install sublime-text
+# brew install sublime-text
+brew install zed
+brew tap kardolus/chatgpt-cli
+brew install kardolus/chatgpt-cli
 
 # Install privacy utils
 brew install cryptomator # Encrypt iCloud/Dropbox folders
@@ -42,15 +43,15 @@ brew install keepassxc # https://keepassxc.org
 #brew install tribler # Download and watch videos
 
 # Install apps from App Store
-mas lucky Things3
+# mas lucky Things3
 # mas lucky Bear
 # mas lucky Wallcat
-mas lucky Dato
-mas lucky Pandan
-mas lucky Whatsapp
+# mas lucky Dato
+# mas lucky Pandan
+# mas lucky Whatsapp
 # mas lucky Slack
 # mas lucky Banktivity
 
 # Add sublime command
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
-ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
+# ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
+# ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/sublime
