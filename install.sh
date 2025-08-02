@@ -55,12 +55,6 @@ brew install screen
 # brew install r
 # Rscript -e 'install.packages("reticulate")'
 
-# Install font tools.
-brew tap bramstein/webfonttools
-brew install sfnt2woff
-brew install sfnt2woff-zopfli
-brew install woff2
-
 # Install some CTF tools; see https://github.com/ctfs/write-ups.
 sudo ln -s /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport /usr/local/sbin/airport
 brew install aircrack-ng
@@ -92,7 +86,7 @@ brew install xpdf
 brew install xz
 
 # Install other useful binaries.
-brew install ack
+brew install ack # Search for PATTERN in each source file in the tree from the current.
 brew install git
 brew install git-extras
 brew install imagemagick --with-webp
@@ -105,13 +99,12 @@ brew install gh
 # brew install git-town # git workflows
 brew install htop
 brew install mackup # app backups to cloud
-brew install innotop # innodb top cmd
+# brew install innotop # innodb top cmd
 # brew install mycli #mysql client
 # brew install mas
 brew install pv # pipeviewer
 brew install watch # watcher
 brew install jq # json bash processor
-brew install neofetch # Awesome system info
 # brew install utm # VM for M1
 # brew install fastlane #build ios apps
 # brew install cocoapods #ios dependencies
@@ -129,7 +122,11 @@ brew install just # Just command runner
 # brew install vbindiff
 # brew install webkit2png
 # brew install zopfli
-brew install maclaunch # Check launch agents
+# brew install maclaunch # Check launch agents
+
+# Mac alternative for neofetch / info
+brew tap gantoreno/macfetch
+brew install macfetch
 
 # Install and configure Tmux
 brew install tmux
