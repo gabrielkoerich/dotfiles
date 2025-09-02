@@ -87,59 +87,52 @@ brew install tcptrace
 brew install ucspi-tcp # `tcpserver` etc.
 brew install xpdf
 brew install xz
+brew install shadowsocks-rust # proxy socks5 server/client
+# brew install shadowsocks-libev # deprecated
 
 # Install other useful binaries.
 brew install ack # Search for PATTERN in each source file in the tree from the current.
 brew install bat # better cat
+brew install gemini-cli
+brew install kardolus/chatgpt-cli/chatgpt-cli
 brew install gh # github
 brew install git
 brew install git-extras
 brew install gs # ghostscript for PDFs
+brew install gzip
 brew install htop
 brew install imagemagick --with-webp
 brew install jq # json bash processor
 brew install just # Just command runner
 brew install mackup # app backups to cloud
+brew install maclaunch # Check launch agents
 brew install nvim # neovim
 brew install p7zip
-brew install gzip
 brew install pandoc # convert doc files
+brew install pass # Password manager
+brew install pinentry-mac
+brew install jorgelbg/tap/pinentry-touchid
 brew install pv # pipeviewer
 brew install speedtest-cli
 brew install ssh-copy-id
 brew install talib # technical analysis lib
 brew install tree
 brew install watch # watcher
-brew install gemini-cli
+brew install gantoreno/macfetch/macfetch # Mac alternative for neofetch / info
 
-# Install R and stuff
-# brew install r
-# Rscript -e 'install.packages("reticulate")'
-# brew install git-town # git workflows
-# brew install innotop # innodb top cmd
-# brew install mycli #mysql client
-# brew install mas
-# brew install utm # VM for M1
-# brew install fastlane #build ios apps
-# brew install cocoapods #ios dependencies
-# brew tap AlexanderWillner/tap
-# brew install things.sh
+# Fix penetry mac alias
+pinentry-touchid -fix
+# Don't save password on keychain
+defaults write org.gpgtools.common UseKeychain -bool yes
+
+# brew install utm # VM for ARM Macs
 # brew install testssl
-# brew install git-lfs
 # brew install lua
-# brew install lynx
-# brew install pigz
 # brew install pv
 # brew install rename
-# brew install tree
 # brew install vbindiff
 # brew install webkit2png
 # brew install zopfli
-# brew install maclaunch # Check launch agents
-
-# Mac alternative for neofetch / info
-brew tap gantoreno/macfetch
-brew install macfetch
 
 # Install and configure Tmux
 brew install tmux
