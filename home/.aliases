@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-alias zshconfig="nano ~/.zshrc"
-alias ohmyzsh="nano ~/.oh-my-zsh"
+alias zshconfig="zed ~/.zshrc"
+alias ohmyzsh="zed ~/.oh-my-zsh"
 alias nah="git reset --hard; git clean -df;"
 alias pubkey="/bin/cat ~/.ssh/id_rsa.pub | pbcopy"
+alias python="python3"
+alias pip="pip3"
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -13,7 +15,6 @@ alias .....="cd ../../../.."
 alias -- -="cd -"
 
 # Shortcuts
-alias dropbox="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
@@ -52,18 +53,22 @@ alias week='date +%V'
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
-# Get macOS Software Updates, and update composer, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; sudo npm install npm -g; sudo npm update -g;'
+# Get macOS Software Updates and Homebrew
+alias update='brew update; brew upgrade; brew cleanup;sudo softwareupdate -i -a'
 
 # IP addresses
 alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
 alias localip="ipconfig getifaddr en0"
 alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 alias ports="sudo lsof -P -i TCP -s TCP:LISTEN"
+alias ipinfo="curl -s https://am.i.mullvad.net/json | jq"
+
+# Show active network interfaces
+alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
 
 # Flush Directory Service cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
-alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; say DNS cache flushed"
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder && say DNS cache flushed"
+alias flushdns="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder && say DNS cache flushed"
 
 # Clean up LaunchServices to remove duplicates in the “Open With” menu
 alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
@@ -108,9 +113,9 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
-# Merge PDF files
-# Usage: `mergepdf -o output.pdf input{1,2,3}.pdf`
-alias mergepdf='/System/Library/Automator/Combine\ PDF\ Pages.action/Contents/Resources/join.py'
+# Merge PDF files, preserving hyperlinks
+# Usage: `mergepdf input{1,2,3}.pdf`
+alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
 
 # Disable Spotlight
 alias spotoff="sudo mdutil -a -i off"
@@ -119,6 +124,9 @@ alias spoton="sudo mdutil -a -i on"
 
 # PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
+
+# Airport CLI alias
+alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
 # Ring the terminal bell, and put a badge on Terminal.app’s Dock icon
 # (useful when executing time-consuming commands)
@@ -133,10 +141,6 @@ alias map="xargs -n1"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$method"="lwp-request -m '$method'"
 done
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -155,63 +159,24 @@ alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk 
 
 alias weather="curl -s https://wttr.in/Florianopolis | head -7"
 
-alias pr="gh pr create --base master --head develop --fill"
-alias wtf="git add -A && git commit -m $(curl --silent --fail https://whatthecommit.com/index.txt)"
-
-alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
-
-alias pg="pg_ctl -D /usr/local/var/postgres"
-
-alias python="python3"
-alias pip="pip3"
-
 # backup files and remove aliases using Mackup
 alias backup="mackup backup --force && mackup uninstall --force"
 
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
 
+# Open Docker
+alias dock='open -a Docker'
+
+alias sol1.17='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/1.17.1/solana-release ~/.local/share/solana/install/active_release'
+alias sol2='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/2.1.2/solana-release ~/.local/share/solana/install/active_release'
+
+# alias pr="gh pr create --base master --head develop --fill"
+# alias wtf="git add -A && git commit -m $(curl --silent --fail https://whatthecommit.com/index.txt)"
+
+# alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
+# alias pg="pg_ctl -D /usr/local/var/postgres"
 # kill postgress stuck pid
 #alias restart-postgres="rm -f /usr/local/var/postgres/postmaster.pid && brew services stop postgresql && brew services start postgresql"
 
-alias git-delete-branches='git branch | grep -v "master" | xargs git branch -d'
-
-# PHP/Laravel stuff
-
-alias 8.0-cli="brew-php-switcher 8.0 -s=apache"
-alias 7.4-cli="brew-php-switcher 7.4 -s=apache"
-alias 7.2='brew-php-switcher 7.2 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.2/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.2 --force '
-alias 7.3='brew-php-switcher 7.3 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.3/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.3 --force '
-alias 7.4='brew-php-switcher 7.4 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/7.4/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@7.4 --force '
-alias 8.0='brew-php-switcher 8.0 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/8.0/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@8.0 --force '
-alias 8.1='brew-php-switcher 8.1 -s=apache && cp ~/Projects/dotfiles/config/php-memory-limits.ini /opt/homebrew/etc/php/8.1/conf.d/php-memory-limits.ini && php -v && php -i | grep memory_limit && valet use php@8.1 --force '
-
-alias test="php artisan test --stop-on-failure"
-alias artisan="php artisan"
-alias art="php artisan"
-alias tinker="php artisan tinker"
-alias migrate="php artisan migrate"
-alias rollback="php artisan migrate:rollback"
-
-# Run commands in vendor directory, checking if /laravel exists
-function vendorr() {
-    if [ $# -eq 0 ]; then
-        echo "No command provided";
-
-        return 1;
-    fi
-
-    if [ -d laravel ]; then
-        if [[ $1 == "--subshell" ]]; then
-            (cd laravel && vendor/bin/"$2" "${@:3}")
-        else
-            laravel/vendor/bin/"$1" "${@:2}"
-        fi
-    else
-        vendor/bin/"$1" "${@:2}"
-    fi
-}
-
-alias sail="vendorr sail"
-alias phpstan="vendorr phpstan"
-alias phpunit="vendorr phpunit"
-alias cs="vendorr php-cs-fixer fix --allow-risky=yes"
-alias vapor="vendorr --subshell vapor"
+# alias git-delete-branches='git branch | grep -v "main" | xargs git branch -d'

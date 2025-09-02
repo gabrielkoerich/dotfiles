@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 # https://privacy.sexy — v0.11.4 — Mon, 15 Aug 2022 06:04:02 GMT
+
+# Ask for the administrator password upfront
+sudo -v
+
 if [ "$EUID" -ne 0 ]; then
     script_path=$([[ "$0" = /* ]] && echo "$0" || echo "$PWD/${0#./}")
     sudo "$script_path" || (
@@ -8,7 +12,6 @@ if [ "$EUID" -ne 0 ]; then
     )
     exit 0
 fi
-
 
 # ----------------------------------------------------------
 # --------------------Clear bash history--------------------
@@ -25,44 +28,6 @@ echo '--- Clear zsh history'
 rm -f ~/.zsh_history
 # ----------------------------------------------------------
 
-
-# ----------------------------------------------------------
-# --------------------Clear Adobe cache---------------------
-# ----------------------------------------------------------
-echo '--- Clear Adobe cache'
-sudo rm -rfv ~/Library/Application\ Support/Adobe/Common/Media\ Cache\ Files/* &>/dev/null
-# ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
-# --------------------Clear Gradle cache--------------------
-# ----------------------------------------------------------
-echo '--- Clear Gradle cache'
-if [ -d "/Users/${HOST}/.gradle/caches" ]; then
-    rm -rfv ~/.gradle/caches/ &> /dev/null
-fi
-# ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
-# -------------------Clear Dropbox cache--------------------
-# ----------------------------------------------------------
-echo '--- Clear Dropbox cache'
-if [ -d "/Users/${HOST}/Dropbox" ]; then
-    sudo rm -rfv ~/Dropbox/.dropbox.cache/* &>/dev/null
-fi
-# ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
-# -----------Clear Google Drive file stream cache-----------
-# ----------------------------------------------------------
-echo '--- Clear Google Drive file stream cache'
-killall "Google Drive File Stream"
-rm -rfv ~/Library/Application\ Support/Google/DriveFS/[0-9a-zA-Z]*/content_cache &>/dev/null
-# ----------------------------------------------------------
-
-
 # ----------------------------------------------------------
 # -------------------Clear Composer cache-------------------
 # ----------------------------------------------------------
@@ -71,7 +36,6 @@ if type "composer" &> /dev/null; then
     composer clearcache &> /dev/null
 fi
 # ----------------------------------------------------------
-
 
 # ----------------------------------------------------------
 # -------------------Clear Homebrew cache-------------------
@@ -243,26 +207,6 @@ echo '--- Purge inactive memory'
 sudo purge
 # ----------------------------------------------------------
 
-
-# ----------------------------------------------------------
-# ----------------Disable Firefox telemetry-----------------
-# ----------------------------------------------------------
-echo '--- Disable Firefox telemetry'
-# Enable Firefox policies so the telemetry can be configured.
-sudo defaults write /Library/Preferences/org.mozilla.firefox EnterprisePoliciesEnabled -bool TRUE
-# Disable sending usage data
-sudo defaults write /Library/Preferences/org.mozilla.firefox DisableTelemetry -bool TRUE
-# ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
-# ----Disable Microsoft Office diagnostics data sending-----
-# ----------------------------------------------------------
-echo '--- Disable Microsoft Office diagnostics data sending'
-defaults write com.microsoft.office DiagnosticDataTypePreference -string ZeroDiagnosticData
-# ----------------------------------------------------------
-
-
 # ----------------------------------------------------------
 # -----------------Uninstall Google update------------------
 # ----------------------------------------------------------
@@ -275,7 +219,6 @@ else
     echo Google update file does not exist
 fi
 # ----------------------------------------------------------
-
 
 # ----------------------------------------------------------
 # ---------Disable Homebrew user behavior analytics---------
@@ -295,7 +238,6 @@ do
 done
 # ----------------------------------------------------------
 
-
 # ----------------------------------------------------------
 # --------------Disable NET Core CLI telemetry--------------
 # ----------------------------------------------------------
@@ -314,26 +256,6 @@ do
 done
 # ----------------------------------------------------------
 
-
-# ----------------------------------------------------------
-# ------------Disable PowerShell Core telemetry-------------
-# ----------------------------------------------------------
-echo '--- Disable PowerShell Core telemetry'
-command='export POWERSHELL_TELEMETRY_OPTOUT=1'
-declare -a profile_files=("$HOME/.bash_profile" "$HOME/.zprofile")
-for profile_file in "${profile_files[@]}"
-do
-    touch "$profile_file"
-    if ! grep -q "$command" "${profile_file}"; then
-        echo "$command" >> "$profile_file"
-        echo "[$profile_file] Configured"
-    else
-        echo "[$profile_file] No need for any action, already configured"
-    fi
-done
-# ----------------------------------------------------------
-
-
 # ----------------------------------------------------------
 # ---------Deactivate the Remote Management Service---------
 # ----------------------------------------------------------
@@ -349,7 +271,7 @@ echo '--- Remove Apple Remote Desktop Settings'
 sudo rm -rf /var/db/RemoteManagement
 sudo defaults delete /Library/Preferences/com.apple.RemoteDesktop.plist
 defaults delete ~/Library/Preferences/com.apple.RemoteDesktop.plist
-sudo rm -r /Library/Application\ Support/Apple/Remote\ Desktop/ 
+sudo rm -r /Library/Application\ Support/Apple/Remote\ Desktop/
 rm -r ~/Library/Application\ Support/Remote\ Desktop/
 rm -r ~/Library/Containers/com.apple.RemoteDesktop
 # ----------------------------------------------------------
@@ -366,32 +288,32 @@ defaults write com.apple.assistant.support 'Siri Data Sharing Opt-In Status' -in
 # ----------------------------------------------------------
 # --------------------Disable "Ask Siri"--------------------
 # ----------------------------------------------------------
-echo '--- Disable "Ask Siri"'
-defaults write com.apple.assistant.support 'Assistant Enabled' -bool false
+# echo '--- Disable "Ask Siri"'
+# defaults write com.apple.assistant.support 'Assistant Enabled' -bool false
 # ----------------------------------------------------------
 
 
 # ----------------------------------------------------------
 # ---------------Disable Siri voice feedback----------------
 # ----------------------------------------------------------
-echo '--- Disable Siri voice feedback'
-defaults write com.apple.assistant.backedup 'Use device speaker for TTS' -int 3
+# echo '--- Disable Siri voice feedback'
+# defaults write com.apple.assistant.backedup 'Use device speaker for TTS' -int 3
 # ----------------------------------------------------------
 
 
 # ----------------------------------------------------------
 # -------Disable Siri services (Siri and assistantd)--------
 # ----------------------------------------------------------
-echo '--- Disable Siri services (Siri and assistantd)'
-launchctl disable "user/$UID/com.apple.assistantd"
-launchctl disable "gui/$UID/com.apple.assistantd"
-sudo launchctl disable 'system/com.apple.assistantd'
-launchctl disable "user/$UID/com.apple.Siri.agent"
-launchctl disable "gui/$UID/com.apple.Siri.agent"
-sudo launchctl disable 'system/com.apple.Siri.agent'
-if [ $(/usr/bin/csrutil status | awk '/status/ {print $5}' | sed 's/\.$//') = "enabled" ]; then
-    >&2 echo 'This script requires SIP to be disabled. Read more: https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection'
-fi
+# echo '--- Disable Siri services (Siri and assistantd)'
+# launchctl disable "user/$UID/com.apple.assistantd"
+# launchctl disable "gui/$UID/com.apple.assistantd"
+# sudo launchctl disable 'system/com.apple.assistantd'
+# launchctl disable "user/$UID/com.apple.Siri.agent"
+# launchctl disable "gui/$UID/com.apple.Siri.agent"
+# sudo launchctl disable 'system/com.apple.Siri.agent'
+# if [ $(/usr/bin/csrutil status | awk '/status/ {print $5}' | sed 's/\.$//') = "enabled" ]; then
+#     >&2 echo 'This script requires SIP to be disabled. Read more: https://developer.apple.com/documentation/security/disabling_and_enabling_system_integrity_protection'
+# fi
 # ----------------------------------------------------------
 
 
@@ -464,18 +386,15 @@ sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
 defaults write com.apple.security.firewall EnableStealthMode -bool true
 # ----------------------------------------------------------
 
-
 # Prevent automatically allowing incoming connections to signed apps
 echo '--- Prevent automatically allowing incoming connections to signed apps'
 sudo defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool false
 # ----------------------------------------------------------
 
-
 # Prevent automatically allowing incoming connections to downloaded signed apps
 echo '--- Prevent automatically allowing incoming connections to downloaded signed apps'
 sudo defaults write /Library/Preferences/com.apple.alf allowdownloadsignedenabled -bool false
 # ----------------------------------------------------------
-
 
 # ----------------------------------------------------------
 # -Disable remote login (incoming SSH and SFTP connections)-
@@ -500,14 +419,12 @@ echo '--- Disable Bonjour multicast advertising'
 sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
 # ----------------------------------------------------------
 
-
 # ----------------------------------------------------------
 # -------------Disable insecure telnet protocol-------------
 # ----------------------------------------------------------
 echo '--- Disable insecure telnet protocol'
 sudo launchctl disable system/com.apple.telnetd
 # ----------------------------------------------------------
-
 
 # ----------------------------------------------------------
 # --Disable sharing of local printers with other computers--
@@ -516,14 +433,12 @@ echo '--- Disable sharing of local printers with other computers'
 cupsctl --no-share-printers
 # ----------------------------------------------------------
 
-
 # ----------------------------------------------------------
 # -Disable printing from any address including the Internet-
 # ----------------------------------------------------------
 echo '--- Disable printing from any address including the Internet'
 cupsctl --no-remote-any
 # ----------------------------------------------------------
-
 
 # ----------------------------------------------------------
 # ----------Disable remote printer administration-----------
@@ -532,14 +447,12 @@ echo '--- Disable remote printer administration'
 cupsctl --no-remote-admin
 # ----------------------------------------------------------
 
-
 # ----------------------------------------------------------
 # ------------------Disable Captive portal------------------
 # ----------------------------------------------------------
 echo '--- Disable Captive portal'
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control.plist Active -bool false
 # ----------------------------------------------------------
-
 
 # ----------------------------------------------------------
 # ----Clear File Quarantine logs of all downloaded files----
@@ -600,8 +513,8 @@ defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
 # ----------------------------------------------------------
 # -------------Do not show recent items on dock-------------
 # ----------------------------------------------------------
-# echo '--- Do not show recent items on dock'
-# defaults write com.apple.dock show-recents -bool false
+echo '--- Do not show recent items on dock'
+defaults write com.apple.dock show-recents -bool false
 # ----------------------------------------------------------
 
 
@@ -816,21 +729,21 @@ sudo rm -rfv /var/log/*
 # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# -----------Clear Google Chrome browsing history-----------
-# ----------------------------------------------------------
-echo '--- Clear Google Chrome browsing history'
-rm -rfv ~/Library/Application\ Support/Google/Chrome/Default/History &>/dev/null
-rm -rfv ~/Library/Application\ Support/Google/Chrome/Default/History-journal &>/dev/null
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # -----------Clear Google Chrome browsing history-----------
+# # ----------------------------------------------------------
+# echo '--- Clear Google Chrome browsing history'
+# rm -rfv ~/Library/Application\ Support/Google/Chrome/Default/History &>/dev/null
+# rm -rfv ~/Library/Application\ Support/Google/Chrome/Default/History-journal &>/dev/null
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# ----------------Google Chrome Cache Files-----------------
-# ----------------------------------------------------------
-echo '--- Google Chrome Cache Files'
-sudo rm -rfv ~/Library/Application\ Support/Google/Chrome/Default/Application\ Cache/* &>/dev/null
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # ----------------Google Chrome Cache Files-----------------
+# # ----------------------------------------------------------
+# echo '--- Google Chrome Cache Files'
+# sudo rm -rfv ~/Library/Application\ Support/Google/Chrome/Default/Application\ Cache/* &>/dev/null
+# # ----------------------------------------------------------
 
 
 # ----------------------------------------------------------
@@ -890,10 +803,10 @@ defaults write ~/Library/Preferences/com.apple.Safari RecentSearchStrings '( )'
 # ----------------------------------------------------------
 # -------------------Clear Safari cookies-------------------
 # ----------------------------------------------------------
-echo '--- Clear Safari cookies'
-rm -f ~/Library/Cookies/Cookies.binarycookies
-# Used before Safari 5.1
-rm -f ~/Library/Cookies/Cookies.plist
+# echo '--- Clear Safari cookies'
+# rm -f ~/Library/Cookies/Cookies.binarycookies
+# # Used before Safari 5.1
+# rm -f ~/Library/Cookies/Cookies.plist
 # ----------------------------------------------------------
 
 
@@ -917,93 +830,93 @@ rm -f ~/Library/Safari/PerSitePreferences.db
 # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# -------------------Clear Firefox cache--------------------
-# ----------------------------------------------------------
-echo '--- Clear Firefox cache'
-sudo rm -rf ~/Library/Caches/Mozilla/
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/netpredictions.sqlite
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # -------------------Clear Firefox cache--------------------
+# # ----------------------------------------------------------
+# echo '--- Clear Firefox cache'
+# sudo rm -rf ~/Library/Caches/Mozilla/
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/netpredictions.sqlite
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# ---------------Delete Firefox form history----------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox form history'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/formhistory.sqlite
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/formhistory.dat
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # ---------------Delete Firefox form history----------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox form history'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/formhistory.sqlite
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/formhistory.dat
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# -------------Delete Firefox site preferences--------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox site preferences'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/content-prefs.sqlite
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # -------------Delete Firefox site preferences--------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox site preferences'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/content-prefs.sqlite
+# # ----------------------------------------------------------
 
 
-# Delete Firefox session restore data (loads after the browser closes or crashes)
-echo '--- Delete Firefox session restore data (loads after the browser closes or crashes)'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionCheckpoints.json
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore*.js*
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore.bak*
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/previous.js*
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/recovery.js*
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/recovery.bak*
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/previous.bak*
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/upgrade.js*-20*
-# ----------------------------------------------------------
+# # Delete Firefox session restore data (loads after the browser closes or crashes)
+# echo '--- Delete Firefox session restore data (loads after the browser closes or crashes)'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionCheckpoints.json
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore*.js*
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore.bak*
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/previous.js*
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/recovery.js*
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/recovery.bak*
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/previous.bak*
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/sessionstore-backups/upgrade.js*-20*
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# -----------------Delete Firefox passwords-----------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox passwords'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons.txt
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons2.txt
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons3.txt
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons.sqlite
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/logins.json
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # -----------------Delete Firefox passwords-----------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox passwords'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons.txt
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons2.txt
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons3.txt
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/signons.sqlite
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/logins.json
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# ---------------Delete Firefox HTML5 cookies---------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox HTML5 cookies'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/webappsstore.sqlite
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # ---------------Delete Firefox HTML5 cookies---------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox HTML5 cookies'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/webappsstore.sqlite
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# ---------------Delete Firefox crash reports---------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox crash reports'
-rm -rfv ~/Library/Application\ Support/Firefox/Crash\ Reports/
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/minidumps/*.dmp
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # ---------------Delete Firefox crash reports---------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox crash reports'
+# rm -rfv ~/Library/Application\ Support/Firefox/Crash\ Reports/
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/minidumps/*.dmp
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# ---------------Delete Firefox backup files----------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox backup files'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/bookmarkbackups/*.json
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/bookmarkbackups/*.jsonlz4
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # ---------------Delete Firefox backup files----------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox backup files'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/bookmarkbackups/*.json
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/bookmarkbackups/*.jsonlz4
+# # ----------------------------------------------------------
 
 
-# ----------------------------------------------------------
-# ------------------Delete Firefox cookies------------------
-# ----------------------------------------------------------
-echo '--- Delete Firefox cookies'
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.txt
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.sqlite
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.sqlite-shm
-rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.sqlite-wal
-rm -rfv ~/Library/Application\ Support/Firefox/Profiles/*/storage/default/http*
-# ----------------------------------------------------------
+# # ----------------------------------------------------------
+# # ------------------Delete Firefox cookies------------------
+# # ----------------------------------------------------------
+# echo '--- Delete Firefox cookies'
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.txt
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.sqlite
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.sqlite-shm
+# rm -fv ~/Library/Application\ Support/Firefox/Profiles/*/cookies.sqlite-wal
+# rm -rfv ~/Library/Application\ Support/Firefox/Profiles/*/storage/default/http*
+# # ----------------------------------------------------------
 
 
 # ----------------------------------------------------------
@@ -1128,7 +1041,7 @@ sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate 'AutomaticDown
 # ----------------------------------------------------------
 echo '--- Disable automatically installing macOS updates'
 # For OS X Yosemite through macOS High Sierra (>= 10.10 && < 10.14)
-sudo defaults write /Library/Preferences/com.apple.commerce 'AutoUpdateRestartRequired' -bool false
+# sudo defaults write /Library/Preferences/com.apple.commerce 'AutoUpdateRestartRequired' -bool false
 # For Mojave and later (>= 10.14)
 sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate 'AutomaticallyInstallMacOSUpdates' -bool false
 # ----------------------------------------------------------
@@ -1191,7 +1104,6 @@ find ~/Downloads        \
                 '       \
             {} \;
 # ----------------------------------------------------------
-
 
 # Disable using extended quarantine attribute on downloaded files (disables warning)
 echo '--- Disable using extended quarantine attribute on downloaded files (disables warning)'

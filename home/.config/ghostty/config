@@ -1,0 +1,88 @@
+# Shell
+shell-integration = zsh
+shell-integration-features = true
+command = /bin/zsh -l -c 'tmux new -A -s ghostty'
+confirm-close-surface = false
+
+# Font
+font-family = JetBrains Mono
+font-size = 12
+
+adjust-cell-height = 20%
+
+# Cursor
+cursor-style = block
+adjust-cursor-height = 20%
+mouse-hide-while-typing = true
+
+# Window
+title = " "
+window-width = 160
+window-height = 35
+window-step-resize = false
+# window-position-x = 0
+# window-position-y = 0
+window-padding-x = 10,10
+window-padding-y = 20,10
+window-padding-balance = false
+window-padding-color = background
+window-decoration = false
+macos-titlebar-style = transparent
+
+# Keybindings
+# keybind = global:shift+cmd+t=toggle_quick_terminal
+# keybind = global:shift+cmd+t=toggle_visibility
+keybind = cmd+right=text:\x05
+keybind = cmd+left=text:\x01
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
+
+keybind = ctrl+n=new_window
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = ctrl+a>|=new_split:left
+keybind = ctrl+a>_=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
+keybind = super+r=reload_config
+# window-save-state = always
+
+# Colors
+palette =  0=#141414
+palette =  8=#666666
+
+palette =  1=#f38ba8
+palette =  9=#f38ba8
+
+palette =  2=#a6e3a1
+palette = 10=#a6e3a1
+
+palette =  3=#f9e2af
+palette = 11=#f9e2af
+
+palette =  4=#89b4fa
+palette = 12=#89b4fa
+
+palette =  5=#cba6f7
+palette = 13=#cba6f7
+
+palette =  6=#94e2d5
+palette = 14=#94e2d5
+
+palette =  7=#cccccc
+palette = 15=#cccccc
+
+background = #000000
+background-opacity = 0.9
+background-blur = 20
+foreground = #cccccc
+cursor-color = #cccccc
+selection-background = #282828
+selection-foreground = #cccccc
+macos-icon = xray

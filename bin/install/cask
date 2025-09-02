@@ -1,45 +1,46 @@
 #!/usr/bin/env bash
 
 # Install brew cask and apps
-# brew install authy
 brew install alfred
-brew install iterm2
-# brew install caffeine
-# brew install cakebrew
 brew install discord
+brew install ghosty
 brew install github
 brew install imageoptim
-#brew install java
-# brew install postman
+brew install iterm2
 brew install qlmarkdown # Add quicklook view for markdown files
-# brew install spectacle # Window shortcuts
-brew install vlc
+brew install rectangle # Window shortcuts
 brew install the-unarchiver
-# brew install sublime-text
 brew install zed
 brew tap kardolus/chatgpt-cli
 brew install kardolus/chatgpt-cli
+# brew install authy
+# brew install caffeine
+# brew install cakebrew
+# brew install postman
+# brew install spectacle # Window shortcuts
+# brew install sublime-text
+# brew install vlc
+# brew install docker-desktop
 
 # Install privacy utils
-brew install cryptomator # Encrypt iCloud/Dropbox folders
-brew install knockknock # See what's persistently installed on your Mac.
 brew install blockblock # Block/notify launch agents
-brew install security-growler # Notify security events
-# brew install lulu # Block outgoing connections, little-snitch alternative
+brew install cryptomator # Encrypt iCloud/Dropbox folders
 brew install do-not-disturb # https://objective-see.org/products/dnd.html
-brew install taskexplorer
-brew install onyx # https://titanium-software.fr/en/onyx.html
 brew install keepassxc # https://keepassxc.org
+brew install knockknock # See what's persistently installed on your Mac.
+brew install onyx # https://titanium-software.fr/en/onyx.html
+brew install pareto-security
+brew install privileges # Ask for admin privileges
+brew install security-growler # Notify security events
+brew install taskexplorer
+#brew install lulu # Block outgoing connections, little-snitch alternative
 #brew install flux
 #brew install flycut
-#brew install steam
-#brew install keybase
 #brew install kap
 #brew install tunnelblick
 #brew install rstudio
 #brew install angry-ip-scanner
 #brew install 0ad
-#brew install docker
 #brew install tribler # Download and watch videos
 
 # Install apps from App Store

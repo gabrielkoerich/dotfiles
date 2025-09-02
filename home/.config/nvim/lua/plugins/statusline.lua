@@ -19,7 +19,7 @@ return {
     lazy = false,
     opts = {
       options = {
-        theme = 'earthbound',
+        -- theme = 'earthbound',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
       },
@@ -48,7 +48,8 @@ return {
               local filetype = vim.fn.expand('%:e')
               local icon = require('nvim-web-devicons').get_icon(filename, filetype)
 
-              return (#filename > 0 and icon or '󰈚') .. ' ' .. (string.len(filename) > 0 and filename or 'Empty')
+              return (#filename > 0 and icon or '󰈚') ..
+                  ' ' .. (string.len(filename) > 0 and filename or 'Empty')
             end,
           },
         },
@@ -102,10 +103,10 @@ return {
               vim.api.nvim_set_hl(0, 'lualine_y_icon', { fg = fg, bg = bg })
 
               return '%#lualine_y_icon#%#lualine_a_replace#'
-                .. icons.directory
-                .. '%#lualine_b_normal# '
-                .. root
-                .. ' '
+                  .. icons.directory
+                  .. '%#lualine_b_normal# '
+                  .. root
+                  .. ' '
             end,
             padding = 0,
           },
@@ -118,7 +119,8 @@ return {
 
               vim.api.nvim_set_hl(0, 'lualine_z_icon', { fg = fg, bg = bg })
 
-              return '%#lualine_z_icon#%#lualine_a_insert#' .. icons.lines .. '%#lualine_b_normal#' .. ' %p%% '
+              return '%#lualine_z_icon#%#lualine_a_insert#' ..
+                  icons.lines .. '%#lualine_b_normal#' .. ' %p%% '
             end,
             padding = 0,
           },

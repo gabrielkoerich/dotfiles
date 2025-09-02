@@ -54,9 +54,10 @@ fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     git
-    node
+    tmux
     macos
     command-time
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -84,4 +85,3 @@ unset file;
 # set histchars = ''
 # histchars=""
 # unsetopt banghist
-

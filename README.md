@@ -2,8 +2,6 @@
 
 My dotfiles, based on [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).
 
-<!-- [![.dotfiles](https://cloud.githubusercontent.com/assets/1981726/16643374/6276bd6c-43ea-11e6-9b09-3bea66ead643.png)](https://cloud.githubusercontent.com/assets/1981726/16643374/6276bd6c-43ea-11e6-9b09-3bea66ead643.png) -->
-
 This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh). If you want to change your shell to zsh, [install it](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH) and run ``chsh -s $(which zsh)``.
 
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need.
@@ -12,17 +10,17 @@ This config uses [zsh](http://www.zsh.org) and [oh-my-zsh](https://github.com/ro
 
 Read all scripts *before* executing them.
 
-1. Configure iCloud, Dropbox, SSH, Setapp, etc.
+1. Configure iCloud, SSH, etc.
 2. `git clone https://github.com/gabrielkoerich/dotfiles.git`
-3. `sh macos.sh` to configure macos
-4. `sh install.sh` to install dependencies and console apps
-5. `sh fonts.sh` to install fonts
-6. `sh cask.sh` to install cask apps
-7. `sh cron.sh` to install the schedule tasks
-8. `sh sync.sh` to sync the dotfiles
-9. Run `mackup restore` to restore app settings
+3. `just setup` to setup macos
+4. `just install brew` to install brew & dependencies
+5. `just install fonts` to install fonts
+6. `just install cask` to install cask apps
+7. `just install cron` to install the cron tasks
+8. `just sync` to sync the dotfiles to `~`
+9. Run `just restore` to restore app settings
 
-To update the dotfiles, run step 8 again.
+To sync the dotfiles, run step 8 again.
 
 ## License
 
