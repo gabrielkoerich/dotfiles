@@ -10,6 +10,11 @@ setup:
 [confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
 sync:
   #!/usr/bin/env bash
+  if [ -d "private/bin" ]; then
+    rm -Rf home/.bin/
+    rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
+  fi
+
   rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
   exec $SHELL -l
 
@@ -38,3 +43,9 @@ backup:
 [confirm("Restore mackup backup? This should be only done on a fresh install. (y/n)")]
 restore:
   mackup restore
+
+backup-test args="":
+    mackup backup --dry-run {{ args }}
+
+restore-test args="":
+    mackup restore --dry-run {{ args }}

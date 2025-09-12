@@ -10,6 +10,25 @@ function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
+
+# function sudo --description "Execute a command as another user."
+#     if [ (uname) = "Darwin" ]
+#         set --local needle "^auth\b.*\bpam_\(reattach\|tid\|watchid\)\.so\$"
+#         if ! grep $needle --silent /etc/pam.d/sudo && \
+#             [ -f /usr/local/lib/pam/pam_reattach.so* ] && \
+#             [ -f /usr/local/lib/pam/pam_watchid.so* ]
+#         command sudo sh -c "
+#         cat << EOF >/etc/pam.d/sudo
+# auth optional pam_reattach.so
+# auth sufficient pam_tid.so
+# auth sufficient pam_watchid.so
+# \$(grep -v '$needle' /etc/pam.d/sudo)
+# EOF"; or return $status
+#         end
+#     end
+#     command sudo $argv
+# end
+
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
     local tmpFile="${@%/}.tar";

@@ -62,6 +62,19 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+
+# Touch ID for sudo
+# From: https://news.ycombinator.com/item?id=26304832
+# https://gist.github.com/windyinsc/26aaa8783c7734529998062a11d80b96
+# https://sixcolors.com/post/2023/08/in-macos-sonoma-touch-id-for-sudo-can-survive-updates/
+function sudo() {
+    unset -f sudo
+    if [[ "$(uname)" == 'Darwin' ]] && ! grep 'pam_tid.so' /etc/pam.d/sudo --silent; then
+        sudo sed -i -e '1s;^;auth       sufficient     pam_tid.so\n;' /etc/pam.d/sudo
+    fi
+    sudo "$@"
+}
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
