@@ -34,7 +34,6 @@ brew install pkg-config
 brew install openssl
 brew install cmake
 brew install gcc
-brew install python
 
 # Install zsh
 brew install zsh
@@ -102,6 +101,7 @@ brew install gzip
 brew install htop
 brew install imagemagick --with-webp
 brew install jq # json bash processor
+brew install yq # YAML, JSON, XML, CSV bash processor
 brew install just # Just command runner
 brew install mackup # app backups to cloud
 brew install maclaunch # Check launch agents

@@ -2,6 +2,7 @@
 .bin
 .build
 .extra
+.gitconfig
 .private
 aerospace
 build
