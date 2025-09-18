@@ -40,7 +40,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1;
 
 export HOMEBREW_NO_ANALYTICS=1 # Disable Homebrew user behavior analytics
 
-export socks_proxy=`scutil --proxy | awk '\
+socks_proxy=`scutil --proxy | awk '\
   /SOCKSEnable/ { enabled = $3; } \
   /SOCKSProxy/ { server = $3; } \
   /SOCKSPort/ { port = $3; } \

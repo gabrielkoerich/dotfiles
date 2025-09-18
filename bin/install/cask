@@ -21,15 +21,23 @@ brew install passepartout # Multi VPN Client
 # brew install sublime-text
 # brew install vlc
 # brew install docker-desktop
+# brew install angry-ip-scanner # Network scanner, deprecated
+# brew install kap # Open-source screen recorder built with web technology
+# brew install tunnelblick # Free and open-source OpenVPN client
+# brew install rstudio # Data science software focusing on R and Python
+# brew install 0-ad # Real-time strategy game https://play0ad.com
+# brew install tribler # Download and watch videos
 
 # Install security utils
 brew install cryptomator
-brew install privileges
-brew install pareto-security
 brew install keepassxc
-brew install knockknock # See what's persistently installed https://objective-see.org/products/knockknock.html
+brew install knockknock # See what's persistently installed
 brew install little-snitch # Firewall for apps (lulu + nettiquete)
 brew install micro-snitch # Monitors and reports any microphone and camera activity
+brew install pareto-security
+brew install privileges
+brew install pearcleaner
+brew install alienator88-sentinel
 # brew install blockblock # Block/notify launch agents
 # brew install do-not-disturb # https://objective-see.org/products/dnd.html
 # brew install onyx # https://titanium-software.fr/en/onyx.html CleanMyMac Alternative?
@@ -38,11 +46,3 @@ brew install micro-snitch # Monitors and reports any microphone and camera activ
 # brew install taskexplorer # https://objective-see.org/products/taskexplorer.html
 # brew install lulu # Block network connections, little-snitch alternative
 # brew install netiquette # Check network connections, little-snitch alternative
-# brew install flux # Screen colour temperature controller
-# brew install flycut # Clipboard manager
-# brew install kap # Open-source screen recorder built with web technology
-# brew install tunnelblick # Free and open-source OpenVPN client
-# brew install rstudio # Data science software focusing on R and Python
-# brew install angry-ip-scanner # Network scanner, deprecated
-# brew install 0-ad # Real-time strategy game https://play0ad.com
-# brew install tribler # Download and watch videos

@@ -35,7 +35,6 @@ brew install openssl
 brew install cmake
 brew install gcc
 brew install python
-brew install poetry
 
 # Install zsh
 brew install zsh
@@ -87,7 +86,7 @@ brew install tcptrace
 brew install ucspi-tcp # `tcpserver` etc.
 brew install xpdf
 brew install xz
-brew install shadowsocks-rust # proxy socks5 server/client
+# brew install shadowsocks-rust # proxy socks5 server/client
 # brew install shadowsocks-libev # deprecated
 
 # Install other useful binaries.

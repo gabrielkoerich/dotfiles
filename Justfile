@@ -3,10 +3,12 @@ set dotenv-load
 _default:
   just --list
 
+# Run macos setup
 [confirm("Setup Mac? This should be only done on a fresh install. (y/n)")]
 setup:
   ./macos
 
+# Sync dotfiles to home directory
 [confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
 sync:
   #!/usr/bin/env bash
@@ -32,20 +34,28 @@ _cask:
 
 [confirm("Install cron jobs? (y/n)")]
 _cron:
-  ./bin/install/cron
+  ./private/install/cron
 
+# Install <target>, options: [brew, fonts, cask, cron]
 install target:
   just _{{ target }} || echo "Invalid install"
 
+# Run mackup backup & uninstall due to https://github.com/lra/mackup/issues/1924#issuecomment-1743072813
+[confirm("Run mackup backup & uninstall? (y/n)")]
 backup:
   mackup backup --force && mackup uninstall --force
 
+# Restore mackup backup
 [confirm("Restore mackup backup? This should be only done on a fresh install. (y/n)")]
 restore:
   mackup restore
 
-backup-test args="":
+_backup-test args="":
     mackup backup --dry-run {{ args }}
 
-restore-test args="":
+_restore-test args="":
     mackup restore --dry-run {{ args }}
+
+# Test mackup, options [backup, restore]
+test target args="":
+    just _{{ target }}-test {{ args }}  || echo "Invalid test"
