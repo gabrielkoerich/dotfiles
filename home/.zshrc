@@ -3,14 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="jcl"
-
-# ZSH_THEME_RANDOM_CANDIDATES=(
-  # "jcl"
-  # "agnoster"
-# )
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -43,10 +36,6 @@ ZSH_THEME="jcl"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Load Justfile auto complete
-# Init Homebrew, which adds environment variables
-eval "$(brew shellenv)"
-
 fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -61,7 +50,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
 
 # Touch ID for sudo
 # From: https://news.ycombinator.com/item?id=26304832
@@ -83,16 +71,19 @@ for file in ~/.{path,exports,aliases,functions,extra,private}; do
 done;
 unset file;
 
+# Load Justfile auto complete
+# Init Homebrew, which adds environment variables
+eval "$(brew shellenv)"
+
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
 # set +H
 # set +o histexpand
 # set histchars = ''
