@@ -56,6 +56,10 @@ else
     unset https_proxy
 fi
 
+# Load Justfile auto complete
+# Init Homebrew, which adds environment variables
+eval "$(brew shellenv)"
+
 export NVM_DIR="$HOME/.nvm"
 
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm

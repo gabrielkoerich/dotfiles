@@ -18,13 +18,13 @@ ZSH_THEME="jcl"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
@@ -34,7 +34,7 @@ ZSH_THEME="jcl"
 # Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
 # yyyy-mm-dd
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 
@@ -70,10 +70,6 @@ for file in ~/.{path,exports,aliases,functions,extra,private}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-# Load Justfile auto complete
-# Init Homebrew, which adds environment variables
-eval "$(brew shellenv)"
 
 # # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
