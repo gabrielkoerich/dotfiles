@@ -57,9 +57,10 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 alias update='brew update; brew upgrade; brew cleanup;sudo softwareupdate -i -a'
 
 # IP addresses
-alias ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
-alias localip="ipconfig getifaddr en0"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
+alias ip="curl -sf https://am.i.mullvad.net/ip"
+alias dns-ip="dig -4 TXT +short o-o.myaddr.l.google.com @ns1.google.com"
+alias local-ip="ipconfig getifaddr en0"
+alias local-ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 alias ports="sudo lsof -P -i TCP -s TCP:LISTEN"
 alias ipinfo="echo 'mullvad:' && curl -s https://am.i.mullvad.net/json | jq && echo 'ipinfo:' && curl -s https://ipinfo.io | jq && echo 'ipleak:' && curl -s https://ipleak.net/json/ | jq"
 

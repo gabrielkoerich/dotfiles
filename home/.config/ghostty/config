@@ -16,12 +16,12 @@ adjust-cursor-height = 20%
 mouse-hide-while-typing = true
 
 # Window
-title = " "
-window-width = 160
+# title = " "
+window-width = 135
 window-height = 35
 window-step-resize = false
-# window-position-x = 0
-# window-position-y = 0
+# window-position-x = 40
+# window-position-y = 40
 window-padding-x = 10,10
 window-padding-y = 20,10
 window-padding-balance = false
@@ -30,7 +30,7 @@ window-decoration = false
 macos-titlebar-style = transparent
 
 # Keybindings
-# keybind = global:shift+cmd+t=toggle_quick_terminal
+keybind = global:ctrl+cmd+t=toggle_quick_terminal
 # keybind = global:shift+cmd+t=toggle_visibility
 keybind = cmd+right=text:\x05
 keybind = cmd+left=text:\x01

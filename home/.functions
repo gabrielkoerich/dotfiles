@@ -10,6 +10,9 @@ function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
+function jq-table(){
+     jq -r '(.[0] | ([keys[] | .] |(., map(length*"-")))), (.[] | ([keys[] as $k | .[$k]])) | @tsv' | column -t -s $'\t'
+}
 
 # function sudo --description "Execute a command as another user."
 #     if [ (uname) = "Darwin" ]
