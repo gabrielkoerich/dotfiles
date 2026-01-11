@@ -170,7 +170,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias dock='open -a Docker'
 
 alias sol1.17='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/1.17.1/solana-release ~/.local/share/solana/install/active_release'
-alias sol2='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/2.1.2/solana-release ~/.local/share/solana/install/active_release'
+alias sol2='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/2.3.0/solana-release ~/.local/share/solana/install/active_release'
 
 # alias pr="gh pr create --base master --head develop --fill"
 # alias wtf="git add -A && git commit -m $(curl --silent --fail https://whatthecommit.com/index.txt)"

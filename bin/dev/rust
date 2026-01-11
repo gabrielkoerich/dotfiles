@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -7,12 +9,12 @@ sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
 # Solana 1.17.1
 # curl -OL https://github.com/solana-labs/solana/releases/download/v1.17.1/solana-install-init-aarch64-apple-darwin
 # chmod +x solana-install-init-aarch64-apple-darwin
-# ./solana-install-init-aarch64-apple-darwin
+# ./solana-install-init-aarch64-apple-darwin v1.17.1
 
 # Install Anchor using AVM
-# cargo install --git https://github.com/coral-xyz/anchor avm --force
-# avm install latest
-# avm use latest
+cargo install --git https://github.com/coral-xyz/anchor --tag v0.29.0 avm --force
+avm install 0.32.1
+avm use 0.32.1
 
 # Install directly
 # cargo install --git https://github.com/coral-xyz/anchor --tag v0.29.0 anchor-cli --force
