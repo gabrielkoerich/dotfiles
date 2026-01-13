@@ -251,3 +251,9 @@ function getcertnames() {
 		return 1;
 	fi;
 }
+
+function minimax() {
+	export ANTHROPIC_BASE_URL=https://api.minimax.io/anthropic
+	export ANTHROPIC_API_KEY=$MINIMAX_API_KEY
+	claude "@"
+}
