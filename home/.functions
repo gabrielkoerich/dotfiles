@@ -257,3 +257,9 @@ function minimax() {
 	export ANTHROPIC_API_KEY=$MINIMAX_API_KEY
 	claude "@"
 }
+
+function kimi() {
+	export ANTHROPIC_BASE_URL=https://api.kimi.com/coding/
+	export ANTHROPIC_API_KEY=$KIMI_API_KEY
+	claude "@"
+}

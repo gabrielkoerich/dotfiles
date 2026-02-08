@@ -54,7 +54,7 @@ alias week='date +%V'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Get macOS Software Updates and Homebrew
-alias update='brew update; brew upgrade; brew cleanup;sudo softwareupdate -i -a'
+alias update='priv; brew update; brew upgrade; brew cleanup;sudo softwareupdate -i -a'
 
 # IP addresses
 alias ip="curl -sf https://am.i.mullvad.net/ip"

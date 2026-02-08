@@ -2,7 +2,7 @@
 
 # Install Python and usefull stuff
 brew install pkg-config openssl python
-brew install poetry # Python package management tool
+# brew install poetry # Python package management tool
 brew install uv # Extremely fast Python package installer and resolver, written in Rust
 
 # Install talib
