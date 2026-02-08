@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+brew install codex
+brew install claude-code
+brew install opencode
+
+tmp_orchestrator_dir="$(mktemp -d)"
+git clone https://github.com/gabrielkoerich/orchestrator.git "$tmp_orchestrator_dir"
+(cd "$tmp_orchestrator_dir" && just install)
+rm -Rf "$tmp_orchestrator_dir"
+
+tmp_skills_dir="$(mktemp -d)"
+git clone https://github.com/gabrielkoerich/skills.git "$tmp_skills_dir"
+mkdir -p ~/.claude/skills ~/.codex/skills ~/.config/opencode/skills
+rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_skills_dir"/ ~/.claude/skills/
+rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_skills_dir"/ ~/.codex/skills/
+rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_skills_dir"/ ~/.config/opencode/skills/
+rm -Rf "$tmp_skills_dir"
+
+tmp_anthropic_skills_dir="$(mktemp -d)"
+git clone https://github.com/anthropics/skills.git "$tmp_anthropic_skills_dir"
+git -C "$tmp_anthropic_skills_dir" checkout 1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563
+rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_anthropic_skills_dir"/skills/ ~/.claude/skills/
+rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_anthropic_skills_dir"/skills/ ~/.codex/skills/
+rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_anthropic_skills_dir"/skills/ ~/.config/opencode/skills/
+rm -Rf "$tmp_anthropic_skills_dir"

@@ -32,6 +32,10 @@ _fonts:
 _cask:
   ./bin/install/cask
 
+[confirm("Install coding agents and skills? (y/n)")]
+_agents:
+  ./bin/install/agents
+
 [confirm("Install cron jobs? (y/n)")]
 _cron:
   ./private/install/cron

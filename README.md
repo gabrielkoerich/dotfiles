@@ -17,8 +17,9 @@ Read [all](./bin/install/) scripts *before* executing them.
 4. `just install brew` to install brew & dependencies
 5. `just install fonts` to install fonts
 6. `just install cask` to install cask apps
-7. `just sync` to sync the dotfiles to `~`
-8. Run `just restore` to restore app settings
+7. `just install agents` to install coding agents & base skills
+8. `just sync` to sync the dotfiles to `~`
+9. Run `just restore` to restore app settings
 
 To sync the dotfiles, run step 8 again.
 
