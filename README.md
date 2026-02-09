@@ -34,6 +34,21 @@ sync                # Sync dotfiles to home directory
 test target args="" # Test mackup, options [backup, restore]
 ```
 
+## Agent Skills Supply-Chain Policy
+
+`bin/install/agents` installs external repositories at pinned commit SHAs:
+
+- `gabrielkoerich/orchestrator`
+- `gabrielkoerich/skills`
+- `anthropics/skills`
+
+To update a pin safely:
+
+1. Review upstream changes.
+2. Update the ref constant in `bin/install/agents`.
+3. Run `just security-strict`.
+4. Re-run `just install agents` on a clean machine/test profile.
+
 ## Credits
 
 [Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).

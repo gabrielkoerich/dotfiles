@@ -1,26 +1,64 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+ANTHROPIC_SKILLS_REF="1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563"
+ORCHESTRATOR_REF="56166b96c3b3a3a7b5aa3d8b3ef864aa78523745"
+GB_SKILLS_REF="f51efdd613d8259b04225137551eb61149c82a5c"
+
+require_cmd() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "error: required command not found: $1" >&2
+    exit 1
+  fi
+}
+
+clone_pinned() {
+  local repo_url="$1"
+  local ref="$2"
+  local dest="$3"
+
+  if [[ ! "$ref" =~ ^[0-9a-f]{40}$ ]]; then
+    echo "error: expected full 40-char commit SHA, got: $ref" >&2
+    exit 1
+  fi
+
+  git init "$dest" >/dev/null
+  git -C "$dest" remote add origin "$repo_url"
+  git -C "$dest" fetch --depth 1 origin "$ref"
+  git -C "$dest" checkout --detach FETCH_HEAD >/dev/null
+}
+
+sync_skills_to_agents() {
+  local src="$1"
+  mkdir -p "$HOME/.claude/skills" "$HOME/.codex/skills" "$HOME/.config/opencode/skills"
+  rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$src"/ "$HOME/.claude/skills/"
+  rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$src"/ "$HOME/.codex/skills/"
+  rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$src"/ "$HOME/.config/opencode/skills/"
+}
+
+require_cmd brew
+require_cmd git
+require_cmd just
+require_cmd rsync
 
 brew install codex
 brew install claude-code
 brew install opencode
 
 tmp_orchestrator_dir="$(mktemp -d)"
-git clone https://github.com/gabrielkoerich/orchestrator.git "$tmp_orchestrator_dir"
-(cd "$tmp_orchestrator_dir" && just install)
-rm -Rf "$tmp_orchestrator_dir"
-
 tmp_skills_dir="$(mktemp -d)"
-git clone https://github.com/gabrielkoerich/skills.git "$tmp_skills_dir"
-mkdir -p ~/.claude/skills ~/.codex/skills ~/.config/opencode/skills
-rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_skills_dir"/ ~/.claude/skills/
-rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_skills_dir"/ ~/.codex/skills/
-rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_skills_dir"/ ~/.config/opencode/skills/
-rm -Rf "$tmp_skills_dir"
-
 tmp_anthropic_skills_dir="$(mktemp -d)"
-git clone https://github.com/anthropics/skills.git "$tmp_anthropic_skills_dir"
-git -C "$tmp_anthropic_skills_dir" checkout 1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563
-rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_anthropic_skills_dir"/skills/ ~/.claude/skills/
-rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_anthropic_skills_dir"/skills/ ~/.codex/skills/
-rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$tmp_anthropic_skills_dir"/skills/ ~/.config/opencode/skills/
-rm -Rf "$tmp_anthropic_skills_dir"
+
+cleanup() {
+  rm -rf "$tmp_orchestrator_dir" "$tmp_skills_dir" "$tmp_anthropic_skills_dir"
+}
+trap cleanup EXIT
+
+clone_pinned "https://github.com/gabrielkoerich/orchestrator.git" "$ORCHESTRATOR_REF" "$tmp_orchestrator_dir"
+(cd "$tmp_orchestrator_dir" && just install)
+
+clone_pinned "https://github.com/gabrielkoerich/skills.git" "$GB_SKILLS_REF" "$tmp_skills_dir"
+sync_skills_to_agents "$tmp_skills_dir"
+
+clone_pinned "https://github.com/anthropics/skills.git" "$ANTHROPIC_SKILLS_REF" "$tmp_anthropic_skills_dir"
+sync_skills_to_agents "$tmp_anthropic_skills_dir/skills"
