@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rg *)",
+      "Bash(qmd *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(sudo *)"
+    ],
+    "deny": [
+      "Bash(curl * | bash)",
+      "Bash(wget * | bash)"
+    ]
+  }
+}
