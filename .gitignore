@@ -1,3 +1,7 @@
+# Encrypted workflow local artifacts
+*.agekey
+*.dec
+*.decrypted
 .DS_Store
 .bin
 .build
@@ -5,17 +9,13 @@
 .extra
 .gitconfig
 .private
-# Encrypted workflow local artifacts
-secrets/plain
-secrets/tmp
-*.decrypted
-*.dec
-*.agekey
 aerospace
 build
 gluetun
+log*
 media-stack
 private
+secrets
 skhd
 starship.toml
 yabai

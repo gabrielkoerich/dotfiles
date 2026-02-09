@@ -17,15 +17,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install shellcheck (ubuntu)
+      - name: Install shellcheck + ripgrep (ubuntu)
         if: matrix.os == 'ubuntu-latest'
         run: |
           sudo apt-get update
-          sudo apt-get install -y shellcheck
+          sudo apt-get install -y shellcheck ripgrep
 
-      - name: Install shellcheck (macos)
+      - name: Install shellcheck + ripgrep (macos)
         if: matrix.os == 'macos-latest'
-        run: brew install shellcheck
+        run: brew install shellcheck ripgrep
 
       - name: Bash syntax check
         run: |
@@ -44,10 +44,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install shellcheck + semgrep
+      - name: Install shellcheck + ripgrep + semgrep
         run: |
           sudo apt-get update
-          sudo apt-get install -y shellcheck
+          sudo apt-get install -y shellcheck ripgrep
           python3 -m pip install --upgrade pip
           python3 -m pip install semgrep
 
@@ -69,10 +69,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install bats + shellcheck
+      - name: Install bats + shellcheck + ripgrep
         run: |
           sudo apt-get update
-          sudo apt-get install -y bats shellcheck
+          sudo apt-get install -y bats shellcheck ripgrep
 
       - name: Run tests
         run: bats tests

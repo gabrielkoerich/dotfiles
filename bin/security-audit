@@ -10,6 +10,10 @@ strict=0
 ignore_file="${SECURITY_AUDIT_IGNORE:-.security-audit-ignore}"
 require_semgrep="${SECURITY_AUDIT_REQUIRE_SEMGREP:-0}"
 targets=()
+has_rg=0
+if command -v rg >/dev/null 2>&1; then
+  has_rg=1
+fi
 
 for arg in "$@"; do
   case "$arg" in
@@ -50,6 +54,7 @@ semgrep_fail=0
 policy_fail=0
 
 shell_files=()
+shellcheck_files=()
 scan_files=()
 for f in "${files[@]}"; do
   # Files to run pattern scans on
@@ -63,13 +68,20 @@ for f in "${files[@]}"; do
     Justfile|private/Justfile|*.just) continue ;;
   esac
 
-  if head -n 1 "$f" | rg -q '^#!.*(bash|sh|zsh)'; then
+  if read -r first_line < "$f" && [[ "$first_line" =~ ^#!.*(bash|sh|zsh) ]]; then
     shell_files+=("$f")
     continue
   fi
 
   case "$f" in
     bin/*|private/install/*) shell_files+=("$f") ;;
+  esac
+done
+
+for f in "${shell_files[@]}"; do
+  case "$f" in
+    bin/priv) ;;
+    *) shellcheck_files+=("$f") ;;
   esac
 done
 
@@ -84,9 +96,9 @@ if [[ "$syntax_fail" -gt 0 ]]; then
   status=1
 fi
 
-echo "-> shellcheck (${#shell_files[@]} files)"
+echo "-> shellcheck (${#shellcheck_files[@]} files)"
 if command -v shellcheck >/dev/null 2>&1; then
-  for f in "${shell_files[@]}"; do
+  for f in "${shellcheck_files[@]}"; do
     if ! shellcheck "$f"; then
       ((shellcheck_fail += 1))
     fi
@@ -104,16 +116,39 @@ raw_hits="$(mktemp)"
 filtered_hits="$(mktemp)"
 trap 'rm -f "$raw_hits" "$filtered_hits"' EXIT
 
-if rg -n \
-  -e 'curl[[:space:]].*\|[[:space:]]*(sh|bash)' \
-  -e 'wget[[:space:]].*\|[[:space:]]*(sh|bash)' \
-  -e 'sh[[:space:]]+-c[[:space:]]+"\$\(curl' \
-  -e 'eval[[:space:]]' \
-  -e 'chmod[[:space:]]+777' \
-  -e 'rm[[:space:]]+-rf[[:space:]]+/' \
-  -e 'mktemp[[:space:]]+-u' \
-  -e 'sudo[[:space:]]' \
-  "${scan_files[@]}" >"$raw_hits"; then
+if [[ "$has_rg" -eq 1 ]]; then
+  if rg -n \
+    -e 'curl[[:space:]].*\|[[:space:]]*(sh|bash)' \
+    -e 'wget[[:space:]].*\|[[:space:]]*(sh|bash)' \
+    -e 'sh[[:space:]]+-c[[:space:]]+"\$\(curl' \
+    -e 'eval[[:space:]]' \
+    -e 'chmod[[:space:]]+777' \
+    -e 'rm[[:space:]]+-rf[[:space:]]+/' \
+    -e 'mktemp[[:space:]]+-u' \
+    -e 'sudo[[:space:]]' \
+    "${scan_files[@]}" >"$raw_hits"; then
+    :
+  else
+    echo "ok: no risky patterns matched"
+  fi
+else
+  if grep -nE \
+    -e 'curl[[:space:]].*\|[[:space:]]*(sh|bash)' \
+    -e 'wget[[:space:]].*\|[[:space:]]*(sh|bash)' \
+    -e 'sh[[:space:]]+-c[[:space:]]+"\$\(curl' \
+    -e 'eval[[:space:]]' \
+    -e 'chmod[[:space:]]+777' \
+    -e 'rm[[:space:]]+-rf[[:space:]]+/' \
+    -e 'mktemp[[:space:]]+-u' \
+    -e 'sudo[[:space:]]' \
+    "${scan_files[@]}" >"$raw_hits"; then
+    :
+  else
+    echo "ok: no risky patterns matched"
+  fi
+fi
+
+if [[ -s "$raw_hits" ]]; then
   # Drop pure comment-line hits (path:line:# ...)
   grep -Ev '^[^:]+:[0-9]+:[[:space:]]*#' "$raw_hits" >"$filtered_hits" || true
 
@@ -139,8 +174,6 @@ if rg -n \
       echo "warning: risky patterns found (non-strict mode)"
     fi
   fi
-else
-  echo "ok: no risky patterns matched"
 fi
 
 echo "-> semgrep shell rules"
@@ -169,9 +202,16 @@ fi
 
 echo "-> targeted high-risk policy checks"
 if [[ -f "bin/install/agents" ]]; then
-  if ! rg -q '^set -euo pipefail' bin/install/agents; then
-    echo "error: bin/install/agents must enable 'set -euo pipefail'"
-    policy_fail=1
+  if [[ "$has_rg" -eq 1 ]]; then
+    if ! rg -q '^set -euo pipefail' bin/install/agents; then
+      echo "error: bin/install/agents must enable 'set -euo pipefail'"
+      policy_fail=1
+    fi
+  else
+    if ! grep -qE '^set -euo pipefail' bin/install/agents; then
+      echo "error: bin/install/agents must enable 'set -euo pipefail'"
+      policy_fail=1
+    fi
   fi
 
   # All *_REF values must be pinned 40-char commit SHAs.
@@ -185,9 +225,16 @@ if [[ -f "bin/install/agents" ]]; then
   done < <(grep -E '^[A-Z_]+_REF="' bin/install/agents || true)
 
   # Disallow raw git clone URLs in this file; use clone_pinned only.
-  if rg -n 'git clone https://github.com/' bin/install/agents; then
-    echo "error: use clone_pinned helper instead of raw git clone in bin/install/agents"
-    policy_fail=1
+  if [[ "$has_rg" -eq 1 ]]; then
+    if rg -n 'git clone https://github.com/' bin/install/agents; then
+      echo "error: use clone_pinned helper instead of raw git clone in bin/install/agents"
+      policy_fail=1
+    fi
+  else
+    if grep -nE 'git clone https://github.com/' bin/install/agents; then
+      echo "error: use clone_pinned helper instead of raw git clone in bin/install/agents"
+      policy_fail=1
+    fi
   fi
 else
   echo "warning: bin/install/agents not found; skipping targeted policy checks"
