@@ -1,0 +1,34 @@
+name: Security Audit
+
+on:
+  pull_request:
+    paths:
+      - "bin/**"
+      - "private/**"
+      - "Justfile"
+      - ".security-audit-ignore"
+      - ".github/workflows/security-audit.yml"
+  push:
+    branches: [main]
+    paths:
+      - "bin/**"
+      - "private/**"
+      - "Justfile"
+      - ".security-audit-ignore"
+      - ".github/workflows/security-audit.yml"
+  workflow_dispatch:
+
+jobs:
+  security-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Run strict security audit
+        run: ./bin/install/security-audit --strict
