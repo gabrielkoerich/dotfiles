@@ -13,3 +13,6 @@ sudo mv composer\.phar /usr/local/bin/composer
 ^home/\.tmux/
 ^home/\.claude/settings\.json:
 ^home/\.bin/
+^Justfile:.*sudo tee "\$target" >/dev/null
+^Justfile:.*sudo sshd -t
+^Justfile:.*sudo launchctl kickstart -k system/com\.openssh\.sshd

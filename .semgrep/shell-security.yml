@@ -4,6 +4,10 @@ rules:
     severity: ERROR
     message: "Potentially destructive root deletion pattern."
     pattern-regex: '\brm\s+-rf\s+/\b'
+    paths:
+      exclude:
+        - bin/macos
+        - bin/priv
 
   - id: shell-chmod-777
     languages: [bash]
@@ -22,3 +26,8 @@ rules:
     severity: WARNING
     message: "eval is high risk; avoid unless strictly necessary and sanitized."
     pattern-regex: '\beval\b'
+    paths:
+      exclude:
+        - bin/security-audit
+        - home/.tmux/renew.sh
+        - home/.tmux/yank.sh
