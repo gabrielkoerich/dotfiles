@@ -13,9 +13,16 @@ setup:
 [confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
 sync:
     #!/usr/bin/env bash
-    just decrypt-bin || true
+    just decrypt-private || true
+    if [ -d "private/bin" ]; then
+        rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
+    fi
     rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
     exec $SHELL -l
+
+# Install <target>, options: [brew, fonts, cask, agents, security, cron, pre-commit]
+install target:
+    just _{{ target }} || echo "Invalid install"
 
 # Install Homebrew formulae from `Brewfile` (non-cask entries).
 [confirm("Install brew dependencies? (y/n)")]
@@ -42,9 +49,19 @@ _agents:
 _security:
     ./bin/security-audit
 
-# Run security audit including vendored private/ scripts
-security-all:
-    ./bin/security-audit bin home Justfile README.md
+# Install/update configured cron jobs.
+[confirm("Install cron jobs? (y/n)")]
+_cron:
+    ./private/install/cron
+
+# Install pre-commit hooks locally
+[confirm("Install pre-commit? (y/n)")]
+_pre-commit:
+    pre-commit install
+
+# Install from package profile (profiles/*.txt)
+install-profile profile="minimal":
+    ./bin/install/profile "{{ profile }}"
 
 # Run strict security audit (fails on non-ignored risky patterns)
 security-strict:
@@ -53,15 +70,6 @@ security-strict:
 # Run CI-equivalent security audit (requires semgrep installed)
 security-ci:
     SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
-
-# Install/update configured cron jobs.
-[confirm("Install cron jobs? (y/n)")]
-_cron:
-    ./private/install/cron
-
-# Install from package profile (profiles/*.txt)
-install-profile profile="minimal":
-    ./bin/install/profile "{{ profile }}"
 
 # Run system/tooling checks
 doctor:
@@ -76,20 +84,12 @@ exact-check:
     ./bin/exact-check
 
 # Create install report under .build/reports/
-install-report:
+report:
     ./bin/install-report
-
-# Install pre-commit hooks locally
-pre-commit-install:
-    pre-commit install
 
 # Run pre-commit checks on all files
 pre-commit-run:
     pre-commit run --all-files
-
-# Run bats tests
-test-install:
-    bats tests
 
 # Apply Tailscale-only SSH hardening config using current user from `whoami`.
 [confirm("Apply Tailscale SSH hardening config and restart sshd? (y/n)")]
@@ -103,17 +103,6 @@ tailscale-ssh-harden:
     sudo sshd -t
     sudo launchctl kickstart -k system/com.openssh.sshd
     echo "applied tailscale ssh hardening for user: $user"
-
-# Encrypt/decrypt helpers (set AGE_RECIPIENT and optionally AGE_KEY_FILE)
-
-# Decrypt root `.bin.tar.age` into `home/.bin` when available.
-decrypt-bin:
-    #!/usr/bin/env bash
-    if [ -f ".bin.tar.age" ]; then
-      ./bin/crypto/decrypt-dir .bin.tar.age home
-    else
-      echo "skip: .bin.tar.age not found"
-    fi
 
 # Generate a local `age` key pair used for encryption workflows.
 crypto-keygen:
@@ -135,9 +124,18 @@ encrypt-dir src out:
 decrypt-dir in out_dir:
     ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
 
-# Install <target>, options: [brew, fonts, cask, agents, security, cron]
-install target:
-    just _{{ target }} || echo "Invalid install"
+# Encrypt root `.bin` into `.bin.tar.age`
+encrypt-private:
+    ./bin/crypto/encrypt-dir private private.tar.age
+
+# Decrypt root `.bin.tar.age` into `home/.bin` when available.
+decrypt-private:
+    #!/usr/bin/env bash
+    if [ -f "private.tar.age" ]; then
+      ./bin/crypto/decrypt-dir private.tar.age .
+    else
+      echo "skip: private.tar.age not found"
+    fi
 
 # Run mackup backup & uninstall due to https://github.com/lra/mackup/issues/1924#issuecomment-1743072813
 [confirm("Run mackup backup & uninstall? (y/n)")]
@@ -160,6 +158,10 @@ _backup-test args="":
 _restore-test args="":
     mackup restore --dry-run {{ args }}
 
-# Test mackup, options [backup, restore]
+# Run bats tests
+_install-test:
+    bats tests
+
+# Test install, mackup, options [backup, restore]
 test target args="":
     just _{{ target }}-test {{ args }}  || echo "Invalid test"
