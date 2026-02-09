@@ -58,19 +58,69 @@ Main config coverage:
   - `home/.mackup.cfg`
   - `home/.mackup/*.cfg`
 
+<!---   - `home/.config/yabai/yabairc`
+  - `home/.config/skhd/skhdrc`
+  - `home/.config/aerospace/aerospace.toml`
+  - `home/.config/starship.toml`-->
+
 If you want to skip parts of this setup, selectively run install targets and remove unneeded config files before `just sync`.
 
 ### Available Just commands
 
 ```bash
 backup              # Run mackup backup & uninstall
+doctor              # Validate tooling + pinned refs + security files
+exact-apply         # Apply closest deterministic machine baseline
+exact-check         # Check drift against repo baseline
 install target      # Install <target>, options: [brew, fonts, cask, agents, security, cron]
+install-profile     # Install package set from profiles/*.txt
+install-report      # Generate machine/tool report in .build/reports/
+pre-commit-install  # Install local pre-commit hooks
+pre-commit-run      # Run pre-commit checks on all files
 restore             # Restore mackup backup
+security-all        # Audit dotfiles scripts including vendored private/
+security-ci         # Run strict audit with semgrep required (CI-equivalent)
 security-strict     # Run strict repo-wide security audit
 setup               # Run macos setup
 sync                # Sync dotfiles to home directory
 test target args="" # Test mackup, options [backup, restore]
+test-install        # Run bats tests for install/security scripts
+
+# Encrypted file workflows (age)
+crypto-keygen
+crypto-encrypt-file <in> <out.age>
+crypto-decrypt-file <in.age> <out>
+crypto-encrypt-dir <src-dir> <out.tar.age>
+crypto-decrypt-dir <in.tar.age> <out-dir>
 ```
+
+## Security Tooling
+
+- `bin/install/security-audit`: repo-wide shell/security audit (`--strict` for CI mode)
+- `.github/workflows/security-audit.yml`: strict security checks on push/PR
+- `.github/workflows/quality.yml`: matrix quality checks (shell syntax, strict audit, tests, gitleaks)
+- `.pre-commit-config.yaml`: local hooks for hygiene + secrets + strict audit
+- `.gitleaks.toml`: secrets scanning configuration
+
+Recommended bootstrap:
+
+1. `brew bundle --file Brewfile`
+2. `just pre-commit-install`
+3. `just security-ci`
+4. `just doctor`
+
+## Exact Machine Baseline
+
+Goal: reproduce the closest deterministic match from this repository.
+
+- `just exact-apply`: applies Brewfile (with cleanup), fonts, agents, dotfiles sync, and final checks.
+- `just exact-check`: verifies drift against Brewfile + doctor + strict security audit.
+
+Important limits:
+
+1. macOS version/hardware-specific defaults may differ.
+2. App-internal state and cloud-synced settings may differ.
+3. External services and credentials are not reproduced automatically.
 
 ## Agent Skills Supply-Chain Policy
 
@@ -87,9 +137,72 @@ To update a pin safely:
 3. Run `just security-strict`.
 4. Re-run `just install agents` on a clean machine/test profile.
 
-## Credits
+## Public Repo + Encrypted Files
 
-[Mathias’s dotfiles](https://github.com/mathiasbynens/dotfiles).
+You can safely keep encrypted artifacts in a public repository if:
+
+1. plaintext never gets committed
+2. private key is stored outside git
+3. encryption keys/recipients are rotated when needed
+
+This repo uses `age` helpers in `bin/crypto/` and ignores common plaintext/decrypted artifacts in `.gitignore`.
+
+Suggested layout:
+
+- `secrets/encrypted/*.age` committed
+- `secrets/plain/*` local-only (ignored)
+- key in `~/.config/age/dotfiles.agekey` (ignored)
+
+## Tmux Workflow
+
+- Defined prefix: `ctrl + A`
+- Split horizontal: `prefix + |`
+- Split vertical: `prefix + _`
+
+The tmux config now supports durable sessions:
+
+- Manual save: `prefix + S`
+- Manual restore: `prefix + T`
+- Auto-save: every 15 minutes (`tmux-continuum`)
+- Auto-restore on tmux start (`tmux-continuum` + `tmux-resurrect`)
+
+Helper command:
+
+- `~/.tmux/tmx` -> ensures/attaches to a long-lived `main` session
+- `~/.tmux/tmx ensure` -> creates `main` session if missing, without attaching
+
+Optional env overrides:
+
+- `TMX_SESSION_NAME` (default: `main`)
+- `TMX_SESSION_ROOT` (default: `$HOME`)
+
+### Termius Setup
+
+Recommended path: SSH over Tailscale, then attach to tmux.
+
+1. Enable SSH on Mac:
+   `sudo systemsetup -setremotelogin on`
+2. Create/import a dedicated SSH key in Termius.
+3. Add Termius public key to Mac:
+   `mkdir -p ~/.ssh && chmod 700 ~/.ssh`
+   append key to `~/.ssh/authorized_keys`
+   `chmod 600 ~/.ssh/authorized_keys`
+4. Harden SSH on Mac (`/etc/ssh/sshd_config`):
+   - `PasswordAuthentication no`
+   - `PubkeyAuthentication yes`
+   - `PermitRootLogin no`
+   - `AllowUsers <your-user>`
+5. Restart SSH service (or reboot).
+6. In Termius, connect using:
+   - Host: Mac LAN/Tailscale IP
+   - User: your macOS user
+   - Auth: the key from step 2
+7. Attach persistent session:
+   `tmx`
+
+Notes:
+- If you do not use Tailscale, ensure firewall/network rules allow SSH.
+- Keep key-only auth (disable password auth).
 
 ## License
 

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p .build/reports
+out=".build/reports/install-$(date +%Y%m%d-%H%M%S).md"
+
+{
+  echo "# Install Report"
+  echo
+  echo "- Date: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  echo "- Host: $(hostname)"
+  echo "- OS: $(uname -a)"
+  echo
+
+  echo "## Tool Versions"
+  for c in git brew just gh rg shellcheck gitleaks age pre-commit; do
+    if command -v "$c" >/dev/null 2>&1; then
+      v="$($c --version 2>/dev/null | head -n1 || true)"
+      echo "- $c: ${v:-installed}"
+    else
+      echo "- $c: missing"
+    fi
+  done
+
+  echo
+  echo "## Agent Refs"
+  if [[ -f bin/install/agents ]]; then
+    grep -E '^[A-Z_]+_REF=' bin/install/agents || true
+  fi
+} > "$out"
+
+echo "report written: $out"

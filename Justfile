@@ -60,6 +60,21 @@ _cron:
 doctor:
   ./bin/install/doctor
 
+# Apply closest deterministic machine baseline
+exact-apply:
+  ./bin/install/exact-apply
+
+# Check machine drift against repo baseline
+exact-check:
+  ./bin/install/exact-check
+
+# Create install report under .build/reports/
+install-report:
+  ./bin/install/install-report
+# Run bats tests
+test-install:
+  bats tests
+
 # Encrypt/decrypt helpers (set AGE_RECIPIENT and optionally AGE_KEY_FILE)
 crypto-keygen:
   ./bin/crypto/keygen

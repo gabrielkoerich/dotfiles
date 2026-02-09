@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SESSION="${TMX_SESSION_NAME:-main}"
+ROOT_DIR="${TMX_SESSION_ROOT:-$HOME}"
+MODE="${1:-attach}"
+
+ensure_session() {
+  if ! tmux has-session -t "$SESSION" 2>/dev/null; then
+    tmux new-session -d -s "$SESSION" -c "$ROOT_DIR"
+  fi
+}
+
+case "$MODE" in
+  ensure)
+    ensure_session
+    ;;
+  attach|"")
+    ensure_session
+    if [[ -n "${TMUX:-}" ]]; then
+      exec tmux switch-client -t "$SESSION"
+    else
+      exec tmux attach-session -t "$SESSION"
+    fi
+    ;;
+  *)
+    echo "usage: tmx [attach|ensure]" >&2
+    exit 2
+    ;;
+esac

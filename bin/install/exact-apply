@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Apply the closest deterministic baseline this repo can express.
+# This is intentionally non-interactive and assumes you reviewed scripts first.
+
+if [[ "$(uname)" != "Darwin" ]]; then
+  echo "error: exact-apply is intended for macOS" >&2
+  exit 1
+fi
+
+command -v brew >/dev/null 2>&1 || {
+  echo "Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+echo "==> Applying Brewfile baseline (including cleanup)"
+brew bundle --file Brewfile --no-upgrade --cleanup --verbose
+
+echo "==> Applying fonts + agents"
+./bin/install/fonts
+./bin/install/agents
+
+echo "==> Syncing dotfiles"
+rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms
+
+echo "==> Final checks"
+./bin/install/security-audit --strict
+./bin/install/doctor
+
+echo "exact baseline applied"
