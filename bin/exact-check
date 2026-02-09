@@ -18,10 +18,10 @@ else
 fi
 
 echo "==> Running doctor + strict security"
-if ! ./bin/install/doctor; then
+if ! ./bin/doctor; then
   status=1
 fi
-if ! ./bin/install/security-audit --strict; then
+if ! ./bin/security-audit --strict; then
   status=1
 fi
 

@@ -36,7 +36,7 @@ jobs:
           done
 
       - name: Security audit strict
-        run: ./bin/install/security-audit --strict
+        run: ./bin/security-audit --strict
 
   semgrep-and-secrets:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
       - name: Run strict audit with semgrep required
         env:
           SECURITY_AUDIT_REQUIRE_SEMGREP: "1"
-        run: ./bin/install/security-audit --strict
+        run: ./bin/security-audit --strict
 
       - name: Gitleaks
         uses: gitleaks/gitleaks-action@v2

@@ -22,10 +22,11 @@ echo "==> Applying fonts + agents"
 ./bin/install/agents
 
 echo "==> Syncing dotfiles"
+just decrypt-bin || true
 rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms
 
 echo "==> Final checks"
-./bin/install/security-audit --strict
-./bin/install/doctor
+./bin/security-audit --strict
+./bin/doctor
 
 echo "exact baseline applied"

@@ -2,9 +2,9 @@
 set -euo pipefail
 
 # Usage:
-#   ./bin/install/security-audit                     # repo defaults
-#   ./bin/install/security-audit <file-or-dir> ...
-#   ./bin/install/security-audit --strict <targets> # fail on risky patterns
+#   ./bin/security-audit                     # repo defaults
+#   ./bin/security-audit <file-or-dir> ...
+#   ./bin/security-audit --strict <targets> # fail on risky patterns
 
 strict=0
 ignore_file="${SECURITY_AUDIT_IGNORE:-.security-audit-ignore}"
@@ -19,7 +19,7 @@ for arg in "$@"; do
 done
 
 if [[ ${#targets[@]} -eq 0 ]]; then
-  targets=(bin private Justfile README.md)
+  targets=(bin home Justfile README.md)
 fi
 
 files=()

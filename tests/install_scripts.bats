@@ -4,14 +4,14 @@
   run bash -n bin/install/agents
   [ "$status" -eq 0 ]
 
-  run bash -n bin/install/security-audit
+  run bash -n bin/security-audit
   [ "$status" -eq 0 ]
 
-  run bash -n bin/install/doctor
+  run bash -n bin/doctor
   [ "$status" -eq 0 ]
 }
 
 @test "security audit strict exits 0" {
-  run ./bin/install/security-audit --strict
+  run ./bin/security-audit --strict
   [ "$status" -eq 0 ]
 }

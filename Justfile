@@ -1,116 +1,149 @@
-set dotenv-load
+set dotenv-load := true
 
+# Show available Just targets.
 _default:
-  just --list
+    just --list
 
 # Run macos setup
 [confirm("Setup Mac? This should be only done on a fresh install. (y/n)")]
 setup:
-  ./macos
+    ./macos
 
 # Sync dotfiles to home directory
 [confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
 sync:
-  #!/usr/bin/env bash
-  if [ -d "private/bin" ]; then
-    rm -Rf home/.bin/
-    rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
-  fi
+    #!/usr/bin/env bash
+    just decrypt-bin || true
+    rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
+    exec $SHELL -l
 
-  rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
-  exec $SHELL -l
-
+# Install Homebrew formulae from `Brewfile` (non-cask entries).
 [confirm("Install brew dependencies? (y/n)")]
 _brew:
-  ./bin/install/brew
+    ./bin/install/brew
 
+# Install local fonts from the repository.
 [confirm("Install fonts? (y/n)")]
 _fonts:
-  ./bin/install/fonts
+    ./bin/install/fonts
 
+# Install Homebrew cask applications from `Brewfile`.
 [confirm("Install brew cask apps? (y/n)")]
 _cask:
-  ./bin/install/cask
+    ./bin/install/cask
 
+# Install coding agents and pinned skill repositories.
 [confirm("Install coding agents and skills? (y/n)")]
 _agents:
-  ./bin/install/agents
+    ./bin/install/agents
 
+# Run the repository security audit with default targets.
 [confirm("Run security audit for install script? (y/n)")]
 _security:
-  ./bin/install/security-audit
+    ./bin/security-audit
 
 # Run security audit including vendored private/ scripts
 security-all:
-  ./bin/install/security-audit bin private Justfile README.md
+    ./bin/security-audit bin home Justfile README.md
 
 # Run strict security audit (fails on non-ignored risky patterns)
 security-strict:
-  ./bin/install/security-audit --strict
+    ./bin/security-audit --strict
 
 # Run CI-equivalent security audit (requires semgrep installed)
 security-ci:
-  SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/install/security-audit --strict
+    SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
 
+# Install/update configured cron jobs.
 [confirm("Install cron jobs? (y/n)")]
 _cron:
-  ./private/install/cron
+    ./private/install/cron
+
+# Install from package profile (profiles/*.txt)
+install-profile profile="minimal":
+    ./bin/install/profile "{{ profile }}"
 
 # Run system/tooling checks
 doctor:
-  ./bin/install/doctor
+    ./bin/doctor
 
 # Apply closest deterministic machine baseline
 exact-apply:
-  ./bin/install/exact-apply
+    ./bin/install/exact-apply
 
 # Check machine drift against repo baseline
 exact-check:
-  ./bin/install/exact-check
+    ./bin/exact-check
 
 # Create install report under .build/reports/
 install-report:
-  ./bin/install/install-report
+    ./bin/install-report
+
+# Install pre-commit hooks locally
+pre-commit-install:
+    pre-commit install
+
+# Run pre-commit checks on all files
+pre-commit-run:
+    pre-commit run --all-files
+
 # Run bats tests
 test-install:
-  bats tests
+    bats tests
 
 # Encrypt/decrypt helpers (set AGE_RECIPIENT and optionally AGE_KEY_FILE)
+
+# Decrypt root `.bin.tar.age` into `home/.bin` when available.
+decrypt-bin:
+    #!/usr/bin/env bash
+    if [ -f ".bin.tar.age" ]; then
+      ./bin/crypto/decrypt-dir .bin.tar.age home
+    else
+      echo "skip: .bin.tar.age not found"
+    fi
+
+# Generate a local `age` key pair used for encryption workflows.
 crypto-keygen:
-  ./bin/crypto/keygen
+    ./bin/crypto/keygen
 
-crypto-encrypt-file in out:
-  ./bin/crypto/encrypt-file "{{ in }}" "{{ out }}"
+# Encrypt one file to `.age` format.
+encrypt-file in out:
+    ./bin/crypto/encrypt-file "{{ in }}" "{{ out }}"
 
-crypto-decrypt-file in out:
-  ./bin/crypto/decrypt-file "{{ in }}" "{{ out }}"
+# Decrypt one `.age` file to plaintext.
+decrypt-file in out:
+    ./bin/crypto/decrypt-file "{{ in }}" "{{ out }}"
 
-crypto-encrypt-dir src out:
-  ./bin/crypto/encrypt-dir "{{ src }}" "{{ out }}"
+# Archive and encrypt an entire directory.
+encrypt-dir src out:
+    ./bin/crypto/encrypt-dir "{{ src }}" "{{ out }}"
 
-crypto-decrypt-dir in out_dir:
-  ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
+# Decrypt and extract an encrypted directory archive.
+decrypt-dir in out_dir:
+    ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
 
 # Install <target>, options: [brew, fonts, cask, agents, security, cron]
 install target:
-  just _{{ target }} || echo "Invalid install"
+    just _{{ target }} || echo "Invalid install"
 
 # Run mackup backup & uninstall due to https://github.com/lra/mackup/issues/1924#issuecomment-1743072813
 [confirm("Run mackup backup & uninstall? (y/n)")]
 backup:
-  @echo "\n\033[1mBacking up...\n"
-  mackup backup --force
-  @echo "\n\033[1mUninstalling...\n"
-  mackup uninstall --force
+    @echo "\n\033[1mBacking up...\n"
+    mackup backup --force
+    @echo "\n\033[1mUninstalling...\n"
+    mackup uninstall --force
 
 # Restore mackup backup
 [confirm("Restore mackup backup? This should be only done on a fresh install. (y/n)")]
 restore:
-  mackup restore
+    mackup restore
 
+# Dry-run mackup backup to preview changes.
 _backup-test args="":
     mackup backup --dry-run {{ args }}
 
+# Dry-run mackup restore to preview changes.
 _restore-test args="":
     mackup restore --dry-run {{ args }}
 

@@ -1,7 +1,15 @@
 ^private/
+^bin/priv:
 ^bin/macos:
 [Hh]omebrew/install/HEAD/install\.sh
 oh-my-zsh/master/tools/install\.sh
 sh\.rustup\.rs \| sh
 release\.anza\.xyz/stable/install
 sudo mv composer\.phar /usr/local/bin/composer
+^home/\.aliases:
+^home/\.exports:
+^home/\.zshrc:
+^home/\.vimrc:
+^home/\.tmux/
+^home/\.claude/settings\.json:
+^home/\.bin/

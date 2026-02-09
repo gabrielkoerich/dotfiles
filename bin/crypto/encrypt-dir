@@ -4,14 +4,23 @@ set -euo pipefail
 src="${1:-}"
 out="${2:-}"
 recipient="${AGE_RECIPIENT:-}"
+key_file="${AGE_KEY_FILE:-$HOME/.config/age/dotfiles.agekey}"
 
 if [[ -z "$src" || -z "$out" ]]; then
   echo "usage: encrypt-dir <src-dir> <output.tar.age>" >&2
   exit 2
 fi
 
+if [[ -z "$recipient" ]] && [[ -f "$key_file" ]]; then
+  command -v age-keygen >/dev/null 2>&1 || {
+    echo "error: age-keygen is required to derive recipient from AGE_KEY_FILE" >&2
+    exit 1
+  }
+  recipient="$(age-keygen -y "$key_file")"
+fi
+
 if [[ -z "$recipient" ]]; then
-  echo "error: set AGE_RECIPIENT env var" >&2
+  echo "error: set AGE_RECIPIENT or ensure AGE_KEY_FILE exists ($key_file)" >&2
   exit 1
 fi
 

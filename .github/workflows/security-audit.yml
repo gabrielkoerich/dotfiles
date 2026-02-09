@@ -40,4 +40,4 @@ jobs:
       - name: Run strict security audit
         env:
           SECURITY_AUDIT_REQUIRE_SEMGREP: "1"
-        run: ./bin/install/security-audit --strict
+        run: ./bin/security-audit --strict

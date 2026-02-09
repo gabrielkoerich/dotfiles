@@ -23,6 +23,7 @@ Read [all](./bin/install/) scripts *before* executing them.
 9. Run `just restore` to restore app settings
 
 To sync the dotfiles, run step 8 again.
+Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local. Public SSH hardening template is versioned at `home/.config/ssh/sshd-hardening.public.conf`.
 
 ## Existing Configs
 
@@ -94,9 +95,11 @@ crypto-encrypt-dir <src-dir> <out.tar.age>
 crypto-decrypt-dir <in.tar.age> <out-dir>
 ```
 
+Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
+
 ## Security Tooling
 
-- `bin/install/security-audit`: repo-wide shell/security audit (`--strict` for CI mode)
+- `bin/security-audit`: repo-wide shell/security audit (`--strict` for CI mode)
 - `.github/workflows/security-audit.yml`: strict security checks on push/PR
 - `.github/workflows/quality.yml`: matrix quality checks (shell syntax, strict audit, tests, gitleaks)
 - `.pre-commit-config.yaml`: local hooks for hygiene + secrets + strict audit

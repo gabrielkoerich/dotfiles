@@ -1,0 +1,27 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-merge-conflict
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.2
+    hooks:
+      - id: gitleaks
+        args: ["--config=.gitleaks.toml"]
+
+  - repo: local
+    hooks:
+      - id: shellcheck-local
+        name: shellcheck (local scripts)
+        entry: bash -c 'files=$(git diff --cached --name-only --diff-filter=ACM | rg -N "^(bin|private)/|\\.sh$" || true); if [ -n "$files" ] && command -v shellcheck >/dev/null 2>&1; then shellcheck $files; fi'
+        language: system
+        pass_filenames: false
+      - id: security-audit
+        name: security audit strict
+        entry: ./bin/install/security-audit --strict
+        language: system
+        pass_filenames: false
