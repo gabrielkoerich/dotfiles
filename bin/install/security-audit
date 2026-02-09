@@ -8,6 +8,7 @@ set -euo pipefail
 
 strict=0
 ignore_file="${SECURITY_AUDIT_IGNORE:-.security-audit-ignore}"
+require_semgrep="${SECURITY_AUDIT_REQUIRE_SEMGREP:-0}"
 targets=()
 
 for arg in "$@"; do
@@ -45,6 +46,8 @@ status=0
 syntax_fail=0
 shellcheck_fail=0
 risky_hits=0
+semgrep_fail=0
+policy_fail=0
 
 shell_files=()
 scan_files=()
@@ -66,7 +69,7 @@ for f in "${files[@]}"; do
   fi
 
   case "$f" in
-    bin/*|private/bin/*|private/install/*) shell_files+=("$f") ;;
+    bin/*|private/install/*) shell_files+=("$f") ;;
   esac
 done
 
@@ -140,11 +143,67 @@ else
   echo "ok: no risky patterns matched"
 fi
 
+echo "-> semgrep shell rules"
+if command -v semgrep >/dev/null 2>&1; then
+  if [[ -f ".semgrep/shell-security.yml" ]]; then
+    if ! semgrep --quiet --error --config .semgrep/shell-security.yml "${scan_files[@]}"; then
+      semgrep_fail=1
+      if [[ "$strict" -eq 1 ]]; then
+        status=1
+      else
+        echo "warning: semgrep reported findings (non-strict mode)"
+      fi
+    fi
+  else
+    echo "warning: .semgrep/shell-security.yml not found; skipping semgrep rules"
+    if [[ "$require_semgrep" -eq 1 ]]; then
+      status=1
+    fi
+  fi
+else
+  echo "warning: semgrep not installed; skipping semgrep rules"
+  if [[ "$require_semgrep" -eq 1 ]]; then
+    status=1
+  fi
+fi
+
+echo "-> targeted high-risk policy checks"
+if [[ -f "bin/install/agents" ]]; then
+  if ! rg -q '^set -euo pipefail' bin/install/agents; then
+    echo "error: bin/install/agents must enable 'set -euo pipefail'"
+    policy_fail=1
+  fi
+
+  # All *_REF values must be pinned 40-char commit SHAs.
+  while IFS='=' read -r key value; do
+    ref="${value%\"}"
+    ref="${ref#\"}"
+    if [[ ! "$ref" =~ ^[0-9a-f]{40}$ ]]; then
+      echo "error: $key in bin/install/agents is not a 40-char SHA: $ref"
+      policy_fail=1
+    fi
+  done < <(grep -E '^[A-Z_]+_REF="' bin/install/agents || true)
+
+  # Disallow raw git clone URLs in this file; use clone_pinned only.
+  if rg -n 'git clone https://github.com/' bin/install/agents; then
+    echo "error: use clone_pinned helper instead of raw git clone in bin/install/agents"
+    policy_fail=1
+  fi
+else
+  echo "warning: bin/install/agents not found; skipping targeted policy checks"
+fi
+
+if [[ "$policy_fail" -eq 1 ]]; then
+  status=1
+fi
+
 echo "==> Summary"
 echo "shell files: ${#shell_files[@]}"
 echo "syntax failures: $syntax_fail"
 echo "shellcheck failures: $shellcheck_fail"
 echo "risky patterns: $risky_hits"
+echo "semgrep findings: $semgrep_fail"
+echo "policy failures: $policy_fail"
 
 if [[ "$status" -eq 0 ]]; then
   echo "security audit passed"

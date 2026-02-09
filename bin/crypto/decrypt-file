@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+in="${1:-}"
+out="${2:-}"
+key_file="${AGE_KEY_FILE:-$HOME/.config/age/dotfiles.agekey}"
+
+if [[ -z "$in" || -z "$out" ]]; then
+  echo "usage: decrypt-file <input.age> <output>" >&2
+  exit 2
+fi
+
+if [[ ! -f "$key_file" ]]; then
+  echo "error: key file not found: $key_file" >&2
+  exit 1
+fi
+
+age --decrypt -i "$key_file" -o "$out" "$in"
+echo "decrypted: $out"

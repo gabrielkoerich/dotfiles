@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+KEY_DIR="${1:-$HOME/.config/age}"
+KEY_FILE="$KEY_DIR/dotfiles.agekey"
+
+mkdir -p "$KEY_DIR"
+chmod 700 "$KEY_DIR"
+
+if [[ -f "$KEY_FILE" ]]; then
+  echo "key already exists: $KEY_FILE"
+  exit 0
+fi
+
+age-keygen -o "$KEY_FILE"
+chmod 600 "$KEY_FILE"
+
+echo "created key: $KEY_FILE"
+echo "public key:"
+grep '^# public key:' "$KEY_FILE" | sed 's/^# public key: //'

@@ -1,0 +1,78 @@
+name: Quality
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  shell-matrix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck (ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+
+      - name: Install shellcheck (macos)
+        if: matrix.os == 'macos-latest'
+        run: brew install shellcheck
+
+      - name: Bash syntax check
+        run: |
+          find bin private -type f -not -path '*/.git/*' | while read -r f; do
+            if head -n 1 "$f" | grep -Eq '^#!.*(bash|sh|zsh)'; then
+              bash -n "$f"
+            fi
+          done
+
+      - name: Security audit strict
+        run: ./bin/install/security-audit --strict
+
+  semgrep-and-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck + semgrep
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          python3 -m pip install --upgrade pip
+          python3 -m pip install semgrep
+
+      - name: Run strict audit with semgrep required
+        env:
+          SECURITY_AUDIT_REQUIRE_SEMGREP: "1"
+        run: ./bin/install/security-audit --strict
+
+      - name: Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: detect --source . --config .gitleaks.toml --no-banner --redact
+
+  bats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install bats + shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bats shellcheck
+
+      - name: Run tests
+        run: bats tests

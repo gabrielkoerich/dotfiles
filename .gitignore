@@ -5,6 +5,12 @@
 .extra
 .gitconfig
 .private
+# Encrypted workflow local artifacts
+secrets/plain
+secrets/tmp
+*.decrypted
+*.dec
+*.agekey
 aerospace
 build
 gluetun

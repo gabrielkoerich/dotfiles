@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+in="${1:-}"
+out="${2:-}"
+recipient="${AGE_RECIPIENT:-}"
+
+if [[ -z "$in" || -z "$out" ]]; then
+  echo "usage: encrypt-file <input> <output.age>" >&2
+  exit 2
+fi
+
+if [[ -z "$recipient" ]]; then
+  echo "error: set AGE_RECIPIENT env var" >&2
+  exit 1
+fi
+
+age -r "$recipient" -o "$out" "$in"
+echo "encrypted: $out"

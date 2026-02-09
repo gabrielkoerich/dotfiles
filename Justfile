@@ -40,13 +40,41 @@ _agents:
 _security:
   ./bin/install/security-audit
 
+# Run security audit including vendored private/ scripts
+security-all:
+  ./bin/install/security-audit bin private Justfile README.md
+
 # Run strict security audit (fails on non-ignored risky patterns)
 security-strict:
   ./bin/install/security-audit --strict
 
+# Run CI-equivalent security audit (requires semgrep installed)
+security-ci:
+  SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/install/security-audit --strict
+
 [confirm("Install cron jobs? (y/n)")]
 _cron:
   ./private/install/cron
+
+# Run system/tooling checks
+doctor:
+  ./bin/install/doctor
+
+# Encrypt/decrypt helpers (set AGE_RECIPIENT and optionally AGE_KEY_FILE)
+crypto-keygen:
+  ./bin/crypto/keygen
+
+crypto-encrypt-file in out:
+  ./bin/crypto/encrypt-file "{{ in }}" "{{ out }}"
+
+crypto-decrypt-file in out:
+  ./bin/crypto/decrypt-file "{{ in }}" "{{ out }}"
+
+crypto-encrypt-dir src out:
+  ./bin/crypto/encrypt-dir "{{ src }}" "{{ out }}"
+
+crypto-decrypt-dir in out_dir:
+  ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
 
 # Install <target>, options: [brew, fonts, cask, agents, security, cron]
 install target:

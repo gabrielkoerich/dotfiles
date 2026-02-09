@@ -7,6 +7,7 @@ on:
       - "private/**"
       - "Justfile"
       - ".security-audit-ignore"
+      - ".semgrep/**"
       - ".github/workflows/security-audit.yml"
   push:
     branches: [main]
@@ -15,6 +16,7 @@ on:
       - "private/**"
       - "Justfile"
       - ".security-audit-ignore"
+      - ".semgrep/**"
       - ".github/workflows/security-audit.yml"
   workflow_dispatch:
 
@@ -30,5 +32,12 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y shellcheck
 
+      - name: Install semgrep
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install semgrep
+
       - name: Run strict security audit
+        env:
+          SECURITY_AUDIT_REQUIRE_SEMGREP: "1"
         run: ./bin/install/security-audit --strict

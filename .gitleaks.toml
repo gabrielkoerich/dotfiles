@@ -1,0 +1,11 @@
+title = "Dotfiles Gitleaks Config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Ignore lock/hash-like non-secrets in known files"
+paths = [
+  '''^blocklist\.txt$''',
+  '''^fonts/''',
+]

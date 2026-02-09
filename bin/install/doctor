@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+status=0
+
+check_cmd() {
+  local c="$1"
+  if command -v "$c" >/dev/null 2>&1; then
+    echo "ok: $c"
+  else
+    echo "missing: $c"
+    status=1
+  fi
+}
+
+echo "==> dotfiles doctor"
+
+for c in git just rg; do
+  check_cmd "$c"
+done
+
+for c in brew gh; do
+  check_cmd "$c"
+done
+
+if [[ -f "bin/install/agents" ]]; then
+  echo "==> pinned refs"
+  grep -E '^[A-Z_]+_REF="[0-9a-f]{40}"' bin/install/agents || {
+    echo "error: missing/invalid pinned refs in bin/install/agents"
+    status=1
+  }
+fi
+
+if [[ -f ".github/workflows/security-audit.yml" ]]; then
+  echo "ok: security workflow present"
+else
+  echo "missing: .github/workflows/security-audit.yml"
+  status=1
+fi
+
+if [[ -f ".pre-commit-config.yaml" ]]; then
+  echo "ok: pre-commit config present"
+else
+  echo "missing: .pre-commit-config.yaml"
+  status=1
+fi
+
+if [[ "$status" -eq 0 ]]; then
+  echo "doctor passed"
+else
+  echo "doctor found issues"
+fi
+
+exit "$status"
