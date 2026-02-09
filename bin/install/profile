@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROFILE="${1:-minimal}"
+FILE="profiles/${PROFILE}.txt"
+
+if [[ ! -f "$FILE" ]]; then
+  echo "error: profile not found: $FILE" >&2
+  exit 2
+fi
+
+while IFS= read -r line; do
+  line="${line%%#*}"
+  line="$(echo "$line" | xargs || true)"
+  [[ -z "$line" ]] && continue
+
+  kind="${line%%:*}"
+  pkg="${line#*:}"
+
+  case "$kind" in
+    brew) brew install "$pkg" ;;
+    cask) brew install --cask "$pkg" ;;
+    *)
+      echo "warning: unknown profile entry '$line'"
+      ;;
+  esac
+done < "$FILE"

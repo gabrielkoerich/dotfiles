@@ -1,0 +1,10 @@
+# format: brew:<formula> or cask:<token>
+brew:git
+brew:just
+brew:ripgrep
+brew:jq
+brew:yq
+brew:shellcheck
+brew:pre-commit
+brew:gitleaks
+brew:age

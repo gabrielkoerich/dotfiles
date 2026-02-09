@@ -1,0 +1,3 @@
+brew:codex
+brew:claude-code
+brew:opencode
