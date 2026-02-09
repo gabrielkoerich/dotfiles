@@ -36,11 +36,19 @@ _cask:
 _agents:
   ./bin/install/agents
 
+[confirm("Run security audit for install script? (y/n)")]
+_security:
+  ./bin/install/security-audit
+
+# Run strict security audit (fails on non-ignored risky patterns)
+security-strict:
+  ./bin/install/security-audit --strict
+
 [confirm("Install cron jobs? (y/n)")]
 _cron:
   ./private/install/cron
 
-# Install <target>, options: [brew, fonts, cask, cron]
+# Install <target>, options: [brew, fonts, cask, agents, security, cron]
 install target:
   just _{{ target }} || echo "Invalid install"
 

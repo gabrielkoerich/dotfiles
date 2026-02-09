@@ -27,8 +27,9 @@ To sync the dotfiles, run step 8 again.
 
 ```bash
 backup              # Run mackup backup & uninstall
-install target      # Install <target>, options: [brew, fonts, cask, cron]
+install target      # Install <target>, options: [brew, fonts, cask, agents, security, cron]
 restore             # Restore mackup backup
+security-strict     # Run strict repo-wide security audit
 setup               # Run macos setup
 sync                # Sync dotfiles to home directory
 test target args="" # Test mackup, options [backup, restore]
