@@ -189,6 +189,7 @@ cask "privileges" # admin rights switcher
 cask "qlmarkdown" # Quick Look for markdown
 cask "rectangle" # window manager shortcuts
 cask "telegram" # messaging app
+cask "tailscale" # zero-trust mesh VPN
 cask "the-unarchiver" # archive extractor
 cask "utm" # virtualization app
 cask "zed" # code editor

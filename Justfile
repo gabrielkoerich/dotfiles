@@ -91,6 +91,19 @@ pre-commit-run:
 test-install:
     bats tests
 
+# Apply Tailscale-only SSH hardening config using current user from `whoami`.
+[confirm("Apply Tailscale SSH hardening config and restart sshd? (y/n)")]
+tailscale-ssh-harden:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    user="$(whoami)"
+    template="home/.config/ssh/sshd-hardening.tailscale.conf"
+    target="/etc/ssh/sshd_config.d/99-tailscale-hardening.conf"
+    sed "s/__SSH_USER__/${user}/g" "$template" | sudo tee "$target" >/dev/null
+    sudo sshd -t
+    sudo launchctl kickstart -k system/com.openssh.sshd
+    echo "applied tailscale ssh hardening for user: $user"
+
 # Encrypt/decrypt helpers (set AGE_RECIPIENT and optionally AGE_KEY_FILE)
 
 # Decrypt root `.bin.tar.age` into `home/.bin` when available.

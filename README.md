@@ -25,7 +25,7 @@ Read [all](./bin/install/) scripts *before* executing them.
 To sync the dotfiles, run step 8 again.
 Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local. Public SSH hardening template is versioned at `home/.config/ssh/sshd-hardening.public.conf`.
 
-## Existing Configs
+## Dotfiles Sync
 
 Main config coverage:
 
@@ -36,8 +36,6 @@ Main config coverage:
   - `home/.functions`
   - `home/.exports`
   - `home/.path`
-- Git:
-  - `home/.gitconfig`
 - Tmux:
   - `home/.tmux.conf`
   - `home/.tmux/*` helpers (`renew.sh`, `yank.sh`, remote profile)
@@ -46,23 +44,16 @@ Main config coverage:
   - `home/.config/nvim/init.lua`
 - Terminal:
   - `home/.config/ghostty/config`
+- Mackup:
+  - `home/.mackup.cfg`
+  - `home/.mackup/*.cfg`
 - Agent tooling:
   - `home/.codex/config.toml`
   - `home/.config/opencode/opencode.json`
   - `home/.claude/settings.json`
-- Backups and local ops scripts:
-  - `home/.bin/*`
-  - `bin/install/*`
-  - `bin/dev/*`
-  - `bin/macos`
-- Mackup:
-  - `home/.mackup.cfg`
-  - `home/.mackup/*.cfg`
-
-<!---   - `home/.config/yabai/yabairc`
-  - `home/.config/skhd/skhdrc`
-  - `home/.config/aerospace/aerospace.toml`
-  - `home/.config/starship.toml`-->
+- SSH templates:
+  - `home/.config/ssh/sshd-hardening.public.conf`
+  - `home/.config/ssh/sshd-hardening.tailscale.conf`
 
 If you want to skip parts of this setup, selectively run install targets and remove unneeded config files before `just sync`.
 
@@ -89,10 +80,10 @@ test-install        # Run bats tests for install/security scripts
 
 # Encrypted file workflows (age)
 crypto-keygen
-crypto-encrypt-file <in> <out.age>
-crypto-decrypt-file <in.age> <out>
-crypto-encrypt-dir <src-dir> <out.tar.age>
-crypto-decrypt-dir <in.tar.age> <out-dir>
+encrypt-file <in> <out.age>
+decrypt-file <in.age> <out>
+encrypt-dir <src-dir> <out.tar.age>
+decrypt-dir <in.tar.age> <out-dir>
 ```
 
 Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
@@ -178,6 +169,24 @@ Optional env overrides:
 
 - `TMX_SESSION_NAME` (default: `main`)
 - `TMX_SESSION_ROOT` (default: `$HOME`)
+
+## Tailscale Hardening Template
+
+Install and sign in:
+
+1. `brew install --cask tailscale`
+2. `tailscale up --ssh`
+
+Apply the Tailscale-only SSH hardening template:
+
+1. `just tailscale-ssh-harden` (uses `whoami` for `__SSH_USER__`)
+2. Optional manual path:
+   `export SSH_USER="<your-user>"`
+   `sed "s/__SSH_USER__/${SSH_USER}/g" home/.config/ssh/sshd-hardening.tailscale.conf | sudo tee /etc/ssh/sshd_config.d/99-tailscale-hardening.conf >/dev/null`
+   `sudo sshd -t`
+   `sudo launchctl kickstart -k system/com.openssh.sshd`
+
+Verify from a non-Tailscale network that SSH is denied, then verify access via Tailscale still works.
 
 ### Termius Setup
 
