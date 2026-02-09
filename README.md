@@ -6,6 +6,7 @@ My dotfiles, mac setup, apps & backups configs.
 
 ## Dependencies
  - [Just command runner](https://github.com/casey/just)
+ - [Brew](https://brew.sh) (mac setup)
 
 ## Instructions
 
@@ -22,6 +23,42 @@ Read [all](./bin/install/) scripts *before* executing them.
 9. Run `just restore` to restore app settings
 
 To sync the dotfiles, run step 8 again.
+
+## Existing Configs
+
+Main config coverage:
+
+- Shell:
+  - `home/.zshrc`
+  - `home/.zprofile`
+  - `home/.aliases`
+  - `home/.functions`
+  - `home/.exports`
+  - `home/.path`
+- Git:
+  - `home/.gitconfig`
+- Tmux:
+  - `home/.tmux.conf`
+  - `home/.tmux/*` helpers (`renew.sh`, `yank.sh`, remote profile)
+  - `home/.tmux/tmx` session helper
+- Neovim:
+  - `home/.config/nvim/init.lua`
+- Terminal:
+  - `home/.config/ghostty/config`
+- Agent tooling:
+  - `home/.codex/config.toml`
+  - `home/.config/opencode/opencode.json`
+  - `home/.claude/settings.json`
+- Backups and local ops scripts:
+  - `home/.bin/*`
+  - `bin/install/*`
+  - `bin/dev/*`
+  - `bin/macos`
+- Mackup:
+  - `home/.mackup.cfg`
+  - `home/.mackup/*.cfg`
+
+If you want to skip parts of this setup, selectively run install targets and remove unneeded config files before `just sync`.
 
 ### Available Just commands
 

@@ -1,50 +1,11 @@
 #!/usr/bin/env bash
 
-# Install brew cask and apps
-brew install alfred
-brew install discord
-brew install ghosty
-brew install github
-brew install imageoptim
-brew install iterm2
-brew install qlmarkdown # Add quicklook view for markdown files
-brew install rectangle # Window shortcuts
-brew install the-unarchiver
-brew install zed
-brew install passepartout # Multi VPN Client
-brew install claude
-brew install claude-code
-brew install handy # open source speechtotext model
+set -euo pipefail
 
-# brew install authy # deprecated
-# brew install caffeine
-# brew install cakebrew # brew manager
-# brew install postman
-# brew install sublime-text
-# brew install vlc
-# brew install docker-desktop
-# brew install angry-ip-scanner # Network scanner, deprecated
-# brew install kap # Open-source screen recorder built with web technology
-# brew install tunnelblick # Free and open-source OpenVPN client
-# brew install rstudio # Data science software focusing on R and Python
-# brew install 0-ad # Real-time strategy game https://play0ad.com
-# brew install tribler # Download and watch videos
+if ! command -v brew >/dev/null 2>&1; then
+  echo "error: Homebrew not installed. Run 'just install brew' first." >&2
+  exit 1
+fi
 
-# Install security utils
-brew install cryptomator
-brew install keepassxc
-brew install knockknock # See what's persistently installed
-brew install little-snitch # Firewall for apps (lulu + nettiquete)
-brew install micro-snitch # Monitors and reports any microphone and camera activity
-brew install pareto-security
-brew install privileges
-brew install pearcleaner
-brew install alienator88-sentinel
-# brew install blockblock # Block/notify launch agents
-# brew install do-not-disturb # https://objective-see.org/products/dnd.html
-# brew install onyx # https://titanium-software.fr/en/onyx.html CleanMyMac Alternative?
-# brew install deeper # Enable and disable hidden functions of Finder and other apps
-# brew install security-growler # Disabled, Notify security events
-# brew install taskexplorer # https://objective-see.org/products/taskexplorer.html
-# brew install lulu # Block network connections, little-snitch alternative
-# brew install netiquette # Check network connections, little-snitch alternative
+# Install casks from Brewfile (no formulas in this target)
+brew bundle --file Brewfile --no-brew --verbose
