@@ -41,16 +41,16 @@ Main config coverage:
   - `home/.tmux/*` helpers (`renew.sh`, `yank.sh`, remote profile)
   - `home/.tmux/tmx` session helper
 - Neovim:
-  - `home/.config/nvim/init.lua`
+  - `home/.config/nvim`
 - Terminal:
-  - `home/.config/ghostty/config`
+  - `home/.config/ghostty`
 - Mackup:
   - `home/.mackup.cfg`
   - `home/.mackup/*.cfg`
 - Agent tooling:
-  - `home/.codex/config.toml`
-  - `home/.config/opencode/opencode.json`
-  - `home/.claude/settings.json`
+  - `home/.codex`
+  - `home/.claude`
+  - `home/.config/opencode`
 - SSH templates:
   - `home/.config/ssh/sshd-hardening.public.conf`
   - `home/.config/ssh/sshd-hardening.tailscale.conf`
