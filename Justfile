@@ -18,6 +18,7 @@ sync:
         rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
     fi
     rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
+    rm -Rf private
     exec $SHELL -l
 
 # Install <target>, options: [brew, fonts, cask, agents, security, cron, pre-commit]
