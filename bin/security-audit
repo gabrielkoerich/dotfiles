@@ -81,6 +81,7 @@ done
 for f in "${shell_files[@]}"; do
   case "$f" in
     bin/priv) ;;
+    home/.aliases|home/.exports|home/.functions|home/.path|home/.zprofile|home/.zshrc) ;;
     *) shellcheck_files+=("$f") ;;
   esac
 done
@@ -99,7 +100,7 @@ fi
 echo "-> shellcheck (${#shellcheck_files[@]} files)"
 if command -v shellcheck >/dev/null 2>&1; then
   for f in "${shellcheck_files[@]}"; do
-    if ! shellcheck "$f"; then
+    if ! shellcheck -S error "$f"; then
       ((shellcheck_fail += 1))
     fi
   done

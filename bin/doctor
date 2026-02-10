@@ -31,10 +31,10 @@ if [[ -f "bin/install/agents" ]]; then
   }
 fi
 
-if [[ -f ".github/workflows/security-audit.yml" ]]; then
-  echo "ok: security workflow present"
+if [[ -f ".github/workflows/quality.yml" ]]; then
+  echo "ok: quality workflow present"
 else
-  echo "missing: .github/workflows/security-audit.yml"
+  echo "missing: .github/workflows/quality.yml"
   status=1
 fi
 

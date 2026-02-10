@@ -91,8 +91,7 @@ Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the reci
 ## Security Tooling
 
 - `bin/security-audit`: repo-wide shell/security audit (`--strict` for CI mode)
-- `.github/workflows/security-audit.yml`: strict security checks on push/PR
-- `.github/workflows/quality.yml`: matrix quality checks (shell syntax, strict audit, tests, gitleaks)
+- `.github/workflows/quality.yml`: quality + security checks (shell syntax, strict audit, semgrep, tests, gitleaks)
 - `.pre-commit-config.yaml`: local hooks for hygiene + secrets + strict audit
 - `.gitleaks.toml`: secrets scanning configuration
 
