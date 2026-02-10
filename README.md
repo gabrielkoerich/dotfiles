@@ -1,6 +1,8 @@
 # Gabriel's dotfiles
 
-My dotfiles, mac setup, apps & backups configs.
+[![Quality](https://github.com/gabrielkoerich/dotfiles/actions/workflows/quality.yml/badge.svg)](https://github.com/gabrielkoerich/dotfiles/actions/workflows/quality.yml)
+
+Dotfiles, mac setup, apps & backups configs.
 
 **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. This config uses [zsh](http://www.zsh.org), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) and [tmux](https://github.com/tmux/tmux), if you don't want to use any of those, check [Brew install file](./bin/install/brew).
 
