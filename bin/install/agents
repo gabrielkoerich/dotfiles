@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ANTHROPIC_SKILLS_REF="1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563"
-ORCHESTRATOR_REF="56166b96c3b3a3a7b5aa3d8b3ef864aa78523745"
+ORCHESTRATOR_REF="4312ff70de10da97fc454bb8d82bd1599bbb8263"
 GB_SKILLS_REF="f51efdd613d8259b04225137551eb61149c82a5c"
 
 require_cmd() {
@@ -55,11 +55,18 @@ cleanup() {
 }
 trap cleanup EXIT
 
-clone_pinned "https://github.com/gabrielkoerich/orchestrator.git" "$ORCHESTRATOR_REF" "$tmp_orchestrator_dir"
-(cd "$tmp_orchestrator_dir" && just install)
-
 clone_pinned "https://github.com/gabrielkoerich/skills.git" "$GB_SKILLS_REF" "$tmp_skills_dir"
 sync_skills_to_agents "$tmp_skills_dir"
 
 clone_pinned "https://github.com/anthropics/skills.git" "$ANTHROPIC_SKILLS_REF" "$tmp_anthropic_skills_dir"
 sync_skills_to_agents "$tmp_anthropic_skills_dir/skills"
+
+clone_pinned "https://github.com/gabrielkoerich/orchestrator.git" "$ORCHESTRATOR_REF" "$tmp_orchestrator_dir"
+(cd "$tmp_orchestrator_dir" && just install)
+
+# Sync AGENTS.md to all agents
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+mkdir -p "$HOME/.codex" "$HOME/.config/opencode" "$HOME/.claude"
+cp "$script_dir/AGENTS.md" "$HOME/.codex/AGENTS.md"
+cp "$script_dir/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
+cp "$script_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
