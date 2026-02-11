@@ -74,7 +74,11 @@ for f in "${files[@]}"; do
   fi
 
   case "$f" in
-    bin/*|private/install/*) shell_files+=("$f") ;;
+    bin/*|private/install/*)
+      # Exclude non-shell files in bin/
+      [[ "$f" =~ \.(md|txt|png|jpg|jpeg|gif|pdf|json|toml|yaml|yml)$ ]] && continue
+      shell_files+=("$f")
+      ;;
   esac
 done
 

@@ -61,7 +61,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: detect --source . --config .gitleaks.toml --no-banner --redact
+          args: detect --source . --config .gitleaks.toml --no-banner --redact --exit-code=1
 
   bats:
     runs-on: ubuntu-latest
