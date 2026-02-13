@@ -3,7 +3,6 @@
 set -euo pipefail
 
 ANTHROPIC_SKILLS_REF="1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563"
-ORCHESTRATOR_REF="2f8f575bda04195fae16eb4fe60a59ee57c168bd"
 GB_SKILLS_REF="f51efdd613d8259b04225137551eb61149c82a5c"
 
 require_cmd() {
@@ -45,13 +44,13 @@ require_cmd rsync
 brew install codex
 brew install claude-code
 brew install opencode
+brew install gabrielkoerich/tap/orchestrator
 
-tmp_orchestrator_dir="$(mktemp -d)"
 tmp_skills_dir="$(mktemp -d)"
 tmp_anthropic_skills_dir="$(mktemp -d)"
 
 cleanup() {
-  rm -rf "$tmp_orchestrator_dir" "$tmp_skills_dir" "$tmp_anthropic_skills_dir"
+  rm -rf "$tmp_skills_dir" "$tmp_anthropic_skills_dir"
 }
 trap cleanup EXIT
 
@@ -60,9 +59,6 @@ sync_skills_to_agents "$tmp_skills_dir"
 
 clone_pinned "https://github.com/anthropics/skills.git" "$ANTHROPIC_SKILLS_REF" "$tmp_anthropic_skills_dir"
 sync_skills_to_agents "$tmp_anthropic_skills_dir/skills"
-
-clone_pinned "https://github.com/gabrielkoerich/orchestrator.git" "$ORCHESTRATOR_REF" "$tmp_orchestrator_dir"
-(cd "$tmp_orchestrator_dir" && just install)
 
 # Sync AGENTS.md to all agents
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

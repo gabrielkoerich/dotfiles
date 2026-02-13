@@ -72,6 +72,12 @@ For markdown documents, notes, and knowledge management:
 - Update docs when code changes
 - For github, use the `github` skill to manage issues, pull requests, and repositories. Use git-worktres for managing worktrees workflows and gh-issue-workktree for github issues related tasks.
 
+## File Deletion
+
+- **Never use `rm`** — it is denied in agent settings and shell aliases don't load in non-interactive shells
+- Use `trash -F` instead (moves files to macOS Trash, recoverable)
+- On Linux, use `trash-put` instead
+
 ## Security
 
 - Use `age` for file encryption
