@@ -23,6 +23,8 @@ tap "steipete/tap" # bird/camsnap/peekaboo/summarize/tmuxwatch
 tap "supabase/tap" # official Supabase CLI tap
 # TXT/X tooling
 tap "txtx/taps" # surfpool blockchain deployment tool
+tap "librespeed/tap" # librespeed-cli tap
+tap "jorgelbg/tap" # tap for pinentry-touchid
 
 # Core CLI and shell tooling
 brew "ack" # search tool like grep optimized for source code
@@ -124,6 +126,7 @@ brew "nmap" # network scanner
 brew "pngcheck" # PNG integrity checker
 brew "socat" # socket relay utility
 brew "speedtest-cli" # internet bandwidth tester
+brew "librespeed-cli" # internet bandwidth tester
 brew "sqlmap" # SQL injection testing tool
 brew "tcpflow" # capture TCP flows
 brew "tcpreplay" # replay captured packets

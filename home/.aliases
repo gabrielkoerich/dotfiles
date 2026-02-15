@@ -157,7 +157,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias reload="exec $SHELL -l"
 
 # Call speedtest_cli
-alias speedtest="speedtest-cli --share"
+alias speedtest="speedtest-cli --share || true && librespeed-cli --share"
 
 # List all docker ips
 alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; docker inspect $cid | grep IPAddress | cut -d \" -f 4; done'
