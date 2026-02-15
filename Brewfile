@@ -130,7 +130,6 @@ brew "gastown" # multi-agent workspace manager
 brew "orchestrator" # multi-agent orchestrator & delegator
 brew "gemini-cli" # Google Gemini CLI
 brew "gh" # GitHub CLI
-brew "howdoi" # coding answers from terminal
 brew "iwe-org/iwe/iwe" # markdown-based PKM for developers
 brew "jq" # JSON processor
 brew "pinentry-touchid" # Touch ID pinentry integration
