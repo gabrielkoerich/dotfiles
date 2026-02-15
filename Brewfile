@@ -1,30 +1,20 @@
 # Homebrew taps
-# Default formulae tap
 tap "homebrew/core" # official Homebrew formulae
-# Default casks tap
 tap "homebrew/cask" # official Homebrew casks
-# Touch ID pinentry integration
 tap "jorgelbg/tap" # custom tap for pinentry-touchid
-# ChatGPT CLI tools
-tap "kardolus/chatgpt-cli" # third-party ChatGPT CLI tap
-# Macfetch utility
+# tap "kardolus/chatgpt-cli" # third-party ChatGPT CLI tap
 tap "gantoreno/macfetch" # custom macfetch tap
-# Dagger tooling
 tap "dagger/tap" # Dagger CLI and related tools
-# IWE knowledge tooling
 tap "iwe-org/iwe" # IWE knowledge management tools
-# Numi CLI
 tap "nikolaeu/numi" # tap for numi-cli
-# Things 3 CLI
 tap "ossianhempel/tap" # tap for Things 3 CLI
-# Utility CLIs by @steipete
 tap "steipete/tap" # bird/camsnap/peekaboo/summarize/tmuxwatch
-# Supabase tooling
 tap "supabase/tap" # official Supabase CLI tap
-# TXT/X tooling
 tap "txtx/taps" # surfpool blockchain deployment tool
 tap "librespeed/tap" # librespeed-cli tap
 tap "jorgelbg/tap" # tap for pinentry-touchid
+tap "ossianhempel/tap" # tap for Things 3 CLI
+tap "gabrielkoerich/tap" # tap for Orchestrator + other apps
 
 # Core CLI and shell tooling
 brew "ack" # search tool like grep optimized for source code
@@ -135,22 +125,22 @@ brew "ucspi-tcp" # tcpserver and related tools
 brew "xpdf" # PDF text/tools suite
 
 # Personal productivity and system operations
-brew "gantoreno/macfetch/macfetch" # macOS system summary utility
+brew "macfetch" # macOS system summary utility
 brew "gastown" # multi-agent workspace manager
+brew "orchestrator" # multi-agent orchestrator & delegator
 brew "gemini-cli" # Google Gemini CLI
 brew "gh" # GitHub CLI
 brew "howdoi" # coding answers from terminal
 brew "iwe-org/iwe/iwe" # markdown-based PKM for developers
 brew "jq" # JSON processor
-brew "jorgelbg/tap/pinentry-touchid" # Touch ID pinentry integration
-brew "kardolus/chatgpt-cli/chatgpt-cli" # ChatGPT CLI
+brew "pinentry-touchid" # Touch ID pinentry integration
 brew "mackup" # backup/restore app settings
 brew "maclaunch" # inspect startup items
 brew "mactop" # Apple Silicon process monitor
 brew "mas" # Mac App Store CLI
 brew "nikolaeu/numi/numi-cli" # smart calculator CLI
 brew "opencode" # terminal AI coding agent
-brew "ossianhempel/tap/things3-cli" # Things 3 CLI
+brew "things3-cli" # Things 3 CLI
 brew "pass" # password manager
 brew "pass-otp" # OTP extension for pass
 brew "pinentry-mac" # macOS pinentry
