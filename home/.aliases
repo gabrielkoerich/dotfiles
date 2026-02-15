@@ -8,11 +8,11 @@ alias python="python3"
 alias pip="pip3"
 
 # Safer interactive delete: move files to Trash when possible.
-if command -v trash >/dev/null 2>&1; then
-  alias rm="trash -F"
-elif command -v trash-put >/dev/null 2>&1; then
-  alias rm="trash-put"
-fi
+# if command -v trash >/dev/null 2>&1; then
+#   alias rm="trash -F"
+# elif command -v trash-put >/dev/null 2>&1; then
+#   alias rm="trash-put"
+# fi
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
