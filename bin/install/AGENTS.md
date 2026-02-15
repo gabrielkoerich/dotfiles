@@ -36,7 +36,7 @@
 | `gh` | GitHub interactions |
 | `tmux` | Terminal management |
 | `rg` | Fast recursive search |
-| `qmd` | Local markdown search and knowledge management (use the `qmd` skill) 
+| `qmd` | Local markdown search and knowledge management (use the `qmd` skill)
 | `orchestrator` | Manage and orchestrater task and delegate or worth with coding agents (codex, claude, opencode) |
 
 ## Useful Skills

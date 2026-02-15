@@ -14,7 +14,7 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" %{$terminfo[bold]$fg[white]%}git:%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_DIRTY=" %{$fg[red]%}*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
- 
+
 PROMPT="%{$terminfo[bold]$fg[blue]%}%n\
 %{$fg[white]%}@\
 %{$fg[yellow]%}$(box_name) \
