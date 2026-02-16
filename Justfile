@@ -105,6 +105,19 @@ tailscale-ssh-harden:
     sudo launchctl kickstart -k system/com.openssh.sshd
     echo "applied tailscale ssh hardening for user: $user"
 
+# Apply Cloudflare Tunnel SSH hardening config using current user from `whoami`.
+[confirm("Apply Cloudflare Tunnel SSH hardening config and restart sshd? (y/n)")]
+cloudflare-ssh-harden:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    user="$(whoami)"
+    template="home/.config/ssh/sshd-hardening.cloudflare.conf"
+    target="/etc/ssh/sshd_config.d/99-cloudflare-hardening.conf"
+    sed "s/__SSH_USER__/${user}/g" "$template" | sudo tee "$target" >/dev/null
+    sudo sshd -t
+    sudo launchctl kickstart -k system/com.openssh.sshd
+    echo "applied cloudflare tunnel ssh hardening for user: $user"
+
 # Generate a local `age` key pair used for encryption workflows.
 crypto-keygen:
     ./bin/crypto/keygen

@@ -56,6 +56,7 @@ Main config coverage:
 - SSH templates:
   - `home/.config/ssh/sshd-hardening.public.conf`
   - `home/.config/ssh/sshd-hardening.tailscale.conf`
+  - `home/.config/ssh/sshd-hardening.cloudflare.conf`
 
 If you want to skip parts of this setup, selectively run install targets and remove unneeded config files before `just sync`.
 
@@ -189,9 +190,51 @@ Apply the Tailscale-only SSH hardening template:
 
 Verify from a non-Tailscale network that SSH is denied, then verify access via Tailscale still works.
 
-### Termius Setup
+## Cloudflare Tunnel SSH
 
-Recommended path: SSH over Tailscale, then attach to tmux.
+Cloudflare Tunnel proxies SSH through Cloudflare's network — no ports exposed to the internet. The `cloudflared` CLI is free for this use case.
+
+### Prerequisites
+
+- `cloudflared` installed (`brew install cloudflared`)
+- Cloudflare account with a domain (DNS managed by Cloudflare)
+
+### Server setup
+
+1. Authenticate cloudflared:
+   `cloudflared tunnel login`
+2. Create a tunnel:
+   `cloudflared tunnel create my-ssh`
+3. Configure the tunnel (`~/.cloudflared/config.yml`):
+   ```yaml
+   tunnel: my-ssh
+   credentials-file: /Users/<you>/.cloudflared/<tunnel-id>.json
+   ingress:
+     - hostname: ssh.example.com
+       service: ssh://localhost:22
+     - service: http_status:404
+   ```
+4. Route DNS:
+   `cloudflared tunnel route dns my-ssh ssh.example.com`
+5. Apply SSH hardening:
+   `just cloudflare-ssh-harden`
+6. Run the tunnel:
+   `cloudflared tunnel run my-ssh`
+
+### Client setup
+
+1. Install cloudflared on the client machine.
+2. Add to `~/.ssh/config`:
+   ```
+   Host ssh.example.com
+     ProxyCommand cloudflared access ssh --hostname %h
+     User <your-user>
+   ```
+3. Connect: `ssh ssh.example.com`
+
+### Termius Setup (iPhone / iPad)
+
+Common steps (all profiles):
 
 1. Enable SSH on Mac:
    `sudo systemsetup -setremotelogin on`
@@ -200,22 +243,37 @@ Recommended path: SSH over Tailscale, then attach to tmux.
    `mkdir -p ~/.ssh && chmod 700 ~/.ssh`
    append key to `~/.ssh/authorized_keys`
    `chmod 600 ~/.ssh/authorized_keys`
-4. Harden SSH on Mac (`/etc/ssh/sshd_config`):
-   - `PasswordAuthentication no`
-   - `PubkeyAuthentication yes`
-   - `PermitRootLogin no`
-   - `AllowUsers <your-user>`
-5. Restart SSH service (or reboot).
-6. In Termius, connect using:
-   - Host: Mac LAN/Tailscale IP
+
+#### Option A: Tailscale
+
+4. Apply hardening: `just tailscale-ssh-harden`
+5. In Termius, connect using:
+   - Host: Mac Tailscale IP (100.x.x.x)
    - User: your macOS user
    - Auth: the key from step 2
-7. Attach persistent session:
-   `tmx`
+6. Attach persistent session: `tmx`
+
+#### Option B: Cloudflare Tunnel
+
+Requires the [Cloudflare WARP app](https://apps.apple.com/app/id1423538627) on your iPhone/iPad.
+
+4. Apply hardening: `just cloudflare-ssh-harden`
+5. In Cloudflare Zero Trust dashboard:
+   - Go to **Settings > WARP Client > Device enrollment permissions**
+   - Add an enrollment rule (e.g. email matching your account)
+6. On iPhone, open the 1.1.1.1/WARP app:
+   - Go to **Settings > Account > Login to Cloudflare Zero Trust**
+   - Enter your Zero Trust org name and authenticate
+7. In Termius, connect using:
+   - Host: `ssh.example.com` (your tunnel hostname)
+   - User: your macOS user
+   - Auth: the key from step 2
+8. Attach persistent session: `tmx`
 
 Notes:
-- If you do not use Tailscale, ensure firewall/network rules allow SSH.
-- Keep key-only auth (disable password auth).
+- With Cloudflare Tunnel, no ports are exposed — WARP routes traffic through Cloudflare's network to your tunnel.
+- With Tailscale, traffic stays on the mesh VPN.
+- Both profiles enforce key-only auth. Do not enable password auth.
 
 ## License
 

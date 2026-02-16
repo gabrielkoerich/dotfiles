@@ -97,6 +97,7 @@ brew "binutils" # GNU binary utilities
 brew "binwalk" # firmware analysis tool
 brew "cifer" # Caesar/Vigenere-like cipher utility
 brew "dex2jar" # Android dex to Java jar converter
+brew "cloudflared" # Cloudflare Tunnel client
 brew "dns2tcp" # tunnel TCP over DNS
 brew "fcrackzip" # ZIP password cracker
 brew "foremost" # file carving forensic tool
