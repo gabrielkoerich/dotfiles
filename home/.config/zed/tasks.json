@@ -1,0 +1,32 @@
+[
+  {
+    "label": "GitHub: Open repo in browser",
+    "command": "~/.config/zed/scripts/gh-zed open-repo",
+    "reveal": "no_focus",
+    "tags": ["gh"]
+  },
+  {
+    "label": "GitHub: Open current file in browser",
+    "command": "~/.config/zed/scripts/gh-zed open-file \"$ZED_RELATIVE_FILE\" \"$ZED_ROW\"",
+    "reveal": "no_focus",
+    "tags": ["gh"]
+  },
+  {
+    "label": "GitHub: Open blame for current file",
+    "command": "~/.config/zed/scripts/gh-zed blame \"$ZED_RELATIVE_FILE\"",
+    "reveal": "no_focus",
+    "tags": ["gh"]
+  },
+  {
+    "label": "GitHub: Open current PR in browser",
+    "command": "~/.config/zed/scripts/gh-zed open-pr",
+    "reveal": "no_focus",
+    "tags": ["gh"]
+  },
+  {
+    "label": "GitHub: Create PR in browser",
+    "command": "~/.config/zed/scripts/gh-zed create-pr",
+    "reveal": "always",
+    "tags": ["gh"]
+  }
+]
