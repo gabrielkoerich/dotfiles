@@ -151,13 +151,10 @@ decrypt-private:
       echo "skip: private.tar.age not found"
     fi
 
-# Run mackup backup & uninstall due to https://github.com/lra/mackup/issues/1924#issuecomment-1743072813
-[confirm("Run mackup backup & uninstall? (y/n)")]
+# Run mackup backup (copy mode, no symlinks since 0.9.0)
+[confirm("Run mackup backup? (y/n)")]
 backup:
-    @echo "\n\033[1mBacking up...\n"
     mackup backup --force
-    @echo "\n\033[1mUninstalling...\n"
-    mackup uninstall --force
 
 # Restore mackup backup
 [confirm("Restore mackup backup? This should be only done on a fresh install. (y/n)")]

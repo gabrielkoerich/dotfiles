@@ -167,8 +167,8 @@ alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk 
 
 alias weather="curl -s https://wttr.in/Florianopolis | head -7"
 
-# backup files and remove aliases using Mackup
-alias backup="mackup backup --force && mackup uninstall --force"
+# backup files using Mackup (copy mode, no symlinks since 0.9.0)
+alias backup="mackup backup --force"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
