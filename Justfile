@@ -4,12 +4,16 @@ set dotenv-load := true
 _default:
     just --list
 
+# Setup & Sync
+
 # Run macos setup
+[group('setup')]
 [confirm("Setup Mac? This should be only done on a fresh install. (y/n)")]
 setup:
     ./macos
 
 # Sync dotfiles to home directory
+[group('setup')]
 [confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
 sync:
     #!/usr/bin/env bash
@@ -22,6 +26,7 @@ sync:
     exec $SHELL -l
 
 # Install <target>, options: [brew, fonts, cask, agents, security, cron, pre-commit]
+[group('install')]
 install target:
     just _{{ target }} || echo "Invalid install"
 
@@ -61,38 +66,47 @@ _pre-commit:
     pre-commit install
 
 # Install from package profile (profiles/*.txt)
+[group('install')]
 install-profile profile="minimal":
     ./bin/install/profile "{{ profile }}"
 
-# Run strict security audit (fails on non-ignored risky patterns)
-security-strict:
-    ./bin/security-audit --strict
-
-# Run CI-equivalent security audit (requires semgrep installed)
-security-ci:
-    SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
-
-# Run system/tooling checks
-doctor:
-    ./bin/doctor
-
 # Apply closest deterministic machine baseline
+[group('install')]
 exact-apply:
     ./bin/install/exact-apply
 
 # Check machine drift against repo baseline
+[group('check')]
 exact-check:
     ./bin/exact-check
 
+# Run system/tooling checks
+[group('check')]
+doctor:
+    ./bin/doctor
+
 # Create install report under .build/reports/
+[group('check')]
 report:
     ./bin/install-report
 
 # Run pre-commit checks on all files
+[group('check')]
 pre-commit-run:
     pre-commit run --all-files
 
+# Run strict security audit (fails on non-ignored risky patterns)
+[group('security')]
+security-strict:
+    ./bin/security-audit --strict
+
+# Run CI-equivalent security audit (requires semgrep installed)
+[group('security')]
+security-ci:
+    SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
+
 # Apply Tailscale-only SSH hardening config using current user from `whoami`.
+[group('ssh')]
 [confirm("Apply Tailscale SSH hardening config and restart sshd? (y/n)")]
 tailscale-ssh-harden:
     #!/usr/bin/env bash
@@ -106,6 +120,7 @@ tailscale-ssh-harden:
     echo "applied tailscale ssh hardening for user: $user"
 
 # Apply Cloudflare Tunnel SSH hardening config using current user from `whoami`.
+[group('ssh')]
 [confirm("Apply Cloudflare Tunnel SSH hardening config and restart sshd? (y/n)")]
 cloudflare-ssh-harden:
     #!/usr/bin/env bash
@@ -119,30 +134,37 @@ cloudflare-ssh-harden:
     echo "applied cloudflare tunnel ssh hardening for user: $user"
 
 # Generate a local `age` key pair used for encryption workflows.
+[group('encryption')]
 crypto-keygen:
     ./bin/crypto/keygen
 
 # Encrypt one file to `.age` format.
+[group('encryption')]
 encrypt-file in out:
     ./bin/crypto/encrypt-file "{{ in }}" "{{ out }}"
 
 # Decrypt one `.age` file to plaintext.
+[group('encryption')]
 decrypt-file in out:
     ./bin/crypto/decrypt-file "{{ in }}" "{{ out }}"
 
 # Archive and encrypt an entire directory.
+[group('encryption')]
 encrypt-dir src out:
     ./bin/crypto/encrypt-dir "{{ src }}" "{{ out }}"
 
 # Decrypt and extract an encrypted directory archive.
+[group('encryption')]
 decrypt-dir in out_dir:
     ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
 
 # Encrypt root `.bin` into `.bin.tar.age`
+[group('encryption')]
 encrypt-private:
     ./bin/crypto/encrypt-dir private private.tar.age
 
 # Decrypt root `.bin.tar.age` into `home/.bin` when available.
+[group('encryption')]
 decrypt-private:
     #!/usr/bin/env bash
     if [ -f "private.tar.age" ]; then
@@ -152,11 +174,13 @@ decrypt-private:
     fi
 
 # Run mackup backup (copy mode, no symlinks since 0.9.0)
+[group('backup')]
 [confirm("Run mackup backup? (y/n)")]
 backup:
     mackup backup --force
 
 # Restore mackup backup
+[group('backup')]
 [confirm("Restore mackup backup? This should be only done on a fresh install. (y/n)")]
 restore:
     mackup restore
@@ -174,5 +198,6 @@ _install-test:
     bats tests
 
 # Test install, mackup, options [backup, restore]
+[group('check')]
 test target args="":
     just _{{ target }}-test {{ args }}  || echo "Invalid test"
