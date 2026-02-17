@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+LOG_DIR="$HOME/Library/Logs/cron"
+mkdir -p "$LOG_DIR"
+
+# save current cron to a new file
+crontab -l > cron 2>/dev/null || true
+
+# Mackup backups (daily at 10:00)
+echo "0 10 * * * /opt/homebrew/bin/mackup backup --force >>$LOG_DIR/mackup-\$(date +\%F).log 2>&1" >> cron
+
+# Homebrew maintenance (hourly at minute 30, formulae only)
+echo "30 * * * * /opt/homebrew/bin/brew update >>$LOG_DIR/brew-\$(date +\%F).log 2>&1 && /opt/homebrew/bin/brew upgrade --formula >>$LOG_DIR/brew-\$(date
++\%F).log 2>&1" >> cron
+
+# Cleanup old cron logs (daily at 03:15, keep 14 days)
+echo "15 3 * * * /usr/bin/find $LOG_DIR -type f -name '*.log' -mtime +14 -delete >>$LOG_DIR/cleanup-\$(date +\%F).log 2>&1" >> cron
+
+# Auto pull
+# echo \"* 7-20 * * * git -C /Users/\$(whoami)/Projects/bean pull -v >>$LOG_DIR/bean-pull-\$(date +\%F).log 2>&1\" >> cron
+
+# install new cron file
+crontab cron
+rm cron

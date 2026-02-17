@@ -7,14 +7,14 @@ _default:
 # Setup & Sync
 
 # Run macos setup
-[group('setup')]
 [confirm("Setup Mac? This should be only done on a fresh install. (y/n)")]
+[group('setup')]
 setup:
     ./macos
 
 # Sync dotfiles to home directory
-[group('setup')]
 [confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
+[group('setup')]
 sync:
     #!/usr/bin/env bash
     just decrypt-private || true
@@ -58,7 +58,7 @@ _security:
 # Install/update configured cron jobs.
 [confirm("Install cron jobs? (y/n)")]
 _cron:
-    ./private/install/cron
+    ./bin/install/cron
 
 # Install pre-commit hooks locally
 [confirm("Install pre-commit? (y/n)")]
@@ -106,8 +106,8 @@ security-ci:
     SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
 
 # Apply Tailscale-only SSH hardening config using current user from `whoami`.
-[group('ssh')]
 [confirm("Apply Tailscale SSH hardening config and restart sshd? (y/n)")]
+[group('ssh')]
 tailscale-ssh-harden:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -120,8 +120,8 @@ tailscale-ssh-harden:
     echo "applied tailscale ssh hardening for user: $user"
 
 # Apply Cloudflare Tunnel SSH hardening config using current user from `whoami`.
-[group('ssh')]
 [confirm("Apply Cloudflare Tunnel SSH hardening config and restart sshd? (y/n)")]
+[group('ssh')]
 cloudflare-ssh-harden:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -174,14 +174,14 @@ decrypt-private:
     fi
 
 # Run mackup backup (copy mode, no symlinks since 0.9.0)
-[group('backup')]
 [confirm("Run mackup backup? (y/n)")]
+[group('backup')]
 backup:
     mackup backup --force
 
 # Restore mackup backup
-[group('backup')]
 [confirm("Restore mackup backup? This should be only done on a fresh install. (y/n)")]
+[group('backup')]
 restore:
     mackup restore
 
