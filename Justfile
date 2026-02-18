@@ -105,6 +105,30 @@ security-strict:
 security-ci:
     SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
 
+# Enable Tailscale SSH (turn on SSH + bring up Tailscale with SSH).
+[confirm("Enable SSH and start Tailscale? (y/n)")]
+[group('ssh')]
+tailscale-ssh-enable:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "enabling remote login (SSH)..."
+    sudo systemsetup -setremotelogin on
+    echo "starting tailscale with SSH..."
+    tailscale up --ssh
+    echo "tailscale ssh enabled ($(tailscale ip -4))"
+
+# Disable Tailscale SSH (bring down Tailscale + turn off SSH).
+[confirm("Disable SSH and stop Tailscale? (y/n)")]
+[group('ssh')]
+tailscale-ssh-disable:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "stopping tailscale..."
+    tailscale down
+    echo "disabling remote login (SSH)..."
+    echo 'yes' | sudo systemsetup -setremotelogin off
+    echo "tailscale ssh disabled"
+
 # Apply Tailscale-only SSH hardening config using current user from `whoami`.
 [confirm("Apply Tailscale SSH hardening config and restart sshd? (y/n)")]
 [group('ssh')]
