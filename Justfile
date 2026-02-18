@@ -181,6 +181,104 @@ cloudflare-ssh-harden:
     sudo launchctl kickstart -k system/com.openssh.sshd
     echo "applied cloudflare tunnel ssh hardening for user: $user"
 
+# Enable VPN proxy (decrypt creds, start gluetun, set macOS system proxy).
+[group('proxy')]
+proxy-enable:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    proxy_dir="$HOME/.config/proxy"
+    env_file="$proxy_dir/.env"
+    encrypted="$proxy_dir/vpn.env.age"
+
+    if [ ! -f "$env_file" ]; then
+      if [ -f "$encrypted" ]; then
+        echo "decrypting vpn credentials..."
+        ./bin/crypto/decrypt-file "$encrypted" "$env_file"
+      else
+        echo "error: no $env_file or $encrypted found" >&2
+        echo "create $env_file with VPN_PROVIDER, VPN_USERNAME, VPN_PASSWORD, VPN_COUNTRIES, VPN_TIMEZONE" >&2
+        exit 1
+      fi
+    fi
+
+    echo "starting gluetun..."
+    docker compose -f "$proxy_dir/compose.yml" --env-file "$env_file" up -d
+
+    echo "waiting for proxy to be ready..."
+    for i in $(seq 1 15); do
+      if curl -sf --connect-timeout 2 -x http://127.0.0.1:8888 http://httpbin.org/ip >/dev/null 2>&1; then
+        break
+      fi
+      sleep 1
+    done
+
+    echo "setting macOS system proxy (HTTP + SOCKS)..."
+    net_service="$(networksetup -listallnetworkservices | grep -m1 'Wi-Fi\|Ethernet')"
+    sudo networksetup -setwebproxy "$net_service" 127.0.0.1 8888
+    sudo networksetup -setsecurewebproxy "$net_service" 127.0.0.1 8888
+    sudo networksetup -setwebproxystate "$net_service" on
+    sudo networksetup -setsecurewebproxystate "$net_service" on
+    echo "proxy enabled (HTTP: 8888, Shadowsocks: 8388)"
+
+# Disable VPN proxy (unset macOS system proxy, stop gluetun).
+[group('proxy')]
+proxy-disable:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    proxy_dir="$HOME/.config/proxy"
+
+    echo "unsetting macOS system proxy..."
+    net_service="$(networksetup -listallnetworkservices | grep -m1 'Wi-Fi\|Ethernet')"
+    sudo networksetup -setwebproxystate "$net_service" off
+    sudo networksetup -setsecurewebproxystate "$net_service" off
+
+    echo "stopping gluetun..."
+    docker compose -f "$proxy_dir/compose.yml" down
+
+    echo "proxy disabled"
+
+# Encrypt VPN credentials for safe storage in the repo.
+[group('proxy')]
+proxy-encrypt:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    proxy_dir="$HOME/.config/proxy"
+    env_file="$proxy_dir/.env"
+    encrypted="$proxy_dir/vpn.env.age"
+    if [ ! -f "$env_file" ]; then
+      echo "error: $env_file not found" >&2
+      exit 1
+    fi
+    ./bin/crypto/encrypt-file "$env_file" "$encrypted"
+    echo "encrypted vpn creds: $encrypted"
+
+# Encrypt ~/.config/solana into secrets/solana.tar.age and remove originals.
+[confirm("Encrypt and remove ~/.config/solana? (y/n)")]
+[group('encryption')]
+solana-encrypt:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    src="$HOME/.config/solana"
+    out="secrets/solana.tar.age"
+    mkdir -p secrets
+    ./bin/crypto/encrypt-dir "$src" "$out"
+    rm -rf "$src"
+    echo "encrypted and removed $src"
+
+# Decrypt secrets/solana.tar.age back to ~/.config/solana.
+[group('encryption')]
+solana-decrypt:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    src="secrets/solana.tar.age"
+    out="$HOME/.config"
+    if [ ! -f "$src" ]; then
+      echo "error: $src not found" >&2
+      exit 1
+    fi
+    ./bin/crypto/decrypt-dir "$src" "$out"
+    echo "decrypted to $out/solana/"
+
 # Generate a local `age` key pair used for encryption workflows.
 [group('encryption')]
 crypto-keygen:
