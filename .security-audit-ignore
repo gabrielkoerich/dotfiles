@@ -16,3 +16,5 @@ sudo mv composer\.phar /usr/local/bin/composer
 ^Justfile:.*sudo tee "\$target" >/dev/null
 ^Justfile:.*sudo sshd -t
 ^Justfile:.*sudo launchctl kickstart -k system/com\.openssh\.sshd
+^Justfile:.*sudo systemsetup -setremotelogin
+^Justfile:.*sudo networksetup -set

@@ -122,7 +122,6 @@ Important limits:
 
 `bin/install/agents` installs external repositories at pinned commit SHAs:
 
-- `gabrielkoerich/orchestrator`
 - `gabrielkoerich/skills`
 - `anthropics/skills`
 
