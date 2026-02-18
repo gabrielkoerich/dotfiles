@@ -119,6 +119,30 @@ tailscale-ssh-harden:
     sudo launchctl kickstart -k system/com.openssh.sshd
     echo "applied tailscale ssh hardening for user: $user"
 
+# Enable Cloudflare Tunnel SSH (turn on SSH + start tunnel service).
+[confirm("Enable SSH and start Cloudflare tunnel? (y/n)")]
+[group('ssh')]
+cloudflare-ssh-enable:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "enabling remote login (SSH)..."
+    sudo systemsetup -setremotelogin on
+    echo "installing cloudflared service..."
+    cloudflared service install
+    echo "cloudflare tunnel ssh enabled"
+
+# Disable Cloudflare Tunnel SSH (stop tunnel service + turn off SSH).
+[confirm("Disable SSH and stop Cloudflare tunnel? (y/n)")]
+[group('ssh')]
+cloudflare-ssh-disable:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "uninstalling cloudflared service..."
+    cloudflared service uninstall || true
+    echo "disabling remote login (SSH)..."
+    echo 'yes' | sudo systemsetup -setremotelogin off
+    echo "cloudflare tunnel ssh disabled"
+
 # Apply Cloudflare Tunnel SSH hardening config using current user from `whoami`.
 [confirm("Apply Cloudflare Tunnel SSH hardening config and restart sshd? (y/n)")]
 [group('ssh')]
