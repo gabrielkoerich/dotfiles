@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-echo "Loading .path"
 
 export CPATH="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
-
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="/opt/homebrew/opt/gnu-tar/libexec/gnubin:$PATH"
