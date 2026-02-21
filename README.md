@@ -169,6 +169,7 @@ Helper command:
 Optional env overrides:
 
 - `TMX_SESSION_NAME` (default: `main`)
+- `TMX_SESSIONS` (default: `$TMX_SESSION_NAME`) space-separated list of sessions to ensure/restore
 - `TMX_SESSION_ROOT` (default: `$HOME`)
 
 ## SSH Runbooks
