@@ -2,21 +2,30 @@
 set -euo pipefail
 
 SESSION="${TMX_SESSION_NAME:-main}"
+SESSIONS="${TMX_SESSIONS:-$SESSION}"
 ROOT_DIR="${TMX_SESSION_ROOT:-$HOME}"
 MODE="${1:-attach}"
 
 ensure_session() {
-  if ! tmux has-session -t "$SESSION" 2>/dev/null; then
-    tmux new-session -d -s "$SESSION" -c "$ROOT_DIR"
+  local s="${1}"
+  if ! tmux has-session -t "$s" 2>/dev/null; then
+    tmux new-session -d -s "$s" -c "$ROOT_DIR"
   fi
+}
+
+ensure_sessions() {
+  local s
+  for s in $SESSIONS; do
+    ensure_session "$s"
+  done
 }
 
 case "$MODE" in
   ensure)
-    ensure_session
+    ensure_sessions
     ;;
   attach|"")
-    ensure_session
+    ensure_sessions
     if [[ -n "${TMUX:-}" ]]; then
       exec tmux switch-client -t "$SESSION"
     else
