@@ -165,6 +165,14 @@ Helper command:
 
 - `~/.tmux/tmx` -> ensures/attaches to a long-lived `main` session
 - `~/.tmux/tmx ensure` -> creates `main` session if missing, without attaching
+- `~/.tmux/tmx restore` -> manually restores all saved sessions (rarely needed)
+
+Aliases (switch between sessions in different iTerm tabs):
+
+- `tmx-main` -> switch to `main` session
+- `tmx-work` -> switch to `work` session
+- `tmx-term` -> switch to `term` session
+- `switch <session>` -> switch to any session (e.g., `switch work`)
 
 Optional env overrides:
 
