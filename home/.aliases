@@ -188,3 +188,13 @@ alias sol2='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/
 #alias restart-postgres="rm -f /usr/local/var/postgres/postmaster.pid && brew services stop postgresql && brew services start postgresql"
 
 # alias git-delete-branches='git branch | grep -v "main" | xargs git branch -d'
+
+# switch to tmux session (creates if missing)
+switch() {
+    local session="${1:-main}"
+    if tmux has-session -t "$session" 2>/dev/null; then
+        tmux switch-client -t "$session"
+    else
+        tmux new-session -d -s "$session" && tmux switch-client -t "$session"
+    fi
+}
