@@ -253,18 +253,33 @@ function getcertnames() {
 }
 
 function minimax() {
+	local OLD_ANTHROPIC_BASE_URL=$ANTHROPIC_BASE_URL
+	local OLD_ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
+
+	trap 'if [[ -n "$OLD_ANTHROPIC_BASE_URL" ]]; then export ANTHROPIC_BASE_URL=$OLD_ANTHROPIC_BASE_URL; else unset ANTHROPIC_BASE_URL; fi; if [[ -n "$OLD_ANTHROPIC_API_KEY" ]]; then export ANTHROPIC_API_KEY=$OLD_ANTHROPIC_API_KEY; else unset ANTHROPIC_API_KEY; fi' EXIT
+
 	export ANTHROPIC_BASE_URL=https://api.minimax.io/anthropic
 	export ANTHROPIC_API_KEY=$MINIMAX_API_KEY
 	claude "$@"
 }
 
 function kimi() {
+	local OLD_ANTHROPIC_BASE_URL=$ANTHROPIC_BASE_URL
+	local OLD_ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
+
+	trap 'if [[ -n "$OLD_ANTHROPIC_BASE_URL" ]]; then export ANTHROPIC_BASE_URL=$OLD_ANTHROPIC_BASE_URL; else unset ANTHROPIC_BASE_URL; fi; if [[ -n "$OLD_ANTHROPIC_API_KEY" ]]; then export ANTHROPIC_API_KEY=$OLD_ANTHROPIC_API_KEY; else unset ANTHROPIC_API_KEY; fi' EXIT
+
 	export ANTHROPIC_BASE_URL=https://api.kimi.com/coding/
 	export ANTHROPIC_API_KEY=$KIMI_API_KEY
 	claude "$@"
 }
 
 function glm() {
+	local OLD_ANTHROPIC_BASE_URL=$ANTHROPIC_BASE_URL
+	local OLD_ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY
+
+	trap 'if [[ -n "$OLD_ANTHROPIC_BASE_URL" ]]; then export ANTHROPIC_BASE_URL=$OLD_ANTHROPIC_BASE_URL; else unset ANTHROPIC_BASE_URL; fi; if [[ -n "$OLD_ANTHROPIC_API_KEY" ]]; then export ANTHROPIC_API_KEY=$OLD_ANTHROPIC_API_KEY; else unset ANTHROPIC_API_KEY; fi' EXIT
+
 	export ANTHROPIC_BASE_URL=https://api.z.ai/api/anthropic
 	export ANTHROPIC_API_KEY=$Z_API_KEY
 	claude "$@"
