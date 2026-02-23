@@ -24,6 +24,9 @@ case "$MODE" in
   ensure)
     ensure_sessions
     ;;
+  restore)
+    ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+    ;;
   attach|"")
     ensure_sessions
     if [[ -n "${TMUX:-}" ]]; then
