@@ -277,17 +277,17 @@ encrypt-dir src out:
 decrypt-dir in out_dir:
     ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
 
-# Encrypt root `.bin` into `.bin.tar.age`
+# Encrypt private
 [group('encryption')]
 encrypt-private:
-    ./bin/crypto/encrypt-dir private private.tar.age
+    ./bin/crypto/encrypt-dir home/.bin private.tar.age
 
-# Decrypt root `.bin.tar.age` into `home/.bin` when available.
+# Decrypt private
 [group('encryption')]
 decrypt-private:
     #!/usr/bin/env bash
     if [ -f "private.tar.age" ]; then
-      ./bin/crypto/decrypt-dir private.tar.age .
+      ./bin/crypto/decrypt-dir private.tar.age home
     else
       echo "skip: private.tar.age not found"
     fi
