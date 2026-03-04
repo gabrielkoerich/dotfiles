@@ -184,7 +184,7 @@ fi
 echo "-> semgrep shell rules"
 if command -v semgrep >/dev/null 2>&1; then
   if [[ -f ".semgrep/shell-security.yml" ]]; then
-    if ! semgrep --quiet --error --config .semgrep/shell-security.yml "${scan_files[@]}"; then
+    if ! semgrep --quiet --error --config .semgrep/shell-security.yml "${targets[@]}"; then
       semgrep_fail=1
       if [[ "$strict" -eq 1 ]]; then
         status=1
