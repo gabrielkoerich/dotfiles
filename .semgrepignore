@@ -1,0 +1,8 @@
+# Files with legitimate sudo rm -rf usage (macOS system file management)
+bin/macos
+bin/priv
+
+# Files with legitimate eval usage
+bin/security-audit
+home/.tmux/renew.sh
+home/.tmux/yank.sh
