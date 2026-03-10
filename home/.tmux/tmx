@@ -28,6 +28,11 @@ case "$MODE" in
     ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
     ;;
   attach|"")
+    # If tmux server isn't running yet, start it and restore saved sessions
+    if ! tmux list-sessions 2>/dev/null; then
+      tmux new-session -d -s "$SESSION" -c "$ROOT_DIR"
+      ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+    fi
     ensure_sessions
     if [[ -n "${TMUX:-}" ]]; then
       exec tmux switch-client -t "$SESSION"

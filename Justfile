@@ -23,9 +23,10 @@ sync:
     fi
     rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
     rm -Rf private
+    just _tmux || true
     exec $SHELL -l
 
-# Install <target>, options: [brew, fonts, cask, agents, security, cron, pre-commit]
+# Install <target>, options: [brew, tmux, fonts, cask, agents, security, cron, pre-commit]
 [group('install')]
 install target:
     just _{{ target }} || echo "Invalid install"
@@ -34,6 +35,10 @@ install target:
 [confirm("Install brew dependencies? (y/n)")]
 _brew:
     ./bin/install/brew
+
+# Install TPM and tmux plugins declared in .tmux.conf.
+_tmux:
+    ./bin/install/tmux
 
 # Install local fonts from the repository.
 [confirm("Install fonts? (y/n)")]
