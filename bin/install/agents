@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-ANTHROPIC_SKILLS_REF="1ed29a03dc852d30fa6ef2ca53a67dc2c2c2c563"
-GB_SKILLS_REF="a517c023d9524c96de9e5c9657acc7a2c3584353"
+ANTHROPIC_SKILLS_REF="98669c11ca63e9c81c11501e1437e5c47b556621"
+GB_SKILLS_REF="770caf1f9507b41bc27b4e2fcce654e5c07ca14b"
 
 require_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then

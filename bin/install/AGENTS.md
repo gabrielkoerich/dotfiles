@@ -1,3 +1,4 @@
+
 # Development Guidelines
 
 > This file contains generic agent recommendations. Project-specific guidelines should live in the project's `AGENTS.md` or `CLAUDE.md` file.
@@ -37,7 +38,7 @@
 | `tmux` | Terminal management |
 | `rg` | Fast recursive search |
 | `qmd` | Local markdown search and knowledge management (use the `qmd` skill)
-| `orchestrator` | Manage and orchestrater task and delegate or worth with coding agents (codex, claude, opencode) |
+| `orch` | Manage and orchestrate tasks and delegate to coding agents (codex, claude, opencode) |
 
 ## Useful Skills
 
@@ -47,16 +48,14 @@
 | apple-calendar | macOS Calendar.app integration (CRUD, search) | macOS |
 | beancount-analytics | Analyze Beancount ledgers with reusable CLI reports and question-driven queries. Use when user asks for last month/last 12 months reports, spending breakdowns, savings trends, or direct finance questions from a .bean ledger. | python3, beancount |
 | binance-prices | Real-time crypto prices from Binance public API | python3, curl |
-| bird | X/Twitter access via bird CLI | [bird CLI](https://github.com/steipete/bird), Chrome |
 | elevenlabs-voices | Voice synthesis with 18 personas, 32 languages | python3, `ELEVEN_API_KEY` |
 | gh-issue-worktree | Manage Git worktrees for isolated development environments per GitHub issue. Use `gh issue develop` to register linked branches and `git worktree` for isolated directories. | See SKILL.md |
 | gh-pr-polish | Generate high-signal PR titles and bodies from git history and changed files, then open PRs with gh CLI. | See SKILL.md |
 | git-worktrees | Manage plain Git worktree feature branches without issue linking. Create a feature branch worktree, develop in isolation, push, and open a PR with commit-based changes summary. | See SKILL.md |
 | github | GitHub CLI for issues, PRs, CI runs, and API queries | [gh CLI](https://cli.github.com) |
 | github-secrets | Manage GitHub repo/org secrets via API | bun, `GITHUB_TOKEN` |
-| notes-review | Analyze personal markdown notes and journals with qmd-powered semantic search plus weekly/monthly reflection reports. Use for questions like what was accomplished, what is pending, and whether work aligns with goals. |  python3, qmd CLI |
 | openai-whisper| Local speech-to-text transcription | [whisper CLI](https://github.com/openai/whisper) |
-| orchestrator | Thin operational wrapper for a system-wide orchestrator CLI. Use when running and checking `orchestrator <command>` workflows without duplicating orchestration logic in the skill. | See SKILL.md |
+| orch | Thin operational wrapper for the orch CLI. Use when running and checking `orch <command>` workflows without duplicating orchestration logic in the skill. | See SKILL.md |
 | qmd | Local hybrid search for markdown notes and docs | [qmd CLI](https://github.com/tobi/qmd) |
 | solana-best-practices | Reviews Solana/Anchor programs for development best practices. Use when writing, reviewing, improving or auditing Solana smart contracts. 31 vulnerability patterns with 4 real-world case studies. | See SKILL.md |
 | things3 | Things 3 task manager via CLI (macOS) | [things CLI](https://github.com/ossianhempel/things3-cli), macOS |
