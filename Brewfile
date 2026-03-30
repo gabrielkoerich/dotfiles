@@ -115,6 +115,7 @@ brew "netpbm" # image format conversion tools
 brew "nextdns" # NextDNS CLI client
 brew "nmap" # network scanner
 brew "pngcheck" # PNG integrity checker
+brew "semgrep" # static code analysis tool
 brew "socat" # socket relay utility
 brew "speedtest-cli" # internet bandwidth tester
 brew "librespeed-cli" # internet bandwidth tester

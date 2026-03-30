@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 export CPATH="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"

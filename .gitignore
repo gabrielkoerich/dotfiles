@@ -9,14 +9,8 @@
 .extra
 .gitconfig
 .private
-aerospace
 build
-gluetun
 log*
-media-stack
 private
-secrets
-skhd
-starship.toml
-yabai
 proxy
+secrets

@@ -10,6 +10,12 @@ Dotfiles, mac setup, apps & backups configs.
  - [Just command runner](https://github.com/casey/just)
  - [Brew](https://brew.sh) (mac setup)
 
+## Dotfiles Sync
+
+Check [`home`](./home) directory to check everything that is rsynced to `~` directory.
+
+If you want to skip parts of this setup, selectively run install targets and remove unneeded config files before `just sync`.
+
 ## Instructions
 
 Read [all](./bin/install/) scripts *before* executing them.
@@ -25,69 +31,8 @@ Read [all](./bin/install/) scripts *before* executing them.
 9. Run `just restore` to restore app settings
 
 To sync the dotfiles, run step 8 again.
+
 Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local. Public SSH hardening template is versioned at `home/.config/ssh/sshd-hardening.public.conf`.
-
-## Dotfiles Sync
-
-Main config coverage:
-
-- Shell:
-  - `home/.zshrc`
-  - `home/.zprofile`
-  - `home/.aliases`
-  - `home/.functions`
-  - `home/.exports`
-  - `home/.path`
-- Tmux:
-  - `home/.tmux.conf`
-  - `home/.tmux/*` helpers (`renew.sh`, `yank.sh`, remote profile)
-  - `home/.tmux/tmx` session helper
-- Neovim:
-  - `home/.config/nvim`
-- Terminal:
-  - `home/.config/ghostty`
-- Mackup:
-  - `home/.mackup.cfg`
-  - `home/.mackup/*.cfg`
-- Agent tooling:
-  - `home/.codex`
-  - `home/.claude`
-  - `home/.config/opencode`
-- SSH templates:
-  - `home/.config/ssh/sshd-hardening.public.conf`
-  - `home/.config/ssh/sshd-hardening.tailscale.conf`
-  - `home/.config/ssh/sshd-hardening.cloudflare.conf`
-
-If you want to skip parts of this setup, selectively run install targets and remove unneeded config files before `just sync`.
-
-### Available Just commands
-
-```bash
-backup              # Run mackup backup & uninstall
-doctor              # Validate tooling + pinned refs + security files
-exact-apply         # Apply closest deterministic machine baseline
-exact-check         # Check drift against repo baseline
-install target      # Install <target>, options: [brew, fonts, cask, agents, security, cron]
-install-profile     # Install package set from profiles/*.txt
-install-report      # Generate machine/tool report in .build/reports/
-pre-commit-install  # Install local pre-commit hooks
-pre-commit-run      # Run pre-commit checks on all files
-restore             # Restore mackup backup
-security-all        # Audit dotfiles scripts including vendored private/
-security-ci         # Run strict audit with semgrep required (CI-equivalent)
-security-strict     # Run strict repo-wide security audit
-setup               # Run macos setup
-sync                # Sync dotfiles to home directory
-test target args="" # Test mackup, options [backup, restore]
-test-install        # Run bats tests for install/security scripts
-
-# Encrypted file workflows (age)
-crypto-keygen
-encrypt-file <in> <out.age>
-decrypt-file <in.age> <out>
-encrypt-dir <src-dir> <out.tar.age>
-decrypt-dir <in.tar.age> <out-dir>
-```
 
 Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
 
@@ -98,12 +43,22 @@ Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the reci
 - `.pre-commit-config.yaml`: local hooks for hygiene + secrets + strict audit
 - `.gitleaks.toml`: secrets scanning configuration
 
-Recommended bootstrap:
+Recommended local checks:
 
-1. `brew bundle --file Brewfile`
-2. `just pre-commit-install`
-3. `just security-ci`
-4. `just doctor`
+1. `just security-ci`
+2. `just doctor`
+
+### Just encryption workflows
+
+```bash
+crypto-keygen
+encrypt-file <in> <out.age>
+decrypt-file <in.age> <out>
+encrypt-dir <src-dir> <out.tar.age>
+decrypt-dir <in.tar.age> <out-dir>
+```
+
+Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
 
 ## Exact Machine Baseline
 
@@ -122,8 +77,8 @@ Important limits:
 
 `bin/install/agents` installs external repositories at pinned commit SHAs:
 
-- `gabrielkoerich/skills`
-- `anthropics/skills`
+- [gabrielkoerich/skills](https://github.com/gabrielkoerich/skills
+- [anthropics/skills](https://github.com/anthropics/skills
 
 To update a pin safely:
 
@@ -131,22 +86,6 @@ To update a pin safely:
 2. Update the ref constant in `bin/install/agents`.
 3. Run `just security-strict`.
 4. Re-run `just install agents` on a clean machine/test profile.
-
-## Public Repo + Encrypted Files
-
-You can safely keep encrypted artifacts in a public repository if:
-
-1. plaintext never gets committed
-2. private key is stored outside git
-3. encryption keys/recipients are rotated when needed
-
-This repo uses `age` helpers in `bin/crypto/` and ignores common plaintext/decrypted artifacts in `.gitignore`.
-
-Suggested layout:
-
-- `secrets/encrypted/*.age` committed
-- `secrets/plain/*` local-only (ignored)
-- key in `~/.config/age/dotfiles.agekey` (ignored)
 
 ## Tmux Workflow
 
@@ -166,12 +105,6 @@ Helper command:
 - `~/.tmux/tmx` -> ensures/attaches to a long-lived `main` session
 - `~/.tmux/tmx ensure` -> creates `main` session if missing, without attaching
 - `~/.tmux/tmx restore` -> manually restores all saved sessions (rarely needed)
-
-Aliases (switch between sessions in different iTerm tabs):
-
-- `tmx-main` -> switch to `main` session
-- `tmx-work` -> switch to `work` session
-- `tmx-term` -> switch to `term` session
 - `switch <session>` -> switch to any session (e.g., `switch work`)
 
 Optional env overrides:
