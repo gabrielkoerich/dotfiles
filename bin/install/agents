@@ -41,10 +41,11 @@ require_cmd git
 require_cmd just
 require_cmd rsync
 
+brew update
 brew install codex
 brew install claude-code
 brew install opencode
-brew install gabrielkoerich/tap/orchestrator
+brew install gabrielkoerich/tap/orch
 
 tmp_skills_dir="$(mktemp -d)"
 tmp_anthropic_skills_dir="$(mktemp -d)"
