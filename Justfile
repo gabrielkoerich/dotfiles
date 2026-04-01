@@ -212,6 +212,7 @@ decrypt-dir in out_dir:
     ./bin/crypto/decrypt-dir "{{ in }}" "{{ out_dir }}"
 
 # Encrypt private
+[confirm("This may overwrite current encrypted file. Continue? (y/n)")]
 [group('encryption')]
 encrypt-private:
     ./bin/crypto/encrypt-dir home/.bin private.tar.age
