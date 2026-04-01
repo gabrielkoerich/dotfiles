@@ -195,6 +195,42 @@ function autotag() {
     fi
 }
 
+# Repeatedly run a command forever, with optional interval and timeout
+# Usage: loop <command>              - runs every 1s
+#        loop 5 <command>            - runs every 5s
+#        loop 5 30 <command>         - runs every 5s, stops after 30s
+function loop() {
+    local interval=1
+    local timeout=0
+    # If first arg is a number, use as interval
+    if [[ "$1" =~ ^[0-9]+\.?[0-9]*$ ]]; then
+        interval="$1"; shift
+        # If second arg is also a number, use as timeout
+        if [[ "$1" =~ ^[0-9]+\.?[0-9]*$ ]]; then
+            timeout="$1"; shift
+        fi
+    fi
+    if [ $# -eq 0 ]; then
+        echo "Usage: loop [interval] [timeout] <command>"
+        echo "  loop echo hi          - every 1s"
+        echo "  loop 5 echo hi        - every 5s"
+        echo "  loop 2 60 echo hi     - every 2s, stop after 60s"
+        return 1
+    fi
+    local start=$SECONDS
+    local i=1
+    while true; do
+        printf "\n\033[1m%s — Run %d: %s\033[0m\n\n" "$(date +%H:%M:%S)" "$i" "$*"
+        "$@"
+        printf "\n\n%.0s─" {1..40}; echo
+        if (( timeout > 0 )) && (( SECONDS - start >= timeout )); then
+            break
+        fi
+        sleep "$interval"
+        ((i++))
+    done
+}
+
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {

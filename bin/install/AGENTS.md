@@ -74,8 +74,9 @@ For markdown documents, notes, and knowledge management:
 ## File Deletion
 
 - **Never use `rm`** — it is denied in agent settings and shell aliases don't load in non-interactive shells
-- Use `trash -F` instead (moves files to macOS Trash, recoverable)
+- Use `trash` instead (moves files to macOS Trash, recoverable)
 - On Linux, use `trash-put` instead
+- **Prefer using `rg` instead of `grep`**
 
 ## Security
 

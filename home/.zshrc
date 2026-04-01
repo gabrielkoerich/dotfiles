@@ -43,7 +43,6 @@ fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     git
-    tmux
     macos
     command-time
     z

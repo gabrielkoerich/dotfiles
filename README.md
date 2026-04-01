@@ -77,8 +77,8 @@ Important limits:
 
 `bin/install/agents` installs external repositories at pinned commit SHAs:
 
-- [gabrielkoerich/skills](https://github.com/gabrielkoerich/skills
-- [anthropics/skills](https://github.com/anthropics/skills
+- [gabrielkoerich/skills](https://github.com/gabrielkoerich/skills)
+- [anthropics/skills](https://github.com/anthropics/skills)
 
 To update a pin safely:
 

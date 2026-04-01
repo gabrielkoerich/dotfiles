@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Helper for Zed tasks that wraps gh commands with smart branch detection.
+# If the current branch is not pushed to the remote, falls back to the
+# repository's default branch.
+
+resolve_branch() {
+  local current default
+  current="$(git branch --show-current)"
+  if [ -n "$current" ] && git ls-remote --exit-code --heads origin "$current" &>/dev/null; then
+    echo "$current"
+  else
+    default="$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)"
+    echo "$default"
+  fi
+}
+
+case "${1:-}" in
+  open-repo)
+    gh browse
+    ;;
+
+  open-file)
+    file="${2:?usage: gh-zed open-file <relative-path> [line]}"
+    line="${3:-}"
+    branch="$(resolve_branch)"
+    if [ -n "$line" ]; then
+      gh browse "$file:$line" --branch "$branch"
+    else
+      gh browse "$file" --branch "$branch"
+    fi
+    ;;
+
+  blame)
+    file="${2:?usage: gh-zed blame <relative-path>}"
+    branch="$(resolve_branch)"
+    url="$(gh browse -n "$file" --branch "$branch" | sed 's|/blob/|/blame/|')"
+    open "$url"
+    ;;
+
+  open-pr)
+    gh pr view --web
+    ;;
+
+  create-pr)
+    base="$(gh repo view --json defaultBranchRef -q .defaultBranchRef.name)"
+    gh pr create --web --base "$base"
+    ;;
+
+  *)
+    echo "usage: gh-zed <open-repo|open-file|blame|open-pr|create-pr>" >&2
+    exit 2
+    ;;
+esac
