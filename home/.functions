@@ -236,20 +236,49 @@ function loop() {
 }
 
 # Top CPU and memory consuming processes
-function topcpu() { ps aux | sort -rk 3 | head -${1:-10}; }
-function topmem() { ps aux | sort -rk 4 | head -${1:-10}; }
-function loadavg() { sysctl -n vm.loadavg; }
+function topcpu() {
+    local n=${1:-10}
+    printf "%-15s %6s %5s  %s\n" "USER" "PID" "%CPU" "COMMAND"
+    ps aux | awk 'NR==1{next} {cmd=$11; sub(/.*\//, "", cmd); printf "%-15s %6s %5s  %s\n", $1, $2, $3, cmd}' | sort -rk 3 | head -$n
+}
+function topmem() {
+    local n=${1:-10}
+    printf "%-15s %6s %5s  %s\n" "USER" "PID" "%MEM" "COMMAND"
+    ps aux | awk 'NR==1{next} {cmd=$11; sub(/.*\//, "", cmd); printf "%-15s %6s %5s  %s\n", $1, $2, $4, cmd}' | sort -rk 3 | head -$n
+}
+function loadavg() {
+    local cores=$(sysctl -n hw.logicalcpu)
+    sysctl -n vm.loadavg | awk -v c=$cores '{printf "1m: %s  5m: %s  15m: %s  (per core: %.2f %.2f %.2f, %d cores)\n", $2, $3, $4, $2/c, $3/c, $4/c, c}'
+}
 
 # Aggregate system stats: load avg, top CPU and memory processes
 function stats() {
+    local n=${1:-5}
+    local cores=$(sysctl -n hw.logicalcpu)
+    local total_mem=$(sysctl -n hw.memsize)
+
+    local cpu_pct=$(ps aux | awk -v c=$cores 'NR>1{sum+=$3} END{printf "%.1f%% (of %d cores)", sum/c, c}')
+    local page_size=$(sysctl -n vm.pagesize)
+    local mem_pct=$(vm_stat | awk -v total=$total_mem -v page_size=$page_size '
+        /Pages active/                { active=$3 }
+        /Pages wired/                 { wired=$4 }
+        /Pages occupied by compressor/{ compressed=$5 }
+        END {
+            used=(active+wired+compressed)*page_size
+            printf "%.1f%% (%.1fG used / %.1fG total)", used/total*100, used/1073741824, total/1073741824
+        }')
+
     echo "==> Load Average"
     loadavg
     echo ""
+    echo "==> CPU:  $cpu_pct"
+    echo "==> MEM:  $mem_pct"
+    echo ""
     echo "==> Top CPU"
-    topcpu ${1:-5}
+    topcpu $n
     echo ""
     echo "==> Top Memory"
-    topmem ${1:-5}
+    topmem $n
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
