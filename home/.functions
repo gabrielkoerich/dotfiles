@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+# Upgrade a specific brew package or all packages if no argument given
+function upgrade() {
+    brew update && brew upgrade "$@" && brew cleanup
+}
+
+# Get macOS Software Updates and Homebrew
+function update() {
+    upgrade; priv; sudo softwareupdate -i -a
+}
+
 # Create a new directory and enter it
 function mkd() {
     mkdir -p "$@" && cd "$_";
@@ -147,18 +157,6 @@ function o() {
     fi;
 }
 
-# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
-# the `.git` directory, listing directories first. The output gets piped into
-# `less` with options to preserve color and line numbers, unless the output is
-# small enough for one screen.
-function tre() {
-    tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
-}
-
-function gi() {
-    curl http://www.gitignore.io/api/$@;
-}
-
 function get_page() {
     wget --adjust-extension --span-hosts --convert-links --backup-converted --page-requisites $@ --no-check-certificate;
 }
@@ -235,6 +233,23 @@ function loop() {
         sleep "$interval"
         ((i++))
     done
+}
+
+# Top CPU and memory consuming processes
+function topcpu() { ps aux | sort -rk 3 | head -${1:-10}; }
+function topmem() { ps aux | sort -rk 4 | head -${1:-10}; }
+function loadavg() { sysctl -n vm.loadavg; }
+
+# Aggregate system stats: load avg, top CPU and memory processes
+function stats() {
+    echo "==> Load Average"
+    loadavg
+    echo ""
+    echo "==> Top CPU"
+    topcpu ${1:-5}
+    echo ""
+    echo "==> Top Memory"
+    topmem ${1:-5}
 }
 
 # Show all the names (CNs and SANs) listed in the SSL certificate
