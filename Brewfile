@@ -140,6 +140,7 @@ brew "maclaunch" # inspect startup items
 brew "mactop" # Apple Silicon process monitor
 brew "mas" # Mac App Store CLI
 brew "nikolaeu/numi/numi-cli" # smart calculator CLI
+brew "ollama" # run LLMs locally; uses Apple MLX for GPU acceleration on Apple Silicon
 brew "opencode" # terminal AI coding agent
 brew "things3-cli" # Things 3 CLI
 brew "pass" # password manager

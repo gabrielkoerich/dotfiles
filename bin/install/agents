@@ -31,9 +31,9 @@ clone_pinned() {
 sync_skills_to_agents() {
   local src="$1"
   mkdir -p "$HOME/.claude/skills" "$HOME/.codex/skills" "$HOME/.config/opencode/skills"
-  rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$src"/ "$HOME/.claude/skills/"
-  rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$src"/ "$HOME/.codex/skills/"
-  rsync -avh --no-perms --exclude ".git/" --exclude ".DS_Store" "$src"/ "$HOME/.config/opencode/skills/"
+  rsync -avh --no-perms --exclude ".git/" --exclude ".github" --exclude ".DS_Store" "$src"/ "$HOME/.claude/skills/"
+  rsync -avh --no-perms --exclude ".git/" --exclude ".github" --exclude ".DS_Store" "$src"/ "$HOME/.codex/skills/"
+  rsync -avh --no-perms --exclude ".git/" --exclude ".github" --exclude ".DS_Store" "$src"/ "$HOME/.config/opencode/skills/"
 }
 
 require_cmd brew
