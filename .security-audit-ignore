@@ -8,6 +8,7 @@ release\.anza\.xyz/stable/install
 sudo mv composer\.phar /usr/local/bin/composer
 ^home/\.aliases:
 ^home/\.exports:
+^home/\.functions:.*sudo softwareupdate
 ^home/\.zshrc:
 ^home/\.vimrc:
 ^home/\.tmux/
