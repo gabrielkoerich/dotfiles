@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-ANTHROPIC_SKILLS_REF="98669c11ca63e9c81c11501e1437e5c47b556621"
 GB_SKILLS_REF="770caf1f9507b41bc27b4e2fcce654e5c07ca14b"
 
 require_cmd() {
@@ -48,18 +47,14 @@ brew install opencode
 brew install gabrielkoerich/tap/orch
 
 tmp_skills_dir="$(mktemp -d)"
-tmp_anthropic_skills_dir="$(mktemp -d)"
 
 cleanup() {
-  rm -rf "$tmp_skills_dir" "$tmp_anthropic_skills_dir"
+  rm -rf "$tmp_skills_dir"
 }
 trap cleanup EXIT
 
 clone_pinned "https://github.com/gabrielkoerich/skills.git" "$GB_SKILLS_REF" "$tmp_skills_dir"
 sync_skills_to_agents "$tmp_skills_dir"
-
-clone_pinned "https://github.com/anthropics/skills.git" "$ANTHROPIC_SKILLS_REF" "$tmp_anthropic_skills_dir"
-sync_skills_to_agents "$tmp_anthropic_skills_dir/skills"
 
 # Sync AGENTS.md to all agents
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
