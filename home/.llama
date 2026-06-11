@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+function llama-start-qwen-coder() {
+    llama-server -hf bartowski/cerebras_Qwen3-Coder-REAP-25B-A3B-GGUF:Q4_K_M \
+        --alias "qwen3-coder" \
+        --port 8000 \
+        --jinja \
+        --kv-unified \
+        --cache-type-k q8_0 --cache-type-v q8_0 \
+        --flash-attn on \
+        --batch-size 4096 --ubatch-size 1024
+        # \
+        # --ctx-size 64000
+}
+
+function llama-start-qwen-opus() {
+    llama-server -hf Jackrong/Qwen3.5-27B-Claude-4.6-Opus-Reasoning-Distilled-v2-GGUF \
+        --alias "qwen3.5-opus" \
+        --port 8000 \
+        -ngl 30 \
+        --threads 8 \
+        --flash-attn on \
+        --jinja \
+        --kv-unified \
+        --cache-type-k q8_0 --cache-type-v q8_0 \
+        --batch-size 4096 --ubatch-size 1024 \
+        --ctx-size 64000
+}
+
+function llama-start-qwen-mlx() {
+    llama-server -hf tensorblock/mlx-community_Qwen3-4B-bf16-GGUF \
+        --alias "mlx-qwen3" \
+        --port 8000 \
+        --n-gpu-layers 99 \
+        --threads 4 \
+        --flash-attn on \
+        --jinja \
+        --parallel 1 \
+        --cache-type-k q8_0 \
+        --spec-type ngram-mod \
+        --mlock
+}

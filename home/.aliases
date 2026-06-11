@@ -29,6 +29,7 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 alias c="clear"
+alias cm="orch commit --yes && git pull origin main --rebase && git push origin main"
 
 colorflag="-G"
 
