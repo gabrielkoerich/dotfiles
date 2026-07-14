@@ -29,7 +29,8 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 alias c="clear"
-alias cm="orch commit --yes && git pull origin main --rebase && git push origin main"
+alias cm="git fetch origin >/dev/null 2>&1 & orch commit --yes && wait && rb && git push"
+alias cb="git fetch origin >/dev/null 2>&1 & orch commit --no-llm --yes && wait && rb && git push"
 
 colorflag="-G"
 

@@ -55,10 +55,15 @@ For markdown documents, notes, and knowledge management:
 - Keep documentation close to code, update docs when code changes
 - For github, use `github` skill to manage issues, pull requests, and repositories. Use `git-worktres` for managing worktrees workflows and `gh-issue-worktree` for github issues related tasks - it auto creates the link between the PR/worktree and the Github Issue.
 
+## Commenting on code
+
+Keep comments to one line. No trailing dot. Use commas instead of ';'. Don't use '—' or ' - ' as an aside separator, use commas or split lines. If deeper context is needed, put it in the PR/commit message, not the code. Only comment when the "why" is non-obvious. Don't restate what the code does.
+
 ## File Deletion
 
 - **Never use `rm`** — it is denied in agent settings and shell aliases don't load in non-interactive shells
 - Use `trash` instead (moves files to macOS Trash, recoverable)
+- On Linux, use `trash-put` instead
 - **Prefer using `rg` instead of `grep`**
 
 ## Security

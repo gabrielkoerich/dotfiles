@@ -281,6 +281,29 @@ function stats() {
     topmem $n
 }
 
+# Stash, refresh local default branch from origin, rebase current branch onto it, then pop stash
+function rb() {
+    local default=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
+    if [ -z "$default" ]; then
+        default=$(git remote show origin 2>/dev/null | sed -n '/HEAD branch/s/.*: //p')
+    fi
+    if [ -z "$default" ]; then
+        echo "rb: could not determine default branch" >&2
+        return 1
+    fi
+    local before=$(git rev-parse --verify --quiet refs/stash)
+    git stash push -m "rb-$(date +%s)" || return 1
+    local after=$(git rev-parse --verify --quiet refs/stash)
+    local branch=$(git rev-parse --abbrev-ref HEAD)
+    if [ "$branch" = "$default" ]; then
+        git pull origin "$default" --rebase || return 1
+    else
+        git fetch origin "$default:$default" || return 1
+        git rebase "$default" || return 1
+    fi
+    [ "$before" != "$after" ] && git stash pop
+}
+
 # Show all the names (CNs and SANs) listed in the SSL certificate
 # for a given domain
 function getcertnames() {
