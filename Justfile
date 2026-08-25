@@ -26,7 +26,7 @@ sync:
     just _tmux || true
     exec $SHELL -l
 
-# Install <target>, options: [brew, tmux, fonts, cask, agents, security, cron, pre-commit]
+# Install <target>, options: [brew, tmux, fonts, cask, agents, security, cron, pre-commit, touchid]
 [group('install')]
 install target:
     just _{{ target }} || echo "Invalid install"
@@ -69,6 +69,11 @@ _cron:
 [confirm("Install pre-commit? (y/n)")]
 _pre-commit:
     pre-commit install
+
+# Enable Touch ID for sudo (writes /etc/pam.d/sudo_local, needs sudo).
+[confirm("Enable Touch ID for sudo? (y/n)")]
+_touchid:
+    ./bin/install/touchid
 
 # Install from package profile (profiles/*.txt)
 [group('install')]

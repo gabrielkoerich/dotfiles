@@ -27,10 +27,11 @@ Read [all](./bin/install/) scripts *before* executing them.
 5. `just install fonts` to install fonts
 6. `just install cask` to install cask apps
 7. `just install agents` to install coding agents & base skills
-8. `just sync` to sync the dotfiles to `~`
-9. Run `just restore` to restore app settings
+8. `just install touchid` to enable Touch ID for `sudo` (also inside tmux)
+9. `just sync` to sync the dotfiles to `~`
+10. Run `just restore` to restore app settings
 
-To sync the dotfiles, run step 8 again.
+To sync the dotfiles, run step 9 again.
 
 Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local. Public SSH hardening template is versioned at `home/.config/ssh/sshd-hardening.public.conf`.
 

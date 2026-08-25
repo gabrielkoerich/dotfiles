@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Enable Touch ID for sudo via /etc/pam.d/sudo_local, which Apple ships (macOS 14+)
+# precisely so this survives system updates, unlike editing /etc/pam.d/sudo
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+  echo "skip: touchid setup is macOS only"
+  exit 0
+fi
+
+if [[ ! -f /etc/pam.d/sudo_local.template ]]; then
+  echo "error: /etc/pam.d/sudo_local.template missing, macOS 14+ required"
+  exit 1
+fi
+
+target="/etc/pam.d/sudo_local"
+reattach=""
+
+# Without pam_reattach, Touch ID silently falls back to the password prompt inside
+# tmux, since the pane is not attached to the GUI session owning the biometric prompt
+if command -v brew >/dev/null 2>&1; then
+  candidate="$(brew --prefix)/lib/pam/pam_reattach.so"
+  if [[ -f "$candidate" ]]; then
+    reattach="$candidate"
+  else
+    echo "warn: pam_reattach not installed, Touch ID will not work inside tmux"
+    echo "      run: brew install fabianishere/personal/pam_reattach"
+  fi
+fi
+
+content="# sudo_local: local config file which survives system update and is included for sudo
+# managed by dotfiles, see bin/install/touchid
+"
+
+if [[ -n "$reattach" ]]; then
+  content+="auth       optional       $reattach
+"
+fi
+
+content+="auth       sufficient     pam_tid.so
+"
+
+if [[ -f "$target" ]] && [[ "$(cat "$target")" == "$content" ]]; then
+  echo "ok: $target already configured"
+  exit 0
+fi
+
+printf '%s' "$content" | sudo tee "$target" >/dev/null
+sudo chown root:wheel "$target"
+sudo chmod 444 "$target"
+
+echo "ok: wrote $target"
+echo "test it with: sudo -k && sudo true"

@@ -15,6 +15,7 @@ tap "librespeed/tap" # librespeed-cli tap
 tap "jorgelbg/tap" # tap for pinentry-touchid
 tap "ossianhempel/tap" # tap for Things 3 CLI
 tap "gabrielkoerich/tap" # tap for Orchestrator + other apps
+tap "fabianishere/personal" # tap for pam-reattach
 
 # Core CLI and shell tooling
 brew "ack" # search tool like grep optimized for source code
@@ -135,6 +136,7 @@ brew "gh" # GitHub CLI
 brew "iwe-org/iwe/iwe" # markdown-based PKM for developers
 brew "jq" # JSON processor
 brew "pinentry-touchid" # Touch ID pinentry integration
+brew "fabianishere/personal/pam_reattach" # reattach PAM to the GUI session so Touch ID sudo works in tmux
 brew "mackup" # backup/restore app settings
 brew "maclaunch" # inspect startup items
 brew "mactop" # Apple Silicon process monitor
