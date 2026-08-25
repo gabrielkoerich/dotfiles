@@ -19,3 +19,7 @@ sudo mv composer\.phar /usr/local/bin/composer
 ^Justfile:.*sudo launchctl kickstart -k system/com\.openssh\.sshd
 ^Justfile:.*sudo systemsetup -setremotelogin
 ^Justfile:.*sudo networksetup -set
+^bin/install/touchid:.*sudo tee "\$target" >/dev/null
+^bin/install/touchid:.*sudo chown root:wheel "\$target"
+^bin/install/touchid:.*sudo chmod 444 "\$target"
+^bin/install/touchid:.*sudo -k && sudo true
