@@ -40,3 +40,18 @@ function llama-start-qwen-mlx() {
         --spec-type ngram-mod \
         --mlock
 }
+
+function llama-start-meta-muse() {
+    llama-server -hf meta-models/Muse-Glimmer-30B-GGUF \
+        --alias "meta-muse" \
+        --port 8080 \
+        --ctx-size 131072 \
+        --rope-scaling yarn \
+        --rope-scale 4 \
+        --yarn-orig-ctx 32768 \
+        --flash-attn on \
+        --kv-unified \
+        -ngl 99 \
+        --n-gpu-layers all \
+        --jinja
+}
