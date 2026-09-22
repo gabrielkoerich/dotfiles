@@ -9,3 +9,9 @@ paths = [
   '''^blocklist\.txt$''',
   '''^fonts/''',
 ]
+
+[[allowlists]]
+description = "TimeZones v1.7.0, a third-party Alfred workflow by Carl Smith. Its Google Maps key ships inside the plugin and was public before this repo, so it is not ours to rotate"
+paths = [
+  '''^Alfred\.alfredpreferences/workflows/''',
+]
