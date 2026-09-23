@@ -229,7 +229,10 @@ sudo pmset -a sms 0
 defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-# Save screenshots to the Desktop
+# Copy screenshots to the clipboard instead of writing a file
+defaults write com.apple.screencapture target -string "clipboard"
+
+# Fallback location when target is set back to "file"
 defaults write com.apple.screencapture location -string "${HOME}/Desktop"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
