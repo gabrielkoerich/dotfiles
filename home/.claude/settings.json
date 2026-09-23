@@ -1,0 +1,210 @@
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(anchor build:*)",
+      "Bash(anchor test:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run tsc:*)",
+      "Bash(cargo check:*)",
+      "Bash(cargo search:*)",
+      "Bash(cargo test:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(find:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git status:*)",
+      "Bash(grep:*)",
+      "Bash(just:*)",
+      "Bash(ls:*)",
+      "Bash(qmd *)",
+      "Bash(rg *)",
+      "Bash(rg:*)",
+      "Bash(orch *)",
+      "Bash(orch:*)",
+      "Bash(orch log*)",
+      "Bash(sed:*)",
+      "Bash(sqlite3 ~/.orch/*)",
+      "Bash(uv *)",
+      "Bash(xargs ls:*)",
+      "Bash(xargs rg:*)",
+      "WebFetch(domain:crates.io)",
+      "WebFetch(domain:docs.rs)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(rm *)",
+      "Bash(rmdir:*)",
+      "Bash(rmdir *)",
+      "Bash(find * -delete)",
+      "Bash(find * -delete *)",
+      "Bash(find * -exec rm *)",
+      "Bash(find * -execdir rm *)",
+      "Bash(shred *)",
+      "Bash(git push --force:*)",
+      "Bash(git push --force *)",
+      "Bash(git push -f:*)",
+      "Bash(git push -f *)",
+      "Bash(*.env*)",
+      "Bash(*/.ssh/*)",
+      "Bash(*id_rsa*)",
+      "Bash(*id_ed25519*)",
+      "Bash(*.pem*)",
+      "Bash(*.agekey*)",
+      "Bash(*secrets.json*)",
+      "Read(~/.ssh/**)",
+      "Read(**/.env)",
+      "Read(**/.env.local)",
+      "Read(**/.env.*.local)",
+      "Read(**/.env.development)",
+      "Read(**/.env.production)",
+      "Read(**/.env.staging)",
+      "Read(**/.env.test)",
+      "Read(~/.config/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.password-store/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.kube/**)",
+      "Read(~/.claude/.credentials.json)",
+      "Read(~/.npmrc)",
+      "Read(~/.netrc)",
+      "Read(~/.pypirc)",
+      "Read(~/.docker/config.json)",
+      "Read(~/.cargo/credentials*)",
+      "Read(~/.gem/credentials)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/*.p12)",
+      "Read(**/*.agekey)",
+      "Read(**/id_rsa*)",
+      "Read(**/id_ed25519*)",
+      "Read(**/*.keystore)",
+      "Read(**/secrets.json)"
+    ],
+    "ask": [
+      "Bash(curl * | bash)",
+      "Bash(cut:*)",
+      "Bash(brew *)",
+      "Bash(git push *)",
+      "Bash(git clean -f*)",
+      "Bash(git clean -d*)",
+      "Bash(git clean -x*)",
+      "Bash(git reset --hard*)",
+      "Bash(git checkout -- *)",
+      "Bash(git restore *)",
+      "Bash(sudo *)",
+      "Bash(wget * | bash)"
+    ]
+  },
+  "model": "opus[1m]",
+  "skillOverrides": {
+    "auto-mode-setup": "off"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/rtk-rewrite.sh"
+          },
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/prose-check.py\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/prose-check.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/gb/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/speak-reply.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "\"$HOME/.claude/hooks/statusline-voice.sh\""
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "agent-sdk-dev@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "statusbar@claude-statusbar": true,
+    "frontend-design@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-statusbar": {
+      "source": {
+        "source": "github",
+        "repo": "SYM1000/claude-statusbar"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "remote": {
+    "defaultEnvironmentId": "env_017WCtNwWsiQ5RoU2etoTeU1"
+  },
+  "autoUpdatesChannel": "stable",
+  "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold",
+    "autoSubmit": true
+  },
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "skipWorkflowUsageWarning": true,
+  "editorMode": "normal",
+  "verbose": false,
+  "remoteControlAtStartup": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true
+}

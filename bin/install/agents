@@ -62,3 +62,8 @@ mkdir -p "$HOME/.codex" "$HOME/.config/opencode" "$HOME/.claude"
 cp "$script_dir/AGENTS.md" "$HOME/.codex/AGENTS.md"
 cp "$script_dir/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
 cp "$script_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+
+# rsync runs with --no-perms, so the hooks arrive without their exec bit
+if [ -d "$HOME/.claude/hooks" ]; then
+  chmod +x "$HOME"/.claude/hooks/*.sh "$HOME"/.claude/hooks/*.py 2>/dev/null || true
+fi
