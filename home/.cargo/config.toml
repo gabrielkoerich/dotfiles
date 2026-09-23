@@ -1,2 +1,7 @@
+# Supply chain cooldown, mirrors ~/.npmrc minimum-release-age and ~/.bunfig.toml minimumReleaseAge
+# Ignores crate versions published less than this ago, versions already in Cargo.lock are unaffected
+# Requires nightly cargo 1.98+ and -Zmin-publish-age, older toolchains ignore this key silently
+# Override for an urgent security fix:
+#   CARGO_RESOLVER_INCOMPATIBLE_PUBLISH_AGE=allow cargo update --precise <version>
 [registry]
 global-min-publish-age = "7 days"
