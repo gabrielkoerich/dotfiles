@@ -49,9 +49,11 @@ function llama-start-meta-muse() {
         --rope-scaling yarn \
         --rope-scale 4 \
         --yarn-orig-ctx 32768 \
+        --batch 8192 \
+        --ubatch 2048 \
+        --threads $(nproc || sysctl -n hw.ncpu) \
         --flash-attn on \
         --kv-unified \
-        -ngl 99 \
         --n-gpu-layers all \
         --jinja
 }
