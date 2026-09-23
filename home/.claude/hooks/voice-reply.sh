@@ -19,10 +19,16 @@ case "${1:-status}" in
     fi ;;
   icon)
     if [ "$(cat "$STATE" 2>/dev/null)" = "on" ]; then
-      if [ -f "$LOCKF" ] && lsof -t "$LOCKF" >/dev/null 2>&1; then printf '\xf0\x9f\x94\x8a>'; else printf '\xf0\x9f\x94\x8a'; fi
+      if pgrep -x afplay >/dev/null 2>&1; then printf '\xf0\x9f\x94\x8a>'; else printf '\xf0\x9f\x94\x8a'; fi
     else
       printf '\xf0\x9f\x94\x87'
     fi ;;
+  pane)
+    [ -n "${TMUX:-}" ] || { echo "not inside tmux" >&2; exit 1; }
+    existing="$(tmux list-panes -F '#{pane_id} #{pane_start_command}' | grep voice-reader | cut -d' ' -f1 | head -1)"
+    if [ -n "$existing" ]; then echo "panel already open: $existing"; exit 0; fi
+    tmux split-window -v -d -l "${2:-7}" "$HOME/.claude/hooks/voice-reader.py"
+    echo "panel pinned open, close it with tmux kill-pane or ctrl-c inside it" ;;
   voice) echo "${2:-random}" > "$VOICEPIN"; echo "voice: ${2:-random}" ;;
   speed) echo "${2:-1.0}" > "$SPEEDFILE"; echo "speed: ${2:-1.0}" ;;
   limit) echo "${2:-full}" > "$LIMITFILE"; echo "limit: ${2:-full}" ;;
@@ -34,5 +40,5 @@ case "${1:-status}" in
     printf 'last:    %s\n' "$(cat /tmp/claude-voice-reply.last 2>/dev/null || echo none)"
     printf 'waiting: %s\n' "$([ -f "$QUEUE" ] && wc -l < "$QUEUE" | tr -d ' ' || echo 0)"
     ;;
-  *) echo "usage: voice-reply.sh on|off|pause|resume|toggle|skip|icon|status|voice <name|random>|speed <0.5-2.0>|limit <chars|full>" >&2; exit 1 ;;
+  *) echo "usage: voice-reply.sh on|off|pause|resume|toggle|skip|icon|status|pane [rows]|voice <name|random>|speed <0.5-2.0>|limit <chars|full>" >&2; exit 1 ;;
 esac

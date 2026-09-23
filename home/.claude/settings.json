@@ -84,7 +84,19 @@
       "Read(**/id_rsa*)",
       "Read(**/id_ed25519*)",
       "Read(**/*.keystore)",
-      "Read(**/secrets.json)"
+      "Read(**/secrets.json)",
+      "Bash(ps e*)",
+      "Bash(ps -E*)",
+      "Bash(ps aux e*)",
+      "Bash(ps auxe*)",
+      "Bash(* ps e*)",
+      "Bash(* ps -E*)",
+      "Bash(printenv*)",
+      "Bash(* printenv*)",
+      "Bash(env)",
+      "Read(~/.keys)",
+      "Read(~/.private)",
+      "Read(~/.extra)"
     ],
     "ask": [
       "Bash(curl * | bash)",
@@ -158,7 +170,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "\"$HOME/.claude/hooks/statusline-voice.sh\""
+    "command": "node \"$HOME/.claude/plugins/cache/claude-statusbar/statusbar/1.0.0/scripts/statusline.js\" --data-dir \"$HOME/.claude/plugins/data/statusbar-claude-statusbar\""
   },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,

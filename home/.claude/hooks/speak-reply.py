@@ -145,6 +145,26 @@ def for_speech(s: str, limit: int) -> str:
     return cut[: stop + 1] if stop > 120 else cut
 
 
+def tty_path() -> str:
+    """The terminal this session draws in, so the panel opens in its window."""
+    pid = os.getppid()
+    for _ in range(5):
+        out = subprocess.run(
+            ["ps", "-o", "tty=,ppid=", "-p", str(pid)],
+            capture_output=True, text=True, check=False,
+        ).stdout.split()
+        if len(out) < 2:
+            return ""
+        name, parent = out[0], out[-1]
+        if name not in ("??", "-", ""):
+            return f"/dev/{name}"
+        try:
+            pid = int(parent)
+        except ValueError:
+            return ""
+    return ""
+
+
 try:
     if STATE.read_text().strip() != "on":
         sys.exit(0)
@@ -201,7 +221,7 @@ for path, value in ((seen_path, uid), (LASTVOICE, voice)):
 # Queued, not cancelled: several open sessions read out one after another
 QUEUED = HOME / ".claude" / "hooks" / "speak-queued.py"
 proc = subprocess.Popen(
-    [sys.executable, str(QUEUED), speech, voice, speed, name or "claude"],
+    [sys.executable, str(QUEUED), speech, voice, speed, name or "claude", tty_path()],
     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
     start_new_session=True,
 )
