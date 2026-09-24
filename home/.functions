@@ -337,3 +337,20 @@ function getcertnames() {
 		return 1;
 	fi;
 }
+
+# Save the clipboard image to the Desktop, screenshots go to the clipboard
+function pasteshot() {
+    local out="${1:-${HOME}/Desktop/Screenshot $(date '+%Y-%m-%d at %H.%M.%S').png}"
+    osascript - "${out}" <<'APPLESCRIPT' 2> /dev/null || { echo "ERROR: No image in the clipboard."; return 1; }
+on run argv
+    set png to (the clipboard as «class PNGf»)
+    set f to open for access POSIX file (item 1 of argv) with write permission
+    try
+        set eof f to 0
+        write png to f
+    end try
+    close access f
+end run
+APPLESCRIPT
+    echo "${out}";
+}
