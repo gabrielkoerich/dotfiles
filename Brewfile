@@ -32,7 +32,6 @@ brew "gzip" # GNU gzip compression
 brew "htop" # interactive process viewer
 brew "just" # command runner
 brew "moreutils" # misc unix tools like sponge
-brew "openssh" # SSH client/server tools
 brew "p7zip" # 7z archiver implementation
 brew "ripgrep" # fast recursive search
 brew "screen" # terminal multiplexer
