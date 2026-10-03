@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Outputs clickable session dots for tmux status bar.
-# Active session = filled blue dot, inactive = hollow grey dot.
+# Clickable session dots, attached = filled blue, detached = hollow grey
+# Ranges carry the session id, names can exceed the 15 byte range limit
 
-tmux ls 2>/dev/null | while IFS=: read -r name rest; do
-  if echo "$rest" | grep -q "(attached)"; then
-    printf "#[range=user,%s]#[fg=colour39]●#[range=default]#[fg=colour245] " "$name"
+tmux ls -F '#{session_id} #{session_attached}' 2>/dev/null | while read -r id attached; do
+  if [ "$attached" != "0" ]; then
+    printf "#[range=user|%s]#[fg=colour39]●#[norange]#[fg=colour245] " "$id"
   else
-    printf "#[range=user,%s]#[fg=colour245]○#[range=default] " "$name"
+    printf "#[range=user|%s]#[fg=colour245]○#[norange] " "$id"
   fi
 done

@@ -37,6 +37,7 @@ export GPG_TTY=$(tty);
 export BASH_SILENCE_DEPRECATION_WARNING=1;
 
 export HOMEBREW_NO_ANALYTICS=1 # Disable Homebrew user behavior analytics
+export RTK_TELEMETRY_DISABLED=1
 
 socks_proxy=`scutil --proxy | awk '\
   /SOCKSEnable/ { enabled = $3; } \

@@ -21,7 +21,7 @@ sync:
     if [ -d "private/bin" ]; then
         rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
     fi
-    rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
+    rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" --exclude ".keys" -avh --no-perms;
     rm -Rf private
     just _tmux || true
     exec $SHELL -l

@@ -282,7 +282,7 @@ function stats() {
 }
 
 # Stash, refresh local default branch from origin, rebase current branch onto it, then pop stash
-function rb() {
+function rebase() {
     local default=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's@^origin/@@')
     if [ -z "$default" ]; then
         default=$(git remote show origin 2>/dev/null | sed -n '/HEAD branch/s/.*: //p')
