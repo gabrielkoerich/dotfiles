@@ -71,11 +71,24 @@ Cut balanced contrasts used for rhythm. "It costs latency, not correctness" and 
 
 Use the plain word. Write like a person talking, not like a brochure. Say use, not leverage or utilize. Say many, not a myriad or a plethora. Say also, not furthermore or moreover. Say main, not paramount. Say show, not showcase. Cut seamless, robust, holistic, cutting-edge, state-of-the-art, game-changer, synergy, delve and endeavor. If a shorter everyday word carries the meaning, it is the right word.
 
+The test is whether people use the word when they talk. Everyday speech is the standard. Legal and official documents are the counterexample: that register exists because contracts and judgments need it, and a blog post does not. Technical terms pass, because that is how engineers talk to each other, and so does any word that maps straight across from Portuguese, like indistinguishable. What fails is the word that only ever appears in writing, and the literary flourish: calling a class of bug a species, or writing that an interface was showing me my own optimism.
+
 Say each thing once. If an idea is already in the document, reference it, do not restate it in other words. Two passages that agree are one too many.
 
 Cut throat-clearing. "It is worth noting", "it is worth stating", "this is not arbitrary" carry no information. Delete the phrase and state the fact.
 
 Do not close a paragraph with an aphorism. A flourish reads as filler and buries the point.
+
+## Markdown files
+
+Never hard-wrap a `.md` file. This covers docs, READMEs, `AGENTS.md`, `CLAUDE.md`, plans, notes, and PR and issue bodies.
+
+- A paragraph is one line, however long. A blank line separates paragraphs.
+- Do not break a sentence or a list item at 80 characters or at any other column.
+- When you edit a hard-wrapped paragraph, join it into one line.
+- Line breaks go only between paragraphs, list items, table rows and headings, and inside code blocks.
+
+Hard wrapping makes diffs worse: changing one word reflows the whole block, so a one-word edit reads as a rewrite. Editors wrap for display anyway. The column limit belongs to code.
 
 ## Documentation
 

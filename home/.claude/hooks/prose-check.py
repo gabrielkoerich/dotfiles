@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Block writing that breaks the rules in ~/.claude/CLAUDE.md.
 
-PreToolUse on Write, Edit and Bash. Three jobs: prose rules in markdown,
-comment-block length in code, and commit bodies in git commands. Exits 2 to
+PreToolUse on Write, Edit and Bash. Three jobs: prose rules and hard wraps in
+markdown, comment-block length in code, and commit bodies in git commands. Exits 2 to
 block, quoting the offending line.
 """
 import json
@@ -117,6 +117,50 @@ def offences(text: str) -> list[str]:
     return found
 
 
+LIST_RE = re.compile(r'^([-*+]|\d+[.)])\s')
+
+
+# A paragraph is one line, so prose on the next line means it was wrapped
+def hard_wraps(text: str) -> list[str]:
+    found = []
+    lines = text.split('\n')
+    fenced = False
+    front = lines[0].strip() in ('---', '+++')
+    previous: tuple[int, str] | None = None
+    for number, line in enumerate(lines, 1):
+        stripped = line.strip()
+        if front:
+            if number > 1 and stripped in ('---', '+++'):
+                front = False
+            continue
+        if stripped.startswith('```'):
+            fenced = not fenced
+            previous = None
+            continue
+        structural = (
+            not stripped
+            or fenced
+            or stripped[0] in '|#<'
+            or stripped.startswith(('{{', '{%', '[^', '---', '***'))
+            or LIST_RE.match(stripped)
+        )
+        if previous and stripped and not fenced and not structural:
+            start, first = previous
+            found.append(
+                f'  line {start}: {first[:90]}\n'
+                f'    -> hard-wrapped paragraph, it continues on line {number}. Join it into one line.'
+            )
+            if len(found) >= 5:
+                break
+        # A line ending in two spaces or a backslash is a deliberate break
+        deliberate = line.endswith('  ') or line.endswith('\\')
+        if stripped and not fenced and not deliberate and (not structural or LIST_RE.match(stripped)):
+            previous = (number, stripped)
+        else:
+            previous = None
+    return found
+
+
 def comment_runs(text: str) -> list[str]:
     found = []
     run: list[tuple[int, str]] = []
@@ -209,13 +253,15 @@ def main() -> int:
         return 0
 
     path = payload.get('file_path', '')
-    if any(name in path for name in EXEMPT):
-        return 0
-
     text = payload.get('content') or payload.get('new_string') or ''
 
-    if path.endswith('.md'):
-        found = offences(text)
+    # The rule files quote banned words on purpose, but they still must not wrap
+    if path.endswith('.md') and any(name in path for name in EXEMPT):
+        found = hard_wraps(text)
+    elif any(name in path for name in EXEMPT):
+        return 0
+    elif path.endswith('.md'):
+        found = offences(text) + hard_wraps(text)
     elif path.endswith(CODE_SUFFIXES):
         found = comment_runs(text)
         # Only what this write adds. Rewriting a file should not mean tidying
