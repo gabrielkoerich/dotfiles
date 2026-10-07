@@ -134,6 +134,7 @@ brew "gemini-cli" # Google Gemini CLI
 brew "gh" # GitHub CLI
 brew "iwe-org/iwe/iwe" # markdown-based PKM for developers
 brew "jq" # JSON processor
+brew "ruby" # keg-only Ruby for the kamal gem (gem install kamal)
 brew "pinentry-touchid" # Touch ID pinentry integration
 brew "fabianishere/personal/pam_reattach" # reattach PAM to the GUI session so Touch ID sudo works in tmux
 brew "mackup" # backup/restore app settings
