@@ -213,14 +213,6 @@ defaults write com.apple.dock show-recents -bool false
 
 
 # ----------------------------------------------------------
-# ---------------Disable AirDrop file sharing---------------
-# ----------------------------------------------------------
-echo '--- Disable AirDrop file sharing'
-defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
-# ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
 # ----------------Disable Spotlight indexing----------------
 # ----------------------------------------------------------
 echo '--- Disable Spotlight indexing'
@@ -1647,14 +1639,6 @@ echo 'yes' | sudo systemsetup -setremotelogin off
 # ----------------------------------------------------------
 echo '--- Disable the insecure TFTP service'
 sudo launchctl disable 'system/com.apple.tftpd'
-# ----------------------------------------------------------
-
-
-# ----------------------------------------------------------
-# ----------Disable Bonjour multicast advertising-----------
-# ----------------------------------------------------------
-echo '--- Disable Bonjour multicast advertising'
-sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
 # ----------------------------------------------------------
 
 

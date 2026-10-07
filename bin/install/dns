@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-brew install cloudflared
-brew install nextnds/tap/nextdns
+# brew install cloudflared
+# brew install nextnds/tap/nextdns
 
 # sudo nextdns install \
 #   -config <config_id> \

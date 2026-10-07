@@ -13,7 +13,7 @@ setup:
     ./macos
 
 # Sync dotfiles to home directory
-[confirm("This may overwrite existing files in your home directory. Are you sure? (y/n)")]
+[confirm("This copies dotfiles into your home directory, files that are newer in ~ are kept. Continue? (y/n)")]
 [group('setup')]
 sync:
     #!/usr/bin/env bash
@@ -21,7 +21,13 @@ sync:
     if [ -d "private/bin" ]; then
         rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
     fi
-    rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" --exclude ".keys" -avh --no-perms;
+    # --update keeps any file in ~ that is newer than the dotfiles copy, so a newer file is never overwritten by an older one
+    rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" --exclude ".keys" -avh --no-perms --update;
+    newer="$(git ls-files home | sed 's#^home/##' | rsync -an --update --out-format='%n' --files-from=- ~/ home/)"
+    if [ -n "$newer" ]; then
+        echo "Kept these files in ~ because they are newer than dotfiles (copy them back if the change should stay):"
+        echo "$newer" | sed 's/^/  ~\//'
+    fi
     rm -Rf private
     just _tmux || true
     exec $SHELL -l
@@ -75,11 +81,6 @@ _pre-commit:
 _touchid:
     ./bin/install/touchid
 
-# Install from package profile (profiles/*.txt)
-[group('install')]
-install-profile profile="minimal":
-    ./bin/install/profile "{{ profile }}"
-
 # Apply closest deterministic machine baseline
 [group('install')]
 exact-apply:
@@ -114,82 +115,6 @@ security-strict:
 [group('security')]
 security-ci:
     SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
-
-# Enable Tailscale SSH (turn on SSH + bring up Tailscale with SSH).
-[confirm("Enable SSH and start Tailscale? (y/n)")]
-[group('ssh')]
-tailscale-ssh-enable:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "enabling remote login (SSH)..."
-    sudo systemsetup -setremotelogin on
-    echo "starting tailscale with SSH..."
-    tailscale up --ssh
-    echo "tailscale ssh enabled ($(tailscale ip -4))"
-
-# Disable Tailscale SSH (bring down Tailscale + turn off SSH).
-[confirm("Disable SSH and stop Tailscale? (y/n)")]
-[group('ssh')]
-tailscale-ssh-disable:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "stopping tailscale..."
-    tailscale down
-    echo "disabling remote login (SSH)..."
-    echo 'yes' | sudo systemsetup -setremotelogin off
-    echo "tailscale ssh disabled"
-
-# Apply Tailscale-only SSH hardening config using current user from `whoami`.
-[confirm("Apply Tailscale SSH hardening config and restart sshd? (y/n)")]
-[group('ssh')]
-tailscale-ssh-harden:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    user="$(whoami)"
-    template="home/.config/ssh/sshd-hardening.tailscale.conf"
-    target="/etc/ssh/sshd_config.d/99-tailscale-hardening.conf"
-    sed "s/__SSH_USER__/${user}/g" "$template" | sudo tee "$target" >/dev/null
-    sudo sshd -t
-    sudo launchctl kickstart -k system/com.openssh.sshd
-    echo "applied tailscale ssh hardening for user: $user"
-
-# Enable Cloudflare Tunnel SSH (turn on SSH + start tunnel service).
-[confirm("Enable SSH and start Cloudflare tunnel? (y/n)")]
-[group('ssh')]
-cloudflare-ssh-enable:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "enabling remote login (SSH)..."
-    sudo systemsetup -setremotelogin on
-    echo "installing cloudflared service..."
-    cloudflared service install
-    echo "cloudflare tunnel ssh enabled"
-
-# Disable Cloudflare Tunnel SSH (stop tunnel service + turn off SSH).
-[confirm("Disable SSH and stop Cloudflare tunnel? (y/n)")]
-[group('ssh')]
-cloudflare-ssh-disable:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    echo "uninstalling cloudflared service..."
-    cloudflared service uninstall || true
-    echo "disabling remote login (SSH)..."
-    echo 'yes' | sudo systemsetup -setremotelogin off
-    echo "cloudflare tunnel ssh disabled"
-
-# Apply Cloudflare Tunnel SSH hardening config using current user from `whoami`.
-[confirm("Apply Cloudflare Tunnel SSH hardening config and restart sshd? (y/n)")]
-[group('ssh')]
-cloudflare-ssh-harden:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    user="$(whoami)"
-    template="home/.config/ssh/sshd-hardening.cloudflare.conf"
-    target="/etc/ssh/sshd_config.d/99-cloudflare-hardening.conf"
-    sed "s/__SSH_USER__/${user}/g" "$template" | sudo tee "$target" >/dev/null
-    sudo sshd -t
-    sudo launchctl kickstart -k system/com.openssh.sshd
-    echo "applied cloudflare tunnel ssh hardening for user: $user"
 
 # Generate a local `age` key pair used for encryption workflows.
 [group('encryption')]

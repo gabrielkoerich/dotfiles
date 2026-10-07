@@ -33,7 +33,7 @@ Read [all](./bin/install/) scripts *before* executing them.
 
 To sync the dotfiles, run step 9 again.
 
-Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local. Public SSH hardening template is versioned at `home/.config/ssh/sshd-hardening.public.conf`.
+Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local.
 
 Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
 
@@ -113,12 +113,6 @@ Optional env overrides:
 - `TMX_SESSION_NAME` (default: `main`)
 - `TMX_SESSIONS` (default: `$TMX_SESSION_NAME`) space-separated list of sessions to ensure/restore
 - `TMX_SESSION_ROOT` (default: `$HOME`)
-
-## SSH Runbooks
-
-- [Tailscale SSH](./runbooks/tailscale-ssh.md) — mesh VPN, no ports exposed
-- [Cloudflare Tunnel SSH](./runbooks/cloudflare-ssh.md) — proxied through Cloudflare, no ports exposed
-- [Termius (iPhone / iPad)](./runbooks/termius.md) — mobile SSH client setup for both profiles
 
 ## License
 

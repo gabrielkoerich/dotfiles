@@ -28,7 +28,9 @@ LOCK = pathlib.Path("/tmp/claude-voice-reply.lock")
 QUEUE = pathlib.Path("/tmp/claude-voice-reply.queue")
 READING = pathlib.Path("/tmp/claude-voice-reply.reading")
 READER = HOME / ".claude" / "hooks" / "voice-reader.py"
+AUTOPANE = HOME / ".claude" / "voice-reply.autopane"
 PANEL_ROWS = 7  # one blank row top and bottom, five of text
+PANE = ""  # set once the tty is known, published for click-to-jump
 
 # Past this the reply is stale, and hearing it is worse than missing it
 MAX_WAIT = 180.0
@@ -85,8 +87,18 @@ def active_pane(tmux: str) -> tuple:
     return "", ""
 
 
+def autopane() -> bool:
+    """Off by default, the status line shows the sentence without a split."""
+    try:
+        return AUTOPANE.read_text().strip() == "on"
+    except OSError:
+        return False
+
+
 def open_panel(tty: str) -> None:
     """Split a strip under the pane this session runs in, one per window."""
+    if not autopane():
+        return
     tmux = shutil.which("tmux")
     if not tmux:
         return
@@ -106,10 +118,26 @@ def open_panel(tty: str) -> None:
     )
 
 
+def speaking_pane(tty: str) -> str:
+    """The pane this reply belongs to, so the status line can jump to it."""
+    tmux = shutil.which("tmux")
+    if not tmux:
+        return ""
+    rows = subprocess.run(
+        [tmux, "list-panes", "-a", "-F", PANES_FMT],
+        capture_output=True, text=True, check=False,
+    ).stdout.splitlines()
+    target, _ = pick_pane(rows, tty)
+    if not target:
+        target, _ = active_pane(tmux)
+    return target
+
+
 def publish(label: str, parts: list, index: int, playing: bool) -> None:
     """Atomic, so the panel never reads a half-written file."""
     payload = json.dumps(
-        {"label": label, "sentences": parts, "index": index, "playing": playing}
+        {"label": label, "sentences": parts, "index": index, "playing": playing,
+         "pane": PANE}
     )
     tmp = READING.with_suffix(".tmp")
     try:
@@ -177,6 +205,8 @@ def main() -> int:
     text, voice, speed = sys.argv[1], sys.argv[2], sys.argv[3]
     label = sys.argv[4] if len(sys.argv) > 4 else "?"
     tty = sys.argv[5] if len(sys.argv) > 5 else ""
+    global PANE
+    PANE = speaking_pane(tty)
 
     handle = os.open(LOCK, os.O_CREAT | os.O_RDWR, 0o644)
     deadline = time.monotonic() + MAX_WAIT

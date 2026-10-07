@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-GB_SKILLS_REF="770caf1f9507b41bc27b4e2fcce654e5c07ca14b"
+# main by default, set GB_SKILLS_REF to a tag or commit to pin
+GB_SKILLS_REF="${GB_SKILLS_REF:-main}"
 
 require_cmd() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -11,28 +12,37 @@ require_cmd() {
   fi
 }
 
-clone_pinned() {
+clone_ref() {
   local repo_url="$1"
   local ref="$2"
   local dest="$3"
 
-  if [[ ! "$ref" =~ ^[0-9a-f]{40}$ ]]; then
-    echo "error: expected full 40-char commit SHA, got: $ref" >&2
-    exit 1
-  fi
-
-  git init "$dest" >/dev/null
+  git init -q -b main "$dest"
   git -C "$dest" remote add origin "$repo_url"
   git -C "$dest" fetch --depth 1 origin "$ref"
   git -C "$dest" checkout --detach FETCH_HEAD >/dev/null
+  # a checkout stamps files with the current time, give them the commit's time so rsync --update can compare
+  local stamp
+  stamp="$(git -C "$dest" log -1 --format=%cd --date=format:%Y%m%d%H%M.%S)"
+  find "$dest" -type f -not -path "*/.git/*" -exec touch -t "$stamp" {} +
 }
 
 sync_skills_to_agents() {
   local src="$1"
+  local ignore="$HOME/.claude/skills/.sync-ignore"
+  # inside the temporary clone, so the cleanup trap removes it
+  local excludes="$src/.sync-excludes"
+  : > "$excludes"
+  # skills named in .sync-ignore are private or third party, the pinned repo never touches them
+  if [ -f "$ignore" ]; then
+    grep -v -E '^\s*(#|$)' "$ignore" | sed 's#^\(.*\)$#/\1/#' > "$excludes"
+  fi
+
   mkdir -p "$HOME/.claude/skills" "$HOME/.codex/skills" "$HOME/.config/opencode/skills"
-  rsync -avh --no-perms --exclude ".git/" --exclude ".github" --exclude ".DS_Store" "$src"/ "$HOME/.claude/skills/"
-  rsync -avh --no-perms --exclude ".git/" --exclude ".github" --exclude ".DS_Store" "$src"/ "$HOME/.codex/skills/"
-  rsync -avh --no-perms --exclude ".git/" --exclude ".github" --exclude ".DS_Store" "$src"/ "$HOME/.config/opencode/skills/"
+  for target in "$HOME/.claude/skills/" "$HOME/.codex/skills/" "$HOME/.config/opencode/skills/"; do
+    # --update keeps any local file changed after the pinned commit
+    rsync -avh --no-perms --update --exclude ".git/" --exclude ".github" --exclude ".DS_Store" --exclude ".sync-excludes" --exclude-from "$excludes" "$src"/ "$target"
+  done
 }
 
 require_cmd brew
@@ -53,15 +63,21 @@ cleanup() {
 }
 trap cleanup EXIT
 
-clone_pinned "https://github.com/gabrielkoerich/skills.git" "$GB_SKILLS_REF" "$tmp_skills_dir"
+clone_ref "https://github.com/gabrielkoerich/skills.git" "$GB_SKILLS_REF" "$tmp_skills_dir"
 sync_skills_to_agents "$tmp_skills_dir"
 
 # Sync AGENTS.md to all agents
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p "$HOME/.codex" "$HOME/.config/opencode" "$HOME/.claude"
-cp "$script_dir/AGENTS.md" "$HOME/.codex/AGENTS.md"
-cp "$script_dir/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"
-cp "$script_dir/AGENTS.md" "$HOME/.claude/CLAUDE.md"
+for target in "$HOME/.codex/AGENTS.md" "$HOME/.config/opencode/AGENTS.md" "$HOME/.claude/CLAUDE.md"; do
+  # a newer copy in ~ wins, so an edit made there is never overwritten by an older dotfiles version
+  if [ "$target" -nt "$script_dir/AGENTS.md" ]; then
+    echo "Kept $target, it is newer than dotfiles' AGENTS.md (copy it back if the change should stay)"
+  else
+    cp "$script_dir/AGENTS.md" "$target"
+  fi
+
+done
 
 # rsync runs with --no-perms, so the hooks arrive without their exec bit
 if [ -d "$HOME/.claude/hooks" ]; then

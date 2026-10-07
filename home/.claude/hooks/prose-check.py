@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Block writing that breaks the rules in ~/.claude/CLAUDE.md.
 
-PreToolUse on Write, Edit and Bash. Three jobs: prose rules and hard wraps in
-markdown, comment-block length in code, and commit bodies in git commands. Exits 2 to
-block, quoting the offending line.
+PreToolUse on Write, Edit and Bash. Prose rules and hard wraps in markdown,
+comment length, punctuation and block style in code, commit bodies in git commands,
+and attribution in pull request bodies. Exits 2 to block, quoting the offending line.
 """
 import json
+import os
 import re
 import shlex
 import sys
@@ -189,6 +190,95 @@ def comment_runs(text: str) -> list[str]:
     return found
 
 
+LINE_MARKER = {'.py': '#', '.sh': '#', '.bash': '#', '.zsh': '#', '.sql': '--'}
+TRAILING_PUNCT_RE = re.compile(r'[.;:!]$')
+BLOCK_ONE_LINE_LIMIT = 100
+
+
+# A comment ends without punctuation, a one-line thought is a line comment, and a
+# block exists only for text too long for one line
+def comment_style(text: str, path: str) -> list[str]:
+    suffix = os.path.splitext(path)[1]
+    marker = LINE_MARKER.get(suffix, '//')
+    line_re = re.compile(r'^(--)\s?') if suffix == '.sql' else re.compile(r'^(//|#)\s?')
+    found = []
+    lines = text.split('\n')
+    run: list[tuple[int, str]] = []
+
+    def close_run() -> None:
+        if run and TRAILING_PUNCT_RE.search(run[-1][1]):
+            found.append(
+                f'  line {run[-1][0]}: {run[-1][1][:110]}\n'
+                '    -> a comment ends with punctuation. Drop the final mark.'
+            )
+        run.clear()
+
+    index = 0
+    while index < len(lines):
+        number = index + 1
+        stripped = lines[index].strip()
+        match = line_re.match(stripped)
+        # rustdoc renders /// and //! as prose, so they keep normal sentences
+        if match and not stripped.startswith(('///', '//!')) and not DIRECTIVE_RE.search(stripped):
+            run.append((number, stripped[match.end():].strip()))
+            index += 1
+            continue
+        close_run()
+
+        if stripped.startswith('/*'):
+            if stripped.endswith('*/'):
+                # a JSDoc one-liner like /** @type {X} */ is an annotation, not prose
+                if not (stripped.startswith('/**') and '@' in stripped):
+                    found.append(
+                        f'  line {number}: {stripped[:110]}\n'
+                        f'    -> a one-line block comment. Use {marker} for a single line.'
+                    )
+                index += 1
+                continue
+
+            end = index + 1
+            while end < len(lines) and '*/' not in lines[end]:
+                end += 1
+            block_lines = [line.strip() for line in lines[index + 1:end]]
+            closing = lines[end].strip() if end < len(lines) else ''
+
+            if stripped != '/**':
+                found.append(
+                    f'  line {number}: {stripped[:110]}\n'
+                    '    -> a docblock opens with /** alone on its line.'
+                )
+            if any(line and not line.startswith('*') for line in block_lines):
+                found.append(
+                    f'  line {number}: {stripped[:110]}\n'
+                    "    -> every docblock line starts with ' * '."
+                )
+            if closing != '**/':
+                found.append(
+                    f'  line {end + 1}: {closing[:110]}\n'
+                    '    -> a docblock closes with **/ alone on its line.'
+                )
+
+            text = [line.lstrip('*').strip() for line in block_lines]
+            body = ' '.join(part for part in text if part)
+            # tagged docblocks (@param, @returns) follow their tooling's punctuation
+            if not any(part.startswith('@') for part in text):
+                if len(body) <= BLOCK_ONE_LINE_LIMIT:
+                    found.append(
+                        f'  line {number}: {body[:110]}\n'
+                        f'    -> a docblock that fits on one line. Use {marker}, a docblock is only for text that needs several lines.'
+                    )
+                elif TRAILING_PUNCT_RE.search(body):
+                    found.append(
+                        f'  line {number}: ...{body[-80:]}\n'
+                        '    -> a docblock ends with punctuation. Drop the final mark.'
+                    )
+            index = end + 1
+            continue
+        index += 1
+    close_run()
+    return found
+
+
 HEREDOC_RE = re.compile(r'<<-?\s*[\'"]?(\w+)[\'"]?\n.*?\n\1', re.S)
 
 
@@ -228,6 +318,37 @@ def commit_body(raw: str) -> list[str]:
     return found
 
 
+ATTRIBUTION = ('Generated with', 'Co-Authored-By', 'Claude-Session', 'noreply@anthropic')
+
+
+# A PR body names no tool either. It arrives inline, in a heredoc or through --body-file,
+# so this reads the raw command and the file, not the heredoc-stripped text
+def pr_attribution(command: str) -> list[str]:
+    pr_command = re.search(r'\bgh\s+pr\s+(create|edit|comment|review)\b', command)
+    pr_api = re.search(r'\bgh\s+api\b.*\b(pulls|issues/\d+/comments)\b', command, re.S)
+    if not (pr_command or pr_api):
+        return []
+
+    text = command
+    try:
+        tokens = shlex.split(command)
+    except ValueError:
+        tokens = []
+    for index, token in enumerate(tokens[:-1]):
+        if token in ('--body-file', '-F'):
+            try:
+                with open(os.path.expanduser(tokens[index + 1]), encoding='utf-8') as handle:
+                    text += handle.read()
+            except OSError:
+                pass
+
+    return [
+        f'    -> the PR body carries "{marker}". Pull requests name no tool and no co-author.'
+        for marker in ATTRIBUTION
+        if marker.lower() in text.lower()
+    ]
+
+
 def main() -> int:
     try:
         event = json.load(sys.stdin)
@@ -238,16 +359,27 @@ def main() -> int:
     payload = event.get('tool_input', {})
 
     if tool == 'Bash':
-        found = commit_body(payload.get('command', ''))
-        if not found:
-            return 0
-        print(
-            'Commit rules (~/.claude/CLAUDE.md):\n'
-            + '\n'.join(found)
-            + '\nUse a subject line only. Reasoning goes in the docs.',
-            file=sys.stderr,
-        )
-        return 2
+        command = payload.get('command', '')
+        found = commit_body(command)
+        if found:
+            print(
+                'Commit rules (~/.claude/CLAUDE.md):\n'
+                + '\n'.join(found)
+                + '\nUse a subject line only. Reasoning goes in the docs.',
+                file=sys.stderr,
+            )
+            return 2
+
+        found = pr_attribution(command)
+        if found:
+            print(
+                'Pull request rules (~/.claude/CLAUDE.md):\n'
+                + '\n'.join(found)
+                + '\nRemove the line from the PR body and run it again.',
+                file=sys.stderr,
+            )
+            return 2
+        return 0
 
     if tool not in ('Write', 'Edit'):
         return 0
@@ -263,13 +395,17 @@ def main() -> int:
     elif path.endswith('.md'):
         found = offences(text) + hard_wraps(text)
     elif path.endswith(CODE_SUFFIXES):
-        found = comment_runs(text)
-        # Only what this write adds. Rewriting a file should not mean tidying
-        # comments somebody else wrote
+        found = comment_runs(text) + comment_style(text, path)
+        # Only what this write adds, keyed without line numbers because an
+        # Edit fragment numbers its lines from one
+        def key(finding: str) -> str:
+            return re.sub(r'^\s*line \d+: ', '', finding)
+
         try:
             with open(path, encoding='utf-8') as handle:
-                already = {line.split('->')[0] for line in comment_runs(handle.read())}
-            found = [line for line in found if line.split('->')[0] not in already]
+                existing = handle.read()
+            already = {key(line) for line in comment_runs(existing) + comment_style(existing, path)}
+            found = [line for line in found if key(line) not in already]
         except OSError:
             pass
     else:

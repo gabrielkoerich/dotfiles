@@ -5,6 +5,8 @@ STATE="$HOME/.claude/voice-reply.state"
 VOICEPIN="$HOME/.claude/voice-reply.voice"
 SPEEDFILE="$HOME/.claude/voice-reply.speed"
 LIMITFILE="$HOME/.claude/voice-reply.limit"
+AUTOPANE="$HOME/.claude/voice-reply.autopane"
+READING="/tmp/claude-voice-reply.reading"
 QUEUE="/tmp/claude-voice-reply.queue"
 LOCKF="/tmp/claude-voice-reply.lock"
 case "${1:-status}" in
@@ -29,6 +31,38 @@ case "${1:-status}" in
     if [ -n "$existing" ]; then echo "panel already open: $existing"; exit 0; fi
     tmux split-window -v -d -l "${2:-7}" "$HOME/.claude/hooks/voice-reader.py"
     echo "panel pinned open, close it with tmux kill-pane or ctrl-c inside it" ;;
+  now)
+    pgrep -x afplay >/dev/null 2>&1 || exit 0
+    # tmux passes what the centre has left over, which can go negative
+    width="${2:-60}"
+    case "$width" in ''|*[!0-9-]*) width=60 ;; esac
+    [ "$width" -ge 24 ] || exit 0
+    [ "$width" -gt 160 ] && width=160
+    line="$(jq -r '.sentences[.index] // empty' "$READING" 2>/dev/null || true)"
+    [ -n "$line" ] || exit 0
+    # One status line serves every pane, so name the session that is speaking
+    who="$(jq -r '(.label // "") | split(",")[0]' "$READING" 2>/dev/null || true)"
+    [ -n "$who" ] && line="$who: $line"
+    if [ "${#line}" -gt "$width" ]; then line="${line:0:$width}…"; fi
+    printf '#[range=user|claudenow]%s#[norange]' "$line" ;;
+  jump)
+    pane="$(jq -r '.pane // empty' "$READING" 2>/dev/null || true)"
+    [ -n "$pane" ] || exit 0
+    tmux switch-client -t "$pane" 2>/dev/null || true
+    tmux select-window -t "$pane" 2>/dev/null || true
+    tmux select-pane -t "$pane" 2>/dev/null || true ;;
+  click)
+    case "${2:-}" in
+      claudevoice) exec "$0" toggle ;;
+      claudenow)   exec "$0" jump ;;
+      \$*)         tmux switch-client -t "$2" 2>/dev/null || true ;;
+    esac ;;
+  autopane)
+    case "${2:-status}" in
+      on)  echo on > "$AUTOPANE"; echo "auto panel on" ;;
+      off) echo off > "$AUTOPANE"; echo "auto panel off" ;;
+      *)   cat "$AUTOPANE" 2>/dev/null || echo off ;;
+    esac ;;
   voice) echo "${2:-random}" > "$VOICEPIN"; echo "voice: ${2:-random}" ;;
   speed) echo "${2:-1.0}" > "$SPEEDFILE"; echo "speed: ${2:-1.0}" ;;
   limit) echo "${2:-full}" > "$LIMITFILE"; echo "limit: ${2:-full}" ;;
@@ -37,8 +71,9 @@ case "${1:-status}" in
     printf 'voice:   %s\n' "$(cat "$VOICEPIN" 2>/dev/null || echo random)"
     printf 'speed:   %s\n' "$(cat "$SPEEDFILE" 2>/dev/null || echo 1.0)"
     printf 'limit:   %s\n' "$(cat "$LIMITFILE" 2>/dev/null || echo full)"
+    printf 'autopane:%s\n' "$(cat "$AUTOPANE" 2>/dev/null || echo off)"
     printf 'last:    %s\n' "$(cat /tmp/claude-voice-reply.last 2>/dev/null || echo none)"
     printf 'waiting: %s\n' "$([ -f "$QUEUE" ] && wc -l < "$QUEUE" | tr -d ' ' || echo 0)"
     ;;
-  *) echo "usage: voice-reply.sh on|off|pause|resume|toggle|skip|icon|status|pane [rows]|voice <name|random>|speed <0.5-2.0>|limit <chars|full>" >&2; exit 1 ;;
+  *) echo "usage: voice-reply.sh on|off|pause|resume|toggle|skip|icon|now [cols]|status|pane [rows]|autopane <on|off>|voice <name|random>|speed <0.5-2.0>|limit <chars|full>" >&2; exit 1 ;;
 esac

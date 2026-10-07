@@ -29,9 +29,11 @@ assert q.index_at(parts, -1.0) == 0
 assert q.index_at(parts, 0.5) == 1, q.index_at(parts, 0.5)
 assert q.index_at(["only one"], 0.7) == 0
 
+q.PANE = "%7"
 q.publish("lbl", parts, 2, True)
 state = json.loads(q.READING.read_text())
-assert state == {"label": "lbl", "sentences": parts, "index": 2, "playing": True}
+assert state == {"label": "lbl", "sentences": parts, "index": 2, "playing": True,
+                 "pane": "%7"}
 assert not q.READING.with_suffix(".tmp").exists()
 
 lines = r.layout(["aaa bbb ccc", "ddd"], 7)

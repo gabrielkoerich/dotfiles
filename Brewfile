@@ -2,19 +2,17 @@
 tap "homebrew/core" # official Homebrew formulae
 tap "homebrew/cask" # official Homebrew casks
 tap "jorgelbg/tap" # custom tap for pinentry-touchid
-# tap "kardolus/chatgpt-cli" # third-party ChatGPT CLI tap
 tap "gantoreno/macfetch" # custom macfetch tap
 tap "dagger/tap" # Dagger CLI and related tools
 tap "iwe-org/iwe" # IWE knowledge management tools
 tap "nikolaeu/numi" # tap for numi-cli
 tap "ossianhempel/tap" # tap for Things 3 CLI
 tap "steipete/tap" # bird/camsnap/peekaboo/summarize/tmuxwatch
-tap "supabase/tap" # official Supabase CLI tap
 tap "txtx/taps" # surfpool blockchain deployment tool
 tap "librespeed/tap" # librespeed-cli tap
 tap "jorgelbg/tap" # tap for pinentry-touchid
 tap "ossianhempel/tap" # tap for Things 3 CLI
-tap "gabrielkoerich/tap" # tap for Orchestrator + other apps
+tap "gabrielkoerich/tap" # tap for orch + other apps
 tap "fabianishere/personal" # tap for pam-reattach
 
 # Core CLI and shell tooling
@@ -76,12 +74,9 @@ brew "pango" # text layout/rendering engine
 brew "pipx" # isolated Python app installer
 brew "pkg-config" # compiler/linker metadata helper
 brew "pkgconf" # pkg-config compatible implementation
-brew "poetry" # Python dependency manager
 brew "pre-commit" # Git pre-commit hook manager
 brew "python@3.13" # Python runtime
 brew "rclone" # cloud storage sync tool
-brew "shadowsocks-rust" # shadowsocks proxy implementation
-brew "supabase/tap/supabase" # Supabase CLI
 brew "ta-lib" # technical analysis library
 brew "talib" # legacy ta-lib formula name retained
 brew "tart" # macOS/Linux VMs on Apple Silicon
@@ -127,9 +122,9 @@ brew "ucspi-tcp" # tcpserver and related tools
 brew "xpdf" # PDF text/tools suite
 
 # Personal productivity and system operations
-brew "macfetch" # macOS system summary utility
-brew "gastown" # multi-agent workspace manager
-brew "orchestrator" # multi-agent orchestrator & delegator
+brew "gabrielkoerich/tap/orch" # multi-agent orchestrator & delegator
+brew "gabrielkoerich/tap/vault" # file encryption and protection
+brew "gabrielkoerich/tap/passbox" # password manager for agents
 brew "gemini-cli" # Google Gemini CLI
 brew "gh" # GitHub CLI
 brew "iwe-org/iwe/iwe" # markdown-based PKM for developers
@@ -139,22 +134,22 @@ brew "pinentry-touchid" # Touch ID pinentry integration
 brew "fabianishere/personal/pam_reattach" # reattach PAM to the GUI session so Touch ID sudo works in tmux
 brew "mackup" # backup/restore app settings
 brew "maclaunch" # inspect startup items
-brew "mactop" # Apple Silicon process monitor
+brew "btop" # better process monitor
 brew "mas" # Mac App Store CLI
 brew "nikolaeu/numi/numi-cli" # smart calculator CLI
 brew "llama.cpp" # LLM inference engine in C/C++ using GGUF models; supports Metal GPU acceleration
-brew "ollama" # run LLMs locally; uses Apple MLX for GPU acceleration on Apple Silicon
+# brew "ollama" # run LLMs locally; uses Apple MLX for GPU acceleration on Apple Silicon
 brew "opencode" # terminal AI coding agent
 brew "things3-cli" # Things 3 CLI
 brew "pass" # password manager
-brew "pass-otp" # OTP extension for pass
+# brew "pass-otp" # OTP extension for pass
 brew "pinentry-mac" # macOS pinentry
 brew "pv" # pipe viewer
 brew "steipete/tap/bird" # X/Twitter CLI
 brew "steipete/tap/camsnap" # RTSP/ONVIF camera capture CLI
-brew "steipete/tap/peekaboo" # screenshot and vision analysis CLI
-brew "steipete/tap/summarize" # URL/text summarizer CLI
-brew "steipete/tap/tmuxwatch" # live tmux dashboard
+# brew "steipete/tap/peekaboo" # screenshot and vision analysis CLI
+# brew "steipete/tap/summarize" # URL/text summarizer CLI
+# brew "steipete/tap/tmuxwatch" # live tmux dashboard
 
 # GUI apps and desktop tooling
 cask "1password-cli" # 1Password command-line tool
@@ -165,7 +160,7 @@ cask "claude" # Claude desktop app
 cask "claude-code" # Claude Code app bundle
 cask "codex" # Codex app bundle
 cask "cryptomator" # encrypted cloud storage vaults
-cask "dagger/tap/container-use" # containerized coding environments
+# cask "dagger/tap/container-use" # containerized coding environments
 cask "discord" # team chat app
 cask "ghostty" # terminal emulator
 cask "github" # GitHub Desktop

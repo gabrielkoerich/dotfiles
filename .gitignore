@@ -15,3 +15,4 @@ log*
 private
 proxy
 secrets
+__pycache__

@@ -21,6 +21,7 @@
     - If it has a `package-lock.json`, you should use `npm`.
     - If it has a `bun.lock`, you should use `bun`
 - Prefer `bun` for modern JS/TS workflows, specially on new projects.
+- Always use braces on `if`, `else`, `for` and `while`, with the body on its own line. No one-liners like `if (x) return y`, including for `throw` and `continue`. Leave a blank line after the closing brace when another statement follows (not before `else`, `catch` or another `}`).
 
 ### Rust
 - Use `cargo` for package management
@@ -52,7 +53,7 @@
 For markdown documents, notes, and knowledge management:
 - Use the `qmd` skill for local search, semantic queries, and reflection reports
 - Keep documentation close to code, update docs when code changes
-- For github, use `github` skill to manage issues, pull requests, and repositories. Use `git-worktres` for managing worktrees workflows and `gh-issue-worktree` for github issues related tasks - it auto creates the link between the PR/worktree and the Github Issue.
+- For github, use `github` skill to manage issues, pull requests, and repositories. Use `git-worktrees` for managing worktrees workflows and `github-issue-worktree` for github issues related tasks, it auto creates the link between the PR/worktree and the Github Issue.
 
 ## Writing Style
 
@@ -107,11 +108,25 @@ Keep comments to one line. No trailing dot. Use commas instead of ';'. Don't use
 
 Line comments (`//`, `#`, `--`) get one line, or two when one genuinely cannot carry it. Never three.
 
-Where a file or a function truly needs more, use a `/* */` block instead, or a docstring in Python or other language. That form is reserved for what cannot be understood by reading the code: a protocol quirk, an ordering the type system cannot express, a bug the shape of the code is working around. It is not for restating the design, and not for a decision you are pleased with, which belongs in the design doc. Reach for it rarely, and never to get around the two-line limit.
+Where a file or a function truly needs more, use a docblock instead, or a docstring in Python. That form is reserved for what cannot be understood by reading the code: a protocol quirk, an ordering the type system cannot express, a bug the shape of the code is working around. It is not for restating the design, and not for a decision you are pleased with, which belongs in the design doc. Reach for it rarely, and never to get around the two-line limit.
+
+The one-line rule covers line comments only. When more is needed, write a docblock: `/**` alone on the first line, every text line prefixed with ` * ` and wrapped at the code's line width, and `**/` alone on the last line. Periods between sentences are fine inside a docblock, but the last sentence of any comment, line or docblock, ends with no punctuation. Never use a docblock for a thought that fits on one line: that is a line comment (`//`, or `#` in Python and shell). Most comments are one line. `prose-check.py` enforces these rules. For example:
+
+```rust
+/**
+ * Every freed block is wiped before the system allocator gets it back. Decrypting, parsing JSON
+ * and decoding keys all pass plaintext through buffers owned by age, serde_json and std, which free
+ * them without wiping, so wiping at the one place every free goes through catches all of them.
+ * The default `realloc` frees through `dealloc`, so a buffer that grows is wiped too
+ **/
+struct WipeOnFree;
+```
 
 ## Commits
 
 Subject line only. No body, no description paragraph, no bullet list of what changed. `git commit -m "Short subject"` and nothing else. No trailer, and Claude is named nowhere in the commit.
+
+Pull request descriptions follow the same rule: no "Generated with ..." line, no co-author line, no attribution of any kind.
 
 The reasoning goes in the docs, not the commit. If a change needs explaining, the explanation belongs in `docs/DESIGN.md` or the equivalent, where it can be kept current.
 
