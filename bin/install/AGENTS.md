@@ -30,7 +30,7 @@
 ### Solana / Anchor
 - Use `anchor` framework for smart contract development
 - Use `avm` for Anchor version management
-- Audit with `anchor-sealevel-attacks` and `solana-best-practices` skills before deploying. Create specific tests based on those skills.
+- Audit with `anchor-security-audit` and `solana-best-practices` skills before deploying. Create specific tests based on those skills.
 
 ## EVM / Solidity
 - Use `hardhat` framework
@@ -104,13 +104,11 @@ A technical document answers three things, then stops: what it is, why it was bu
 
 ## Commenting on code
 
-Keep comments to one line. No trailing dot. Use commas instead of ';'. Don't use '—' or ' - ' as an aside separator, use commas or split lines. If deeper context is needed, put it in the PR/commit message, not the code. Only comment when the "why" is non-obvious. Don't restate what the code does.
+Only comment when the "why" is non-obvious, and don't restate what the code does. Deeper context goes in the PR or commit message.
 
-Line comments (`//`, `#`, `--`) get one line, or two when one genuinely cannot carry it. Never three.
+Line comments (`//`, `#`, `--`) get one line, or two when one cannot carry it. Never three. Use commas instead of `;`, and never `—` or ` - ` as an aside separator. The last sentence of any comment ends with no punctuation, including in a docblock.
 
-Where a file or a function truly needs more, use a docblock instead, or a docstring in Python. That form is reserved for what cannot be understood by reading the code: a protocol quirk, an ordering the type system cannot express, a bug the shape of the code is working around. It is not for restating the design, and not for a decision you are pleased with, which belongs in the design doc. Reach for it rarely, and never to get around the two-line limit.
-
-The one-line rule covers line comments only. When more is needed, write a docblock: `/**` alone on the first line, every text line prefixed with ` * ` and wrapped at the code's line width, and `**/` alone on the last line. Periods between sentences are fine inside a docblock, but the last sentence of any comment, line or docblock, ends with no punctuation. Never use a docblock for a thought that fits on one line: that is a line comment (`//`, or `#` in Python and shell). Most comments are one line. `prose-check.py` enforces these rules. For example:
+A docblock is for what cannot be understood by reading the code: a protocol quirk, an ordering the type system cannot express, a bug the shape of the code works around. Design and decisions go in the design doc. Use one rarely, never for a thought that fits on one line, and never to get around the two-line limit. Python uses a docstring. Everywhere else, `/**` goes alone on the first line, every text line starts with ` * ` and wraps at the code's line width, and `**/` goes alone on the last line:
 
 ```rust
 /**
@@ -122,15 +120,13 @@ The one-line rule covers line comments only. When more is needed, write a docblo
 struct WipeOnFree;
 ```
 
-## Commits
+## Commits and pull requests
 
-Subject line only. No body, no description paragraph, no bullet list of what changed. `git commit -m "Short subject"` and nothing else. No trailer, and Claude is named nowhere in the commit.
-
-Pull request descriptions follow the same rule: no "Generated with ..." line, no co-author line, no attribution of any kind.
+Subject line only. No body, no description paragraph, no bullet list of what changed. `git commit -m "Short subject"` and nothing else. No trailer, and Claude is named nowhere in the commit. Pull request descriptions, comments and reviews carry no attribution either: no "Generated with ..." line, no co-author line.
 
 The reasoning goes in the docs, not the commit. If a change needs explaining, the explanation belongs in `docs/DESIGN.md` or the equivalent, where it can be kept current.
 
-`~/.claude/hooks/prose-check.py` refuses a commit that breaks this, so it is enforced rather than remembered.
+`~/.claude/hooks/prose-check.py` enforces the comment, commit and pull request rules in Claude Code. Other agents must follow them unaided.
 
 ## File Deletion
 
