@@ -33,7 +33,7 @@ for t in "${targets[@]}"; do
   elif [[ -d "$t" ]]; then
     while IFS= read -r f; do
       files+=("$f")
-    done < <(find "$t" -type f -not -path '*/.git/*' -not -name '.DS_Store')
+    done < <(git ls-files --cached --others --exclude-standard -- "$t")
   else
     echo "warning: target not found, skipping: $t"
   fi
