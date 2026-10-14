@@ -219,8 +219,12 @@ if [[ -f "bin/install/agents" ]]; then
     fi
   fi
 
-  # All *_REF values must be pinned 40-char commit SHAs.
+  # Third-party *_REF values must be pinned 40-char commit SHAs, GB_SKILLS_REF is our own repo
   while IFS='=' read -r key value; do
+    if [[ "$key" == "GB_SKILLS_REF" ]]; then
+      continue
+    fi
+
     ref="${value%\"}"
     ref="${ref#\"}"
     if [[ ! "$ref" =~ ^[0-9a-f]{40}$ ]]; then
