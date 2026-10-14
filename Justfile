@@ -17,13 +17,14 @@ setup:
 [group('setup')]
 sync:
     #!/usr/bin/env bash
-    just decrypt-private || true
-    if [ -d "private/bin" ]; then
-        rsync private/bin/ home/.bin/ --exclude ".git/" --exclude ".DS_Store" -avh --no-perms;
+    # Decrypt into private/ and merge with --update, extracting into home/ would overwrite newer scripts in home/.bin
+    if [ -f private.tar.age ] && ./bin/crypto/decrypt-dir private.tar.age private; then
+        rsync private/.bin/ home/.bin/ --exclude ".DS_Store" -avh --no-perms --update;
     fi
     # --update keeps any file in ~ that is newer than the dotfiles copy, so a newer file is never overwritten by an older one
     rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" --exclude ".keys" -avh --no-perms --update;
-    newer="$(git ls-files home | sed 's#^home/##' | rsync -an --update --out-format='%n' --files-from=- ~/ home/)"
+    # find, not git ls-files, so gitignored files like .gitconfig are reported too
+    newer="$(cd home && find . -type f -not -name .DS_Store -not -name .keys -not -path '*/.git/*' | sed 's#^\./##' | rsync -an --update --out-format='%n' --files-from=- ~/ . | sed '/\/$/d')"
     if [ -n "$newer" ]; then
         echo "Kept these files in ~ because they are newer than dotfiles (copy them back if the change should stay):"
         echo "$newer" | sed 's/^/  ~\//'
