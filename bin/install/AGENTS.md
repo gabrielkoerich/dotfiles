@@ -122,7 +122,7 @@ struct WipeOnFree;
 
 ## Commits and pull requests
 
-Subject line only. No body, no description paragraph, no bullet list of what changed. `git commit -m "Short subject"` and nothing else. No trailer, and Claude is named nowhere in the commit. Pull request descriptions, comments and reviews carry no attribution either: no "Generated with ..." line, no co-author line.
+Subject line only. No body, no description paragraph, no bullet list of what changed. `git commit -m "Short subject"` and nothing else. No trailer, and no agent is named nowhere in the commit. Pull request descriptions, comments and reviews carry no attribution either: no "Generated with ..." line, no co-author line.
 
 The reasoning goes in the docs, not the commit. If a change needs explaining, the explanation belongs in `docs/DESIGN.md` or the equivalent, where it can be kept current.
 

@@ -35,7 +35,7 @@ To sync the dotfiles, run step 9 again.
 
 Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local.
 
-Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
+Encryption commands read the age key from passbox as `age/dotfiles`. `AGE_RECIPIENT` sets the recipient and `AGE_KEY_FILE` uses a plaintext key file instead.
 
 ## Security Tooling
 
@@ -59,7 +59,7 @@ encrypt-dir <src-dir> <out.tar.age>
 decrypt-dir <in.tar.age> <out-dir>
 ```
 
-Encryption commands use `AGE_RECIPIENT` when set; otherwise they derive the recipient from `AGE_KEY_FILE` (default: `~/.config/age/dotfiles.agekey`).
+Encryption commands read the age key from passbox as `age/dotfiles`. `AGE_RECIPIENT` sets the recipient and `AGE_KEY_FILE` uses a plaintext key file instead.
 
 ## Exact Machine Baseline
 

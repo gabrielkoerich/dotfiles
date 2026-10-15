@@ -117,7 +117,7 @@ security-strict:
 security-ci:
     SECURITY_AUDIT_REQUIRE_SEMGREP=1 ./bin/security-audit --strict
 
-# Generate a local `age` key pair used for encryption workflows.
+# Generate an `age` key pair and store it in passbox as `age/dotfiles`.
 [group('encryption')]
 crypto-keygen:
     ./bin/crypto/keygen

@@ -3,7 +3,6 @@ set -euo pipefail
 
 in="${1:-}"
 out_dir="${2:-}"
-key_file="${AGE_KEY_FILE:-$HOME/.config/age/dotfiles.agekey}"
 
 if [[ -z "$in" || -z "$out_dir" ]]; then
   echo "usage: decrypt-dir <input.tar.age> <output-dir>" >&2
@@ -14,6 +13,10 @@ mkdir -p "$out_dir"
 tmp_tar="$(mktemp /tmp/dotfiles-dec.XXXXXX.tar)"
 trap 'rm -f "$tmp_tar"' EXIT
 
-age --decrypt -i "$key_file" -o "$tmp_tar" "$in"
+if [[ -n "${AGE_KEY_FILE:-}" ]]; then
+  age --decrypt -i "$AGE_KEY_FILE" -o "$tmp_tar" "$in"
+else
+  passbox exec --stdin age/dotfiles -- age --decrypt -i - -o "$tmp_tar" "$in"
+fi
 tar -xf "$tmp_tar" -C "$out_dir"
 echo "decrypted dir into: $out_dir"
