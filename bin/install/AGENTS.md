@@ -122,7 +122,7 @@ struct WipeOnFree;
 
 ## Git worktrees
 
-Create worktrees with `git cow add -b <branch> [<path>]`, from the `git-cow` crate. It clones `target/`, `node_modules` and other build output from a template, so a new worktree takes almost no disk and its first build is fast. Without a path it uses `~/.worktrees/<project>/<branch>`. Run `git cow warm <path>` before removing a merged worktree, so the next one starts with its build output. Claude Code's worktrees in `<project>/.claude/worktrees` go through git cow by the `WorktreeCreate` hook, and the `git-worktrees` and `github-issue-worktree` skills use it too.
+Create worktrees with `git cow add -b <branch> [<path>]`, from the `git-cow` crate. It clones `target/`, `node_modules` and other build output from an extra checkout of the repository, so a new worktree takes almost no disk and its first build is fast. Without a path it uses `~/.worktrees/<project>/<branch>`. Run `git cow warm <path>` before removing a merged worktree, so the next one starts with its build output. Claude Code's worktrees in `<project>/.claude/worktrees` go through git cow by the `WorktreeCreate` hook, and the `git-worktrees` and `github-issue-worktree` skills use it too.
 
 ## Commits and pull requests
 
