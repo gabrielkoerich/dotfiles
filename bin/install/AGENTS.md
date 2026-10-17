@@ -120,6 +120,10 @@ A docblock is for what cannot be understood by reading the code: a protocol quir
 struct WipeOnFree;
 ```
 
+## Git worktrees
+
+Create worktrees with `git cow add -b <branch> [<path>]` from the `git-cow` crate, never with plain `git worktree add`. It clones `target/`, `node_modules` and other build output from a template instead of leaving a bare checkout whose first build writes gigabytes again. Without a path it uses `~/.worktrees/<project>/<branch>`. Before removing a merged worktree, run `git cow warm <path>` so the next one starts with its build output. Claude Code's own worktrees stay in `<project>/.claude/worktrees` and go through git cow by the `WorktreeCreate` hook, and the `git-worktrees` and `github-issue-worktree` skills use it too.
+
 ## Commits and pull requests
 
 Subject line only. No body, no description paragraph, no bullet list of what changed. `git commit -m "Short subject"` and nothing else. No trailer, and no agent is named nowhere in the commit. Pull request descriptions, comments and reviews carry no attribution either: no "Generated with ..." line, no co-author line.
