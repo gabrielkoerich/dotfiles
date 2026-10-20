@@ -29,15 +29,25 @@ window-position-y = 0
 window-padding-balance = false
 window-padding-color = background
 # window-decoration = false
-window-decoration = auto
-# transparent
-macos-titlebar-style = transparent
-macos-hidden = always
+# window-decoration = auto
+window-decoration = true
 
-# Keybindings
+
+### macos
+macos-hidden = always
+macos-titlebar-style = tabs
+# macos-titlebar-style = transparent
+macos-window-buttons = hidden
+macos-titlebar-proxy-icon = hidden
+
+### shell integrations
+shell-integration-features = no-title
+
+### Keybindings
 # keybind = global:ctrl+cmd+t=toggle_quick_terminal
 # keybind = global:shift+cmd+t=toggle_visibility
-keybind = global:ctrl+cmd+t=toggle_visibility
+# keybind = global:ctrl+cmd+t=toggle_visibility
+keybind = global:shift+cmd+t=toggle_visibility
 keybind = cmd+right=text:\x05
 keybind = cmd+left=text:\x01
 keybind = alt+left=esc:b
