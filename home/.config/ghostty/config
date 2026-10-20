@@ -1,7 +1,7 @@
 # Shell
 shell-integration = zsh
 shell-integration-features = true
-command = /bin/zsh -l -c 'tmux new -A -s ghostty'
+command = /bin/zsh -l -c '"$HOME"/.tmux/tmx'
 confirm-close-surface = false
 
 # Font
@@ -17,21 +17,27 @@ mouse-hide-while-typing = true
 
 # Window
 # title = " "
-window-width = 135
-window-height = 35
+window-width = 999
+window-height = 45
 window-step-resize = false
+window-position-x = 0
+window-position-y = 0
 # window-position-x = 40
 # window-position-y = 40
-window-padding-x = 10,10
-window-padding-y = 20,10
+# window-padding-x = 10,10
+# window-padding-y = 20,10
 window-padding-balance = false
 window-padding-color = background
-window-decoration = false
+# window-decoration = false
+window-decoration = auto
+# transparent
 macos-titlebar-style = transparent
+macos-hidden = always
 
 # Keybindings
-keybind = global:ctrl+cmd+t=toggle_quick_terminal
+# keybind = global:ctrl+cmd+t=toggle_quick_terminal
 # keybind = global:shift+cmd+t=toggle_visibility
+keybind = global:ctrl+cmd+t=toggle_visibility
 keybind = cmd+right=text:\x05
 keybind = cmd+left=text:\x01
 keybind = alt+left=esc:b

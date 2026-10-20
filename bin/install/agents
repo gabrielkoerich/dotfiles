@@ -38,8 +38,8 @@ sync_skills_to_agents() {
     grep -v -E '^\s*(#|$)' "$ignore" | sed 's#^\(.*\)$#/\1/#' > "$excludes"
   fi
 
-  mkdir -p "$HOME/.claude/skills" "$HOME/.codex/skills" "$HOME/.config/opencode/skills"
-  for target in "$HOME/.claude/skills/" "$HOME/.codex/skills/" "$HOME/.config/opencode/skills/"; do
+  mkdir -p "$HOME/.claude/skills" "$HOME/.codex/skills" "$HOME/.config/opencode/skills" "$HOME/.grok/skills"
+  for target in "$HOME/.claude/skills/" "$HOME/.codex/skills/" "$HOME/.config/opencode/skills/" "$HOME/.grok/skills/"; do
     # --update keeps any local file changed after the pinned commit
     rsync -avh --no-perms --update --exclude ".git/" --exclude ".github" --exclude ".DS_Store" --exclude ".sync-excludes" --exclude-from "$excludes" "$src"/ "$target"
   done

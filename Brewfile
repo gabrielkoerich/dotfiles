@@ -135,7 +135,7 @@ brew "librespeed-cli" # internet bandwidth tester
 brew "nextdns" # NextDNS CLI client
 brew "nmap" # network scanner
 brew "socat" # socket relay utility
-brew "speedtest-cli" # internet bandwidth tester
+brew "speedtest-go" # internet bandwidth tester
 brew "tcpflow" # capture TCP flows
 brew "tcpreplay" # replay captured packets
 brew "tcptrace" # TCP packet analysis
@@ -174,9 +174,10 @@ cask "iterm2" # terminal emulator
 cask "zed" # code editor
 
 # AI apps
-cask "claude" # Claude desktop app
+# cask "claude" # Claude desktop app
 cask "claude-code" # Claude Code app bundle
-cask "codex" # Codex app bundle
+cask "grok-build" # Grok cli
+cask "codex" # Codex cli
 cask "handy" # speech-to-text app
 
 # Development apps
