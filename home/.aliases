@@ -37,6 +37,7 @@ alias rebase-push="rebase && push"
 alias commit="orch commit --yes"
 alias cm="fetch >/dev/null 2>&1 & commit && wait && rb && push"
 alias cb="fetch >/dev/null 2>&1 & orch commit --no-llm --yes && wait && rb && push"
+alias ze="zed" # alias zed to change its open behavior
 
 colorflag="-G"
 

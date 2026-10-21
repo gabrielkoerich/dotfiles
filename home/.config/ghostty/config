@@ -1,6 +1,7 @@
 # Shell
 shell-integration = zsh
 shell-integration-features = true
+shell-integration-features = no-title
 command = /bin/zsh -l -c '"$HOME"/.tmux/tmx'
 confirm-close-surface = false
 
@@ -16,20 +17,13 @@ adjust-cursor-height = 20%
 mouse-hide-while-typing = true
 
 # Window
-# title = " "
 window-width = 999
 window-height = 45
 window-step-resize = false
 window-position-x = 0
 window-position-y = 0
-# window-position-x = 40
-# window-position-y = 40
-# window-padding-x = 10,10
-# window-padding-y = 20,10
 window-padding-balance = false
 window-padding-color = background
-# window-decoration = false
-# window-decoration = auto
 window-decoration = true
 
 
@@ -39,9 +33,7 @@ macos-titlebar-style = tabs
 # macos-titlebar-style = transparent
 macos-window-buttons = hidden
 macos-titlebar-proxy-icon = hidden
-
-### shell integrations
-shell-integration-features = no-title
+macos-icon = xray
 
 ### Keybindings
 # keybind = global:ctrl+cmd+t=toggle_quick_terminal
@@ -52,6 +44,8 @@ keybind = cmd+right=text:\x1b[F
 keybind = cmd+left=text:\x1b[H
 keybind = alt+left=unbind
 keybind = alt+right=unbind
+# bind cmd+shit+V to paste
+keybind = cmd+shift+v=text:\x16
 
 keybind = ctrl+n=new_window
 keybind = ctrl+h=goto_split:left
@@ -101,4 +95,3 @@ foreground = #cccccc
 cursor-color = #cccccc
 selection-background = #282828
 selection-foreground = #cccccc
-macos-icon = xray
