@@ -34,6 +34,7 @@ macos-titlebar-style = tabs
 macos-window-buttons = hidden
 macos-titlebar-proxy-icon = hidden
 macos-icon = xray
+macos-option-as-alt = true
 
 ### Keybindings
 # keybind = global:ctrl+cmd+t=toggle_quick_terminal
