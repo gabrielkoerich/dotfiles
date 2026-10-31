@@ -74,19 +74,9 @@ Important limits:
 2. App-internal state and cloud-synced settings may differ.
 3. External services and credentials are not reproduced automatically.
 
-## Agent Skills Supply-Chain Policy
+## Agent Instructions
 
-`bin/install/agents` installs external repositories at pinned commit SHAs:
-
-- [gabrielkoerich/skills](https://github.com/gabrielkoerich/skills)
-- [anthropics/skills](https://github.com/anthropics/skills)
-
-To update a pin safely:
-
-1. Review upstream changes.
-2. Update the ref constant in `bin/install/agents`.
-3. Run `just security-strict`.
-4. Re-run `just install agents` on a clean machine/test profile.
+Mackup backs up the agent configs and skills. `~/.claude/CLAUDE.md` is the one instruction file. `bin/install/agents` links `~/.codex/AGENTS.md` and `~/.config/opencode/AGENTS.md` to it. Run it after `mackup restore`, because the restore writes those two files back as copies.
 
 ## Tmux Workflow
 

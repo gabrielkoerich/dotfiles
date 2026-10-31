@@ -57,8 +57,8 @@ _fonts:
 _cask:
     ./bin/install/cask
 
-# Install coding agents and pinned skill repositories.
-[confirm("Install coding agents and skills? (y/n)")]
+# Link Codex and OpenCode AGENTS.md to ~/.claude/CLAUDE.md
+[confirm("Link AGENTS.md to CLAUDE.md? (y/n)")]
 _agents:
     ./bin/install/agents
 
