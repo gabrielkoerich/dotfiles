@@ -36,7 +36,13 @@ COMPLETION_WAITING_DOTS="true"
 # yyyy-mm-dd
 HIST_STAMPS="yyyy-mm-dd"
 
-fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+# Keep only the first copy of each PATH entry, a nested shell adds .path again on top of the inherited one
+typeset -U path PATH
+
+# Sets HOMEBREW_PREFIX, which fpath below needs before oh-my-zsh runs compinit
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $HOME/.orbstack/shell/completions/zsh $fpath)
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -84,3 +90,11 @@ unset file;
 # set histchars = ''
 # histchars=""
 # unsetopt banghist
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"

@@ -12,3 +12,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 export PATH="$HOME/.tmux:$PATH"
+
+# Docker Desktop and OrbStack tools, after Homebrew so they never shadow it
+export PATH="$PATH:$HOME/.docker/bin"
+export PATH="$PATH:$HOME/.orbstack/bin"
+
+# Docker Desktop and other installers link their commands here
+export PATH="$PATH:/usr/local/bin"

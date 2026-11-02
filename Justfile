@@ -23,7 +23,7 @@ sync:
     fi
     # --update keeps any file in ~ that is newer than the dotfiles copy, so a newer file is never overwritten by an older one
     rsync home/. ~ --exclude ".git/" --exclude ".DS_Store" --exclude ".keys" -avh --no-perms --update;
-    # find, not git ls-files, so gitignored files like .gitconfig are reported too
+    # find, not git ls-files, so gitignored files are reported too
     newer="$(cd home && find . -type f -not -name .DS_Store -not -name .keys -not -path '*/.git/*' | sed 's#^\./##' | rsync -an --update --out-format='%n' --files-from=- ~/ . | sed '/\/$/d')"
     if [ -n "$newer" ]; then
         echo "Kept these files in ~ because they are newer than dotfiles (copy them back if the change should stay):"
