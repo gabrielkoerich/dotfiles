@@ -354,3 +354,19 @@ end run
 APPLESCRIPT
     echo "${out}";
 }
+
+# Point <target> at <src>, moving whatever is there now to the Trash
+function symlink() {
+    local src="$1" target="$2"
+    mkdir -p "$(dirname "$target")"
+    if [ -L "$target" ] && [ "$(readlink "$target")" = "$src" ]; then
+        return
+    fi
+
+    if [ -e "$target" ] || [ -L "$target" ]; then
+        trash "$target"
+    fi
+
+    ln -s "$src" "$target"
+    echo "Linked $target -> $src"
+}

@@ -10,16 +10,28 @@ if [ ! -f "$src" ]; then
   exit 1
 fi
 
+# The repo copy, ~/.functions is not there yet on a new Mac
+source "$(dirname "$0")/../../home/.functions"
+
 for target in "$HOME/.codex/AGENTS.md" "$HOME/.config/opencode/AGENTS.md"; do
-  mkdir -p "$(dirname "$target")"
-  if [ -L "$target" ] && [ "$(readlink "$target")" = "$src" ]; then
-    continue
-  fi
-
-  if [ -e "$target" ] || [ -L "$target" ]; then
-    trash "$target"
-  fi
-
-  ln -s "$src" "$target"
-  echo "Linked $target -> $src"
+  symlink "$src" "$target"
 done
+
+# The skills repo is the source, ~/.claude/skills is its output and mackup leaves it out
+skills="$HOME/.claude/skills"
+public="$HOME/Projects/skills"
+
+if [ ! -d "$public" ]; then
+  gh repo clone gabrielkoerich/skills "$public"
+fi
+
+mkdir -p "$skills"
+just --justfile "$public/Justfile" sync-to-local
+
+# Codex and other agents read ~/.agents/skills
+symlink "$skills" "$HOME/.agents/skills"
+
+# Private skills install from a script in the encrypted home/.bin
+if [ -x "$HOME/.bin/skills-private" ]; then
+  "$HOME/.bin/skills-private"
+fi

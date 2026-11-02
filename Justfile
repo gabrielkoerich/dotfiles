@@ -57,8 +57,8 @@ _fonts:
 _cask:
     ./bin/install/cask
 
-# Link Codex and OpenCode AGENTS.md to ~/.claude/CLAUDE.md
-[confirm("Link AGENTS.md to CLAUDE.md? (y/n)")]
+# Link Codex and OpenCode AGENTS.md to ~/.claude/CLAUDE.md, and sync skills from the skills repos
+[confirm("Link AGENTS.md and sync skills? (y/n)")]
 _agents:
     ./bin/install/agents
 
