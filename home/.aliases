@@ -38,6 +38,8 @@ alias commit="orch commit --yes"
 alias cm="fetch >/dev/null 2>&1 & commit && wait && rb && push"
 alias cb="fetch >/dev/null 2>&1 & orch commit --no-llm --yes && wait && rb && push"
 alias ze="zed" # alias zed to change its open behavior
+# alias pr="gh pr create --base master --head develop --fill"
+# alias wtf="git add -A && git commit -m $(curl --silent --fail https://whatthecommit.com/index.txt)"
 
 colorflag="-G"
 
@@ -52,8 +54,6 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
-
-export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:'
 
 # Always enable colored `grep` output
 # Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
@@ -77,6 +77,11 @@ alias local-ip="ipconfig getifaddr en0"
 alias local-ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 alias ports="sudo lsof -P -i TCP -s TCP:LISTEN"
 alias ipinfo="echo 'mullvad:' && curl -s https://am.i.mullvad.net/json | jq && echo 'ipinfo:' && curl -s https://ipinfo.io | jq && echo 'ipleak:' && curl -s https://ipleak.net/json/ | jq"
+
+# show each subfolder size
+alias sizes="du -sh * | sort -hr"
+alias sizes-hidden="du -d 1 -h . | sort -hr"
+alias sizes-all='for f in *(D); do echo "$(du -sh "$f") \t($(stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$f"))"; done | sort -hr'
 
 # Show active network interfaces
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
@@ -165,7 +170,7 @@ alias reload="exec $SHELL -l"
 
 # speedtest-cli, then networkQuality, then librespeed-cli
 alias speedtest-cli="speedtest"
-alias speedtest="speedtest-cli || true && networkQuality -sv || true && librespeed-cli --share"
+alias speedtest="speedtest-cli || true && networkQuality -s"
 
 # List all docker ips
 alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; docker inspect $cid | grep IPAddress | cut -d \" -f 4; done'
@@ -186,16 +191,6 @@ alias dock='open -a Docker'
 
 alias sol1.17='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/1.17.1/solana-release ~/.local/share/solana/install/active_release'
 alias sol2='rm ~/.local/share/solana/install/active_release && ln -sfv ~/.local/share/solana/install/releases/2.3.0/solana-release ~/.local/share/solana/install/active_release'
-
-# alias pr="gh pr create --base master --head develop --fill"
-# alias wtf="git add -A && git commit -m $(curl --silent --fail https://whatthecommit.com/index.txt)"
-
-# alias processlist="watch -n 2 'echo \"show processlist;\" | mysql -uroot'";
-# alias pg="pg_ctl -D /usr/local/var/postgres"
-# kill postgress stuck pid
-#alias restart-postgres="rm -f /usr/local/var/postgres/postmaster.pid && brew services stop postgresql && brew services start postgresql"
-
-# alias git-delete-branches='git branch | grep -v "main" | xargs git branch -d'
 
 # switch to tmux session (creates if missing)
 switch() {
