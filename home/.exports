@@ -19,9 +19,15 @@ export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
 
-# Prefer US English and use UTF-8.
-export LANG='en_US.UTF-8';
-export LC_ALL='en_US.UTF-8';
+# Prefer US English and use UTF-8, but only when that locale is generated:
+# otherwise every shell and child process prints a `setlocale` warning.
+if locale -a 2>/dev/null | grep -qix 'en_us\.utf-\?8'; then
+    export LANG='en_US.UTF-8';
+    export LC_ALL='en_US.UTF-8';
+elif locale -a 2>/dev/null | grep -qix 'c\.utf-\?8'; then
+    export LANG='C.UTF-8';
+    export LC_ALL='C.UTF-8';
+fi
 
 # Highlight section titles in manual pages.
 export LESS_TERMCAP_md="${yellow}";
@@ -44,11 +50,17 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 
 export DELTA_PAGER="less -R --mouse"
 
-socks_proxy=`scutil --proxy | awk '\
-  /SOCKSEnable/ { enabled = $3; } \
-  /SOCKSProxy/ { server = $3; } \
-  /SOCKSPort/ { port = $3; } \
-  END { if (enabled == "1") { print "socks5://" server ":" port; } }'`
+# macOS exposes the system SOCKS proxy through `scutil`; elsewhere keep whatever
+# http_proxy the environment already set.
+if command -v scutil >/dev/null 2>&1; then
+    socks_proxy=`scutil --proxy | awk '\
+      /SOCKSEnable/ { enabled = $3; } \
+      /SOCKSProxy/ { server = $3; } \
+      /SOCKSPort/ { port = $3; } \
+      END { if (enabled == "1") { print "socks5://" server ":" port; } }'`
+else
+    socks_proxy=""
+fi
 
 if [ -n "$socks_proxy" ]; then
     export http_proxy="${socks_proxy}"

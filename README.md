@@ -35,6 +35,17 @@ To sync the dotfiles, run step 9 again.
 
 Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay local.
 
+### Linux boxes
+
+`just sync` also works on a Linux/bash machine, where only `just` and `rsync` are needed:
+
+- `.path`, `.exports` and `.aliases` guard the macOS-only bits (Homebrew prefix, SDK headers,
+  `scutil` proxy lookup, BSD `ls -G`) and add Linux equivalents.
+- `.bash_aliases` is the bash entry point: the distro default `~/.bashrc` sources it, and it
+  loads `.path`, `.exports`, `.aliases` and `.functions` like `.zshrc` does.
+- The private `.bin` merge is skipped when `age` or the key is missing.
+- Everything else (`just setup`, `install brew|cask|touchid`, `backup`, `restore`) stays macOS-only.
+
 Encryption commands read the age key from passbox as `age/dotfiles`. `AGE_RECIPIENT` sets the recipient and `AGE_KEY_FILE` uses a plaintext key file instead.
 
 ## Security Tooling

@@ -41,7 +41,12 @@ alias ze="zed" # alias zed to change its open behavior
 # alias pr="gh pr create --base master --head develop --fill"
 # alias wtf="git add -A && git commit -m $(curl --silent --fail https://whatthecommit.com/index.txt)"
 
-colorflag="-G"
+# BSD `ls` colorizes with -G, GNU `ls` needs --color
+if [ "$(uname -s)" = "Darwin" ]; then
+    colorflag="-G"
+else
+    colorflag="--color=auto"
+fi
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
@@ -81,7 +86,14 @@ alias ipinfo="echo 'mullvad:' && curl -s https://am.i.mullvad.net/json | jq && e
 # show each subfolder size
 alias sizes="du -sh * | sort -hr"
 alias sizes-hidden="du -d 1 -h . | sort -hr"
-alias sizes-all='for f in *(D); do echo "$(du -sh "$f") \t($(stat -f "%Sm" -t "%Y-%m-%d %H:%M" "$f"))"; done | sort -hr'
+sizes-all() {
+    local f mtime
+    for f in .[!.]* *; do
+        [ -e "$f" ] || continue
+        mtime="$(stat -f '%Sm' -t '%Y-%m-%d %H:%M' "$f" 2>/dev/null || stat -c '%y' "$f" 2>/dev/null | cut -c1-16)"
+        printf '%s\t(%s)\n' "$(du -sh "$f")" "$mtime"
+    done | sort -hr
+}
 
 # Show active network interfaces
 alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'"
@@ -176,7 +188,7 @@ alias speedtest="speedtest-cli || true && networkQuality -s"
 alias dockerip='docker ps | tail -n +2 | while read cid b; do echo -n "$cid\t"; docker inspect $cid | grep IPAddress | cut -d \" -f 4; done'
 
 alias battery="pmset -g batt"
-alias battery-cycle="system_profiler SPPowerDataType | grep "Cycle Count" | awk '{print $3}'"
+battery-cycle() { system_profiler SPPowerDataType | awk '/Cycle Count/ { print $3 }'; }
 
 alias weather="curl -s https://wttr.in/Florianopolis | head -7"
 
@@ -201,3 +213,22 @@ switch() {
         tmux new-session -d -s "$session" && tmux switch-client -t "$session"
     fi
 }
+
+# Linux: stand in for the macOS commands the aliases and functions above assume
+if [ "$(uname -s)" = "Linux" ]; then
+    if command -v wl-copy > /dev/null 2>&1; then
+        pbcopy() { wl-copy; }
+        pbpaste() { wl-paste; }
+    elif command -v xclip > /dev/null 2>&1; then
+        pbcopy() { xclip -selection clipboard; }
+        pbpaste() { xclip -selection clipboard -o; }
+    fi
+
+    command -v open > /dev/null 2>&1 || alias open="xdg-open"
+
+    alias local-ip="hostname -I | awk '{ print \$1 }'"
+    alias local-ips="ip -brief address"
+    alias ifactive="ip -brief link show up"
+    alias flushdns="sudo resolvectl flush-caches"
+    alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 2>/dev/null || echo 'no battery'"
+fi

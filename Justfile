@@ -10,7 +10,7 @@ _default:
 [confirm("Setup Mac? This should be only done on a fresh install. (y/n)")]
 [group('setup')]
 setup:
-    ./macos
+    ./bin/macos
 
 # Sync dotfiles to home directory
 [confirm("This copies dotfiles into your home directory, files that are newer in ~ are kept. Continue? (y/n)")]
@@ -18,7 +18,10 @@ setup:
 sync:
     #!/usr/bin/env bash
     # Decrypt into private/ and merge with --update, extracting into home/ would overwrite newer scripts in home/.bin
-    if [ -f private.tar.age ] && ./bin/crypto/decrypt-dir private.tar.age private; then
+    # Machines without age or a key (e.g. a plain Linux box) just skip the private .bin merge
+    if [ -f private.tar.age ] && command -v age >/dev/null 2>&1 \
+        && { [ -n "${AGE_KEY_FILE:-}" ] || command -v passbox >/dev/null 2>&1; } \
+        && ./bin/crypto/decrypt-dir private.tar.age private; then
         rsync private/.bin/ home/.bin/ --exclude ".DS_Store" -avh --no-perms --update;
     fi
     # --update keeps any file in ~ that is newer than the dotfiles copy, so a newer file is never overwritten by an older one
