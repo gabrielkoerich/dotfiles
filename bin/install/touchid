@@ -26,7 +26,7 @@ if command -v brew >/dev/null 2>&1; then
     reattach="$candidate"
   else
     echo "warn: pam_reattach not installed, Touch ID will not work inside tmux"
-    echo "      run: brew install fabianishere/personal/pam_reattach"
+    echo "      run: brew install pam-reattach"
   fi
 fi
 
@@ -42,7 +42,7 @@ fi
 content+="auth       sufficient     pam_tid.so
 "
 
-if [[ -f "$target" ]] && [[ "$(cat "$target")" == "$content" ]]; then
+if [[ -f "$target" ]] && printf '%s' "$content" | cmp -s - "$target"; then
   echo "ok: $target already configured"
   exit 0
 fi
