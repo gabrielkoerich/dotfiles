@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+# Sets a server up for agents that tmux-agents on the Mac reaches over ssh: tmux, titles that reach the Mac,
+# and a shell that titles itself. Idempotent, deterministic and atomic, push it with `just tmux-host <host>`
+set -euo pipefail
+
+conf_dir="$HOME/.tmux"
+conf="$conf_dir/agents-host.conf"
+hook="$conf_dir/agents-host-title.sh"
+source_line="source-file -q $conf"
+hook_line="[ -r $hook ] && . $hook"
+tmp=
+
+trap 'if [[ -n $tmp ]]; then rm -f "$tmp"; fi' EXIT
+
+install_tmux() {
+  local brew='' b os_ids
+  if command -v tmux >/dev/null; then
+    echo "tmux: $(tmux -V)"
+    return
+  fi
+
+  case "$(uname -s)" in
+    Darwin)
+      for b in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+        if [[ -x $b ]]; then
+          brew=$b
+          break
+        fi
+      done
+      if [[ -z $brew ]]; then
+        echo "error: tmux needs Homebrew on macOS" >&2
+        exit 1
+      fi
+      "$brew" install tmux
+      ;;
+    Linux)
+      # shellcheck disable=SC1091
+      . /etc/os-release
+      os_ids=" ${ID:-} ${ID_LIKE:-} "
+      case $os_ids in
+        *" debian "* | *" ubuntu "*) sudo apt-get update -qq && sudo apt-get install -y tmux ;;
+        *" fedora "* | *" rhel "* | *" centos "*) sudo dnf install -y tmux ;;
+        *" arch "*) sudo pacman -S --noconfirm --needed tmux ;;
+        *" alpine "*) sudo apk add tmux ;;
+        *)
+          echo "error: no package manager known for ${ID:-this Linux}, install tmux by hand" >&2
+          exit 1
+          ;;
+      esac
+      ;;
+    *)
+      echo "error: $(uname -s) is not supported" >&2
+      exit 1
+      ;;
+  esac
+  echo "tmux: installed $(tmux -V)"
+}
+
+# Replaces a file in one rename, so a reader never sees half of it. The temp file starts as a copy to keep the mode
+atomic_write() {
+  local path=$1 content=$2
+  tmp=$(mktemp "$path.XXXXXX")
+  if [[ -f $path ]]; then
+    cp -p "$path" "$tmp"
+  fi
+
+  printf '%s\n' "$content" >"$tmp"
+  mv -f "$tmp" "$path"
+  tmp=
+}
+
+write_if_changed() {
+  local path=$1 content=$2
+  if [[ -f $path ]] && [[ "$(cat "$path")" == "$content" ]]; then
+    echo "unchanged: $path"
+    return
+  fi
+
+  atomic_write "$path" "$content"
+  echo "wrote: $path"
+}
+
+# Adds a line once, matching the exact line, and keeps the rest of the file as it was
+ensure_line() {
+  local path=$1 line=$2 current=
+  if [[ -f $path ]]; then
+    if grep -qxF "$line" "$path"; then
+      echo "present: $line in $path"
+      return
+    fi
+
+    current=$(cat "$path")
+  fi
+
+  atomic_write "$path" "${current:+$current
+}$line"
+  echo "added: $line to $path"
+}
+
+install_tmux
+mkdir -p "$conf_dir"
+
+write_if_changed "$conf" "# Managed by dotfiles bin/install/tmux-host, a run rewrites it
+# The active pane's title goes out to the Mac, where tmux-agents reads an agent's task and the folder
+set -g set-titles on
+set -g set-titles-string '#{pane_title}'
+# The server's status bar sits at the bottom, apart from the Mac's at the top
+set -g status-position bottom"
+
+write_if_changed "$hook" "# Managed by dotfiles bin/install/tmux-host, a run rewrites it
+# Over ssh, title the pane user@host: dir, so the sidebar on the Mac names a space after its folder
+if [ -n \"\${SSH_CONNECTION:-}\" ]; then
+  if [ -n \"\${ZSH_VERSION:-}\" ]; then
+    _agents_title() { print -Pn '\\e]2;%n@%m: %~\\a'; }
+    autoload -Uz add-zsh-hook && add-zsh-hook precmd _agents_title
+  else
+    PROMPT_COMMAND=\"printf '\\\\e]2;%s@%s: %s\\\\a' \\\"\\\$USER\\\" \\\"\\\${HOSTNAME%%.*}\\\" \\\"\\\${PWD/#\\\$HOME/~}\\\"\${PROMPT_COMMAND:+; \$PROMPT_COMMAND}\"
+  fi
+fi"
+
+ensure_line "$HOME/.tmux.conf" "$source_line"
+ensure_line "$HOME/.bashrc" "$hook_line"
+if [[ -f $HOME/.zshrc ]]; then
+  ensure_line "$HOME/.zshrc" "$hook_line"
+fi
+
+# A tmux server already running takes the new settings now, the next one reads them at start
+if tmux list-sessions >/dev/null 2>&1; then
+  tmux source-file "$HOME/.tmux.conf"
+  echo "reloaded the running tmux server"
+fi

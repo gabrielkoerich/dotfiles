@@ -26,3 +26,7 @@ sudo mv composer\.phar /usr/local/bin/composer
 ^bin/install/dns:.*sudo nextdns install
 ^bin/install/tmux:.*sudo apt-get install -y tmux
 ^bin/install/tmux:.*sudo dnf install -y tmux
+^bin/install/tmux-host:.*sudo apt-get update -qq && sudo apt-get install -y tmux
+^bin/install/tmux-host:.*sudo dnf install -y tmux
+^bin/install/tmux-host:.*sudo pacman -S --noconfirm --needed tmux
+^bin/install/tmux-host:.*sudo apk add tmux

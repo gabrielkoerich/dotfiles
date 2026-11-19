@@ -46,6 +46,12 @@ install target:
 _brew:
     ./bin/install/brew
 
+# Set a server up for remote agents over ssh: tmux, titles back to the Mac, a self-titling shell.
+# The script travels as an argument, so the server keeps no copy: just tmux-host legion
+[group('install')]
+tmux-host host:
+    ssh -t {{ host }} "bash -c $(printf %q "$(cat bin/install/tmux-host)")"
+
 # Install TPM and tmux plugins declared in .tmux.conf.
 _tmux:
     ./bin/install/tmux
