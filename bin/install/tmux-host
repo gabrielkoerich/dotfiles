@@ -104,8 +104,8 @@ write_if_changed "$conf" "# Managed by dotfiles bin/install/tmux-host, a run rew
 # The active pane's title goes out to the Mac, where tmux-agents reads an agent's task and the folder
 set -g set-titles on
 set -g set-titles-string '#{pane_title}'
-# The server's status bar sits at the bottom, apart from the Mac's at the top
-set -g status-position bottom
+# The Mac's tmux shows the windows and the sidebar shows the machine, so the server's own bar stays off
+set -g status off
 # No background of its own, so the Mac's theme shows through
 set -g window-style 'bg=default'
 set -g window-active-style 'bg=default'
