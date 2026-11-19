@@ -24,3 +24,5 @@ sudo mv composer\.phar /usr/local/bin/composer
 ^bin/install/touchid:.*sudo chmod 444 "\$target"
 ^bin/install/touchid:.*sudo -k && sudo true
 ^bin/install/dns:.*sudo nextdns install
+^bin/install/tmux:.*sudo apt-get install -y tmux
+^bin/install/tmux:.*sudo dnf install -y tmux

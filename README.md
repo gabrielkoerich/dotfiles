@@ -44,6 +44,7 @@ Note: sync intentionally excludes `~/.ssh` so keys and SSH host/user config stay
 - `.bash_aliases` is the bash entry point: the distro default `~/.bashrc` sources it, and it
   loads `.path`, `.exports`, `.aliases` and `.functions` like `.zshrc` does.
 - The private `.bin` merge is skipped when `age` or the key is missing.
+- `just install tmux` installs tmux with apt or dnf when it is missing, then TPM and the plugins. A server that runs agents needs it, since `tmux-agents` keeps each remote space in a tmux session there.
 - Everything else (`just setup`, `install brew|cask|touchid`, `backup`, `restore`) stays macOS-only.
 
 Encryption commands read the age key from passbox as `age/dotfiles`. `AGE_RECIPIENT` sets the recipient and `AGE_KEY_FILE` uses a plaintext key file instead.
