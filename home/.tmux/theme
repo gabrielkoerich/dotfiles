@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Switches the tmux colour theme and remembers it, every style reads the @thm_* options it sets
+set -eu
+dir="$HOME/.tmux/themes"
+state="$HOME/.local/state/tmux-theme"
+
+if [ $# -eq 0 ]; then
+  cat "$state" 2>/dev/null || echo black
+  exit 0
+fi
+
+if [ ! -f "$dir/$1.conf" ]; then
+  echo "no theme $1, have: $(ls "$dir" | sed 's/\.conf$//' | tr '\n' ' ')" >&2
+  exit 1
+fi
+
+tmux source-file "$dir/$1.conf"
+mkdir -p "${state%/*}"
+echo "$1" > "$state"
+tmux refresh-client -S 2>/dev/null || true
