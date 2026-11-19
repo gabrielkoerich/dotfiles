@@ -56,6 +56,13 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Over ssh, title the pane user@host: dir so the local tmux sidebar can name it
+if [[ -n $SSH_CONNECTION ]]; then
+  _ssh_title() { print -Pn "\e]2;%n@%m: %~\a" }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd _ssh_title
+fi
+
 # Touch ID for sudo
 # From: https://news.ycombinator.com/item?id=26304832
 # https://gist.github.com/windyinsc/26aaa8783c7734529998062a11d80b96

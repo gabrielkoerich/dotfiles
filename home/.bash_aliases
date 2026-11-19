@@ -15,3 +15,8 @@ unset file
 # duplicates so a nested shell re-sourcing ~/.path cannot grow PATH forever.
 PATH="$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: '!seen[$0]++' | sed 's/:$//')"
 export PATH
+
+# Over ssh, title the pane user@host: dir so the local tmux sidebar can name it
+if [ -n "$SSH_CONNECTION" ]; then
+  PROMPT_COMMAND="printf '\\e]2;%s@%s: %s\\a' \"\$USER\" \"\${HOSTNAME%%.*}\" \"\${PWD/#\$HOME/~}\"${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+fi
