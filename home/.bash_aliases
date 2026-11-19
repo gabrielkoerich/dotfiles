@@ -16,6 +16,11 @@ unset file
 PATH="$(printf '%s' "$PATH" | awk -v RS=: -v ORS=: '!seen[$0]++' | sed 's/:$//')"
 export PATH
 
+# Type a folder name to cd into it, as oh-my-zsh's auto_cd does. bash 4.0 added autocd, older bash skips it
+if [ -n "$BASH_VERSION" ]; then
+  shopt -s autocd 2>/dev/null
+fi
+
 # Over ssh, title the pane user@host: dir so the local tmux sidebar can name it
 if [ -n "$SSH_CONNECTION" ]; then
   PROMPT_COMMAND="printf '\\e]2;%s@%s: %s\\a' \"\$USER\" \"\${HOSTNAME%%.*}\" \"\${PWD/#\$HOME/~}\"${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
