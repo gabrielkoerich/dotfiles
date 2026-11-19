@@ -105,7 +105,11 @@ write_if_changed "$conf" "# Managed by dotfiles bin/install/tmux-host, a run rew
 set -g set-titles on
 set -g set-titles-string '#{pane_title}'
 # The server's status bar sits at the bottom, apart from the Mac's at the top
-set -g status-position bottom"
+set -g status-position bottom
+# No background of its own, so the Mac's theme shows through
+set -g window-style 'bg=default'
+set -g window-active-style 'bg=default'
+set -g status-style 'fg=colour245,bg=default'"
 
 write_if_changed "$hook" "# Managed by dotfiles bin/install/tmux-host, a run rewrites it
 # Over ssh, title the pane user@host: dir, so the sidebar on the Mac names a space after its folder
