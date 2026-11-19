@@ -39,7 +39,7 @@ setup() {
 @test "a rewrite keeps the file mode and leaves no temp files" {
   chmod 640 "$HOME/.bashrc"
   "$bin"
-  [ "$(stat -f %Lp "$HOME/.bashrc" 2>/dev/null || stat -c %a "$HOME/.bashrc")" = 640 ]
+  [ "$(stat -c %a "$HOME/.bashrc" 2>/dev/null || stat -f %Lp "$HOME/.bashrc")" = 640 ]
   [ "$(cd "$HOME" && find . -type f | sort | tr '\n' ' ')" = "./.bashrc ./.tmux.conf ./.tmux/agents-host-title.sh ./.tmux/agents-host.conf " ]
 }
 
