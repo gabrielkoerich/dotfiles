@@ -23,3 +23,4 @@ sudo mv composer\.phar /usr/local/bin/composer
 ^bin/install/touchid:.*sudo chown root:wheel "\$target"
 ^bin/install/touchid:.*sudo chmod 444 "\$target"
 ^bin/install/touchid:.*sudo -k && sudo true
+^bin/install/dns:.*sudo nextdns install
