@@ -3,10 +3,10 @@
 # brew install cloudflared
 # brew install nextnds/tap/nextdns
 
-# sudo nextdns install \
-#   -config <config_id> \
-#   -report-client-info \
-#   -auto-activate
+sudo nextdns install \
+  -config "${NEXTDNS_CONFIG_ID:?set NEXTDNS_CONFIG_ID in ~/.extra}" \
+  -report-client-info \
+  -auto-activate
 
 # https://blog.smittytone.net/2022/05/07/how-to-do-dns-over-https-on-macos
 # mkdir /usr/local/etc/cloudflared
