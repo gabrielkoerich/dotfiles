@@ -11,6 +11,7 @@ tap "txtx/taps" # surfpool blockchain deployment tool
 brew "bash" # current Bash, newer than the one macOS ships
 brew "coreutils" # GNU core utilities
 brew "findutils" # GNU find/xargs/locate utilities
+brew "fzf" # fuzzy finder, used by the tmux-agents picker
 brew "gnu-sed" # GNU sed
 brew "gnu-tar" # GNU tar
 brew "grep" # GNU grep/egrep/fgrep

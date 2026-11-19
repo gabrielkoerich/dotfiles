@@ -1,0 +1,6 @@
+• Explored
+  └ Read main.rs
+
+• Working (12s • esc to interrupt)
+
+› Ask Codex to do anything

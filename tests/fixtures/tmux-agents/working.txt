@@ -1,0 +1,11 @@
+⏺ Running 1 shell command…
+  ⎿  $ tmux capture-pane -p -t "$TMUX_PANE"
+
+● Fiddle-faddling… (48s · thought for 2s)
+  ⎿  Tip: Use /btw to ask a quick side question
+     without interrupting Claude's current work
+────────────────────────── tmux ssh session manager ─
+❯ 
+─────────────────────────────────────────────────────
+  Opus 5.5 │ █░░░░░░░ 7% │ $0.84 │ 2m 9s │ main* │…
+  ⏵⏵ auto mode on (shift+tab to cycle)

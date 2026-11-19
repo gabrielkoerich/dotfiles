@@ -1,0 +1,9 @@
+● Everything is merged and released as passbox 2.2.4.
+
+✻ Baked for 6m 4s · done 9:41 PM
+
+────────────────────────── ios-app-pr-review ─
+❯ 
+──────────────────────────────────────────────
+  Opus 5.5 │ ███░░░░░ 52% │ $37.9 │ 95h 44m
+  ⏵⏵ auto mode on (shift+tab to cycle)

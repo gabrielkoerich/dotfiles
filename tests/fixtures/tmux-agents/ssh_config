@@ -1,0 +1,6 @@
+Include ssh.d/*
+Host m1-max m1
+  HostName 192.168.1.10
+Host *.internal !bastion
+  User gb
+host legion
