@@ -96,9 +96,36 @@ Mackup backs up the agent configs and skills. `~/.claude/CLAUDE.md` is the one i
 
 ## Tmux Workflow
 
-- Defined prefix: `ctrl + A`
-- Split horizontal: `prefix + |`
-- Split vertical: `prefix + _`
+The prefix is `Ctrl+A`. `prefix + h` opens a cheat sheet of every key, read live from `tmux list-keys -N`, so it lists exactly what is bound. Each binding in `.tmux.conf` carries its note (`bind -N "…"`), so a new key shows up there once it has one.
+
+| Key | Action |
+|---|---|
+| `prefix + h` | This cheat sheet |
+| `prefix + Space` | Go to anywhere: agents, sessions, windows and ssh hosts ([tmux-agents](https://github.com/gabrielkoerich/tmux-agents)) |
+| `prefix + a` | Agents sidebar, open or close |
+| `prefix + \|` / `prefix + _` | Split side by side / top and bottom, on the server too in an ssh pane |
+| `prefix + t` | File tree, of the server in an ssh pane |
+| `prefix + n` | New window in this folder |
+| `prefix + +` | Zoom the pane in or out |
+| `prefix + x` / `prefix + w` | Close the pane / the window, asking first |
+| `prefix + r` / `prefix + R` | Rename the window / the session |
+| `prefix + C-t` | Colour theme menu: Black, Mocha, Ink |
+| `prefix + C-s` | Show or hide the status bar |
+| `prefix + C-r` / `prefix + C-e` | Reload tmux.conf / edit it, then reload |
+| `Cmd+1` … `Cmd+9`, `prefix + 1` … `5` | The Nth tab |
+| `Option+1` … `Option+9` | The Nth item in the sidebar |
+| `Shift+←` / `Shift+→` | Previous / next window |
+| `Option+arrows` | Move between panes |
+| `Option+V` | Spoken replies on or off |
+| `F12` | Send keys to a nested tmux, `F12` again to come back |
+
+`@agents-tabs` decides what the tabs on top are. With `sessions` they are your sessions and the sidebar lists the windows of the current one; with `windows` it is the other way round. `Cmd+N` always picks a tab and `Option+N` a sidebar item, so the keys mean the same in both layouts. Ghostty sends `Cmd+N` to tmux as `ESC [ 900N ~`, which needs these lines in `~/.config/ghostty/config`, `digit_N` since Ghostty matches the physical key first:
+
+```
+keybind = cmd+digit_1=text:\x1b[9001~
+…
+keybind = cmd+digit_9=text:\x1b[9009~
+```
 
 The tmux config now supports durable sessions:
 
