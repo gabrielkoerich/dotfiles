@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Prints every tmux binding that has a note, by how you press it, for the prefix+h cheat sheet
+set -euo pipefail
+
+# Names a key the way you press it: Option for M-, Cmd for the codes Ghostty sends as User0 to User8
+pretty() {
+  # list-keys prints the prefix key before every key, and a note that names its own key repeats it
+  sed -E 's/^C-a +//; s/ (Cmd|Option)\+[0-9]: / /; s/^User([0-8]) /Cmd+\1 /; s/^M-/Option+/; s/^S-/Shift+/; s/^C-/Ctrl+/;' |
+    awk '{ k = $1; $1 = ""; sub(/^ +/, ""); if (k ~ /^Cmd\+[0-8]$/) { k = "Cmd+" (substr(k, 5) + 1) } printf "  %-14s %s\n", k, $0 }'
+}
+
+section() {
+  printf '\n\033[1m%s\033[0m\n' "$1"
+}
+
+section "Prefix, Ctrl+A then"
+tmux list-keys -N -T prefix | pretty
+section "Direct"
+tmux list-keys -N -T root | pretty
+section "While F12 has sent keys to an inner tmux"
+tmux list-keys -N -T off | pretty
+printf '\n\033[2m/ searches, q closes\033[0m\n'
