@@ -1,0 +1,104 @@
+
+# Shell
+shell-integration = zsh
+shell-integration-features = true
+shell-integration-features = no-title
+command = /bin/zsh -l -c '"$HOME"/.tmux/tmx'
+confirm-close-surface = false
+
+# Font
+font-family = JetBrains Mono
+font-size = 12
+
+adjust-cell-height = 20%
+
+# Cursor
+cursor-style = block
+adjust-cursor-height = 20%
+mouse-hide-while-typing = true
+
+# Window
+window-width = 999
+window-height = 45
+window-step-resize = false
+window-position-x = 0
+window-position-y = 0
+window-padding-balance = false
+# window-padding-color = background
+window-padding-color = extend-always
+window-padding-y = 8,0
+window-decoration = true
+
+
+### macos
+macos-hidden = always
+# macos-titlebar-style = tabs
+# macos-titlebar-style = transparent
+macos-titlebar-style = hidden
+macos-window-buttons = hidden
+macos-titlebar-proxy-icon = hidden
+macos-icon = xray
+macos-option-as-alt = true
+
+### Keybindings
+keybind = global:shift+cmd+t=toggle_visibility
+keybind = cmd+right=text:\x1b[F
+keybind = cmd+left=text:\x1b[H
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+# bind cmd+shit+V to paste
+keybind = cmd+shift+v=text:\x16
+
+keybind = ctrl+n=new_window
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = super+r=reload_config
+# window-save-state = always
+
+# Cmd+1-9 reach tmux as ESC [ 900N ~, where they pick the Nth tab (tmux-agents user-keys).
+# Ghostty matches the physical key first, so digit_N has to be bound, not only the character N
+keybind = cmd+digit_1=text:\x1b[9001~
+keybind = cmd+digit_2=text:\x1b[9002~
+keybind = cmd+digit_3=text:\x1b[9003~
+keybind = cmd+digit_4=text:\x1b[9004~
+keybind = cmd+digit_5=text:\x1b[9005~
+keybind = cmd+digit_6=text:\x1b[9006~
+keybind = cmd+digit_7=text:\x1b[9007~
+keybind = cmd+digit_8=text:\x1b[9008~
+keybind = cmd+digit_9=text:\x1b[9009~
+
+# Colors
+palette =  0=#141414
+palette =  8=#666666
+
+palette =  1=#f38ba8
+palette =  9=#f38ba8
+
+palette =  2=#a6e3a1
+palette = 10=#a6e3a1
+
+palette =  3=#f9e2af
+palette = 11=#f9e2af
+
+palette =  4=#89b4fa
+palette = 12=#89b4fa
+
+palette =  5=#cba6f7
+palette = 13=#cba6f7
+
+palette =  6=#94e2d5
+palette = 14=#94e2d5
+
+palette =  7=#cccccc
+palette = 15=#cccccc
+
+background = #000000
+background-opacity = 0.9
+background-blur = 20
+foreground = #cccccc
+cursor-color = #cccccc
+selection-background = #282828
+selection-foreground = #cccccc
